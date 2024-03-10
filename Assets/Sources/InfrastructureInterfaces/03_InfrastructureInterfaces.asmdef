@@ -1,0 +1,14 @@
+{
+    "name": "03_InfrastructureInterfaces",
+    "rootNamespace": "InfrastructureInterfaces",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
