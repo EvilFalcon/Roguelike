@@ -1,7 +1,7 @@
 {
     "name": "08_Controllers",
     "rootNamespace": "Controllers",
-    "references": [],
+    "references": ["GUID:2b4295f4c215da74cac2a42852bedde1","GUID:0c8bdaf57e93e2940b590438af979055","GUID:9dcc25f4a8027db4faa7cc1f09443bf4"],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

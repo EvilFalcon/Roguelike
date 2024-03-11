@@ -2,6 +2,6 @@
 {
     public interface IDamageableComponent
     {
-        
+        void TakeDamage(int damage);
     }
 }
