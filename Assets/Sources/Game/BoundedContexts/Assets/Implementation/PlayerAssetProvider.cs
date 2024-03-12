@@ -5,11 +5,11 @@ namespace Sources.Game.BoundedContexts.Assets.Implementation
 {
     public class PlayerAssetProvider : AssetProviderBase
     {
-        public PlayerMove PlayerMove { get; private set; }
+        public HeroMove HeroMove { get; private set; }
 
         public override async Task LoadAsync()
         {
-            PlayerMove = await Load<PlayerMove>(nameof(PlayerMove));
+            HeroMove = await Load<HeroMove>(nameof(HeroMove));
         }
     }
 }

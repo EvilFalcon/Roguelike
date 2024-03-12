@@ -2,25 +2,26 @@
 using Sources.Game.BoundedContexts.Assets.Interfaces.Scenes.Services;
 using Sources.Game.BoundedContexts.Assets.Interfaces.States;
 using Sources.Game.BoundedContexts.Scenes.Interfaces.Factories;
-using Sources.Game.Common.StateMachines.Interfaces.PureStateMachines;
+using Sources.Game.BoundedContexts.Scenes.Interfaces.Services;
+using Sources.Game.Common.StateMachines.Implementation;
 using UniCtor.Builders;
 using UniCtor.Contexts;
 using UnityEngine.SceneManagement;
 
-namespace Sources.Game.BoundedContexts.Scenes
+namespace Sources.Game.BoundedContexts.Scenes.Implementation.Services
 {
-    public class SceneConstructor : ISceneConstructor
+    public class SceneConstructor : ISceneConstructor, ISceneSwitcher
     {
         private readonly ISceneFactoryProvider _sceneFactoryProvider;
-        private readonly IPureStateMachine<IScene> _stateMachine;
-        private readonly IDependencyResolver _dependencyResolver;
 
-        public SceneConstructor(ISceneFactoryProvider sceneFactoryProvider, IPureStateMachine<IScene> pureStateMachine,
+        private readonly StateMachine<IState> _stateMachine;
+
+        public SceneConstructor(
+            ISceneFactoryProvider sceneFactoryProvider,
             IDependencyResolver dependencyResolver)
         {
             _sceneFactoryProvider = sceneFactoryProvider ?? throw new ArgumentNullException(nameof(sceneFactoryProvider));
-            _stateMachine = pureStateMachine ?? throw new ArgumentNullException(nameof(pureStateMachine));
-            _dependencyResolver = dependencyResolver ?? throw new ArgumentNullException(nameof(dependencyResolver));
+            _stateMachine = new StateMachine<IState>();
         }
 
         public void Change(string sceneName) =>
@@ -29,9 +30,8 @@ namespace Sources.Game.BoundedContexts.Scenes
         public void ConstructScene(ISceneContext sceneContext)
         {
             ISceneFactory factory = _sceneFactoryProvider.GetFactory(SceneManager.GetActiveScene().name, sceneContext);
-            IScene state = factory.Create(_dependencyResolver); //ToDo : можно ли передавать (dependencyResolver)? 
+            IScene state = factory.Create(this); //ToDo : можно ли передавать (dependencyResolver)? 
             _stateMachine.Change(state);
         }
-        
     }
 }

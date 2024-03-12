@@ -1,7 +1,8 @@
-﻿namespace Sources.Game.BoundedContexts.Players.Implementation
+﻿using Sources.Game.BoundedContexts.Players.Interfaces;
+
+namespace Sources.Game.BoundedContexts.Players.Implementation
 {
-    public class Player
+    public class Player : IPlayer
     {
-        
     }
 }

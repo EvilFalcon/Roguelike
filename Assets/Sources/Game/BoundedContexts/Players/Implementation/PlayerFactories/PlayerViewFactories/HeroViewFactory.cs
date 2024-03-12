@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Sources.Game.BoundedContexts.Players.Implementation.PlayerFactories.PlayerViewFactories
 {
-    public class PlayerViewFactory
+    public class HeroViewFactory
     {
         public GameObject Create(IPlayer player)
         {

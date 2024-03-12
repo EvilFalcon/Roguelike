@@ -4,8 +4,9 @@ using UniCtor.Attributes;
 using UniCtor.Contexts;
 using UnityEngine;
 
-namespace Sources.Game.App.Core
+namespace Sources.Game.App
 {
+    [DefaultExecutionOrder(-1)]
     public class Bootstrapper : MonoBehaviour
     {
         [Constructor]

@@ -7,7 +7,7 @@ namespace Sources.Game.Common.Mvp.Implementation.PlayerMovement
 {
     [RequireComponent(typeof(CharacterController))]
     [RequireComponent(typeof(Animator))]
-    public class PlayerMove : MonoBehaviour, IPlayerMovementView
+    public class HeroMove : MonoBehaviour, IPlayerMovementView
     {
         [SerializeField] private CharacterController _characterController;
         private PlayerMovementPresenter _presenter;

@@ -3,28 +3,27 @@ using Sources.Game.BoundedContexts.Assets.Interfaces.AssetsServices;
 using Sources.Game.BoundedContexts.Assets.Interfaces.States;
 using Sources.Game.BoundedContexts.Players.Implementation.PlayerFactories.PlayerModelFactories;
 using Sources.Game.BoundedContexts.Players.Implementation.PlayerFactories.PlayerViewFactories;
+using Sources.Game.BoundedContexts.Players.Interfaces;
 
 namespace Sources.Game.BoundedContexts.Scenes.Implementation.Modells
 {
     public class GameplayScene : IScene
     {
         private readonly IAssetService _assetService;
-        private readonly PlayerFactory _playerFactory;
-        private readonly PlayerViewFactory _playerViewFactory;
+        private readonly HeroViewFactory _heroViewFactory;
 
-        public GameplayScene(IAssetService assetService, PlayerFactory playerFactory, PlayerViewFactory playerViewFactory)
+        public GameplayScene(IAssetService assetService, IPlayer player, HeroViewFactory heroViewFactory)
         {
             _assetService = assetService ?? throw new ArgumentNullException(nameof(assetService));
-            _playerFactory = playerFactory ?? throw new ArgumentNullException(nameof(playerFactory));
-            _playerViewFactory = playerViewFactory ?? throw new ArgumentNullException(nameof(playerViewFactory));
+            _heroViewFactory = heroViewFactory ?? throw new ArgumentNullException(nameof(heroViewFactory));
         }
 
         public async void Enter()
         {
             await _assetService.LoadAsync();
 
-            var player = _playerFactory.Create();
-            _playerViewFactory.Create(player);
+            
+            _heroViewFactory.Create(player);
         }
 
         public void Exit()

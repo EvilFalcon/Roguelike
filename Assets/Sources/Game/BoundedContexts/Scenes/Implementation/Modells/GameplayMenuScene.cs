@@ -22,4 +22,11 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Modells
         {
         }
     }
+    /*
+     * TODO : 1  сделать класс (модель) (Shop Upgratebl)
+     * TODO : 2 сделать Сериализатор для классов (Player), (Hero) и (Shop Upgratebl)
+     * TODO : 3 сделать Сервис для применения апгрэйтов при этом сотавить место для интеграции рекламы 
+     * TODO : 4 сделать View для сцены GamePlayMenu
+     * TODO : 5 Сделать согику для загрузки уравней
+     */
 }
