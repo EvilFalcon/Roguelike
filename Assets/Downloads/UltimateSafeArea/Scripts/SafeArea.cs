@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Frosttale_Studios_Assets
+namespace Downloads.UltimateSafeArea.Scripts
 {
     /// <summary>
     /// This component will be added automatically to all Canvases once you select one of the options under "Tools"
@@ -74,5 +74,4 @@ namespace Frosttale_Studios_Assets
             }
         }
     }
-
 }

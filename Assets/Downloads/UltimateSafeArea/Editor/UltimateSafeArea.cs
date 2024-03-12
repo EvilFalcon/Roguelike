@@ -1,16 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Downloads.UltimateSafeArea.Scripts;
 using UnityEditor;
-using UnityEngine.SceneManagement;
 using UnityEditor.SceneManagement;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
-namespace Frosttale_Studios_Assets
+namespace Downloads.UltimateSafeArea.Editor
 {
     /// <summary>
     /// This component is responsible for applying the SafeArea script to the scene or whole project accordingly.
     /// </summary>
-
     public class UltimateSafeArea : EditorWindow
     {
         public bool finished;
