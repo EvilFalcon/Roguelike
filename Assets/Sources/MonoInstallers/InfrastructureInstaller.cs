@@ -18,7 +18,7 @@ namespace Sources.MonoInstallers
                     serviceProvider =>
                         new CompositeAssetService
                         (
-                            serviceProvider.GetService<AssetService<PlayerAssetProvider>>()
+                            serviceProvider.GetService<AssetService<HeroAssetProvider>>()
                         )
                 )
                 ;
