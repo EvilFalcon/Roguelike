@@ -1,4 +1,5 @@
 ﻿using Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Interfaces;
+using Sources.Game.BoundedContexts.Players.Implementation.LiveData;
 using Sources.Game.BoundedContexts.Players.Interfaces;
 using Sources.Game.Common.Mvp.Implementation.Model;
 using Sources.Game.DataTransferObjects.Implementation.DTO.Player;
@@ -12,15 +13,15 @@ namespace Sources.Game.BoundedContexts.Players.Implementation.Model
         private int _armorModifier;
         private int _attackDelay;
         private int _helhsDelay;
-        private  int _healthModifier;
+        private int _healthModifier;
 
-        public Player(PlayerDto playerDto)
+        public Player(PlayerLiveData playerLiveData)
         {
-            _money = playerDto.Money;
-            _attackModifier = playerDto.AttackModifier;
-            _armorModifier = playerDto.ArmorModifier;
-            _attackDelay = playerDto.AttackDelay;
-            _healthModifier = playerDto.Health;
+            _money = playerLiveData.Money;
+            _attackModifier = playerLiveData.AttackModifier;
+            _armorModifier = playerLiveData.ArmorModifier;
+            _attackDelay = playerLiveData.AttackDelay;
+            _healthModifier = playerLiveData.Health;
         }
 
         public int Money
@@ -46,6 +47,7 @@ namespace Sources.Game.BoundedContexts.Players.Implementation.Model
             get => _attackDelay;
             set => TrySetField(ref _attackDelay, value);
         }
+        
         public int HealthModifier
         {
             get => _attackDelay;

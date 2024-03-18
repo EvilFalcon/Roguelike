@@ -10,17 +10,17 @@ namespace Sources.Game.Common.Mvp.Implementation.PlayerMovement
     public class HeroMove : MonoBehaviour, IPlayerMovementView
     {
         [SerializeField] private CharacterController _characterController;
-        private PlayerMovementPresenter _presenter;
+        private PlayerMovementController _controller;
 
         private void Update()
         {
-            _presenter.MovePlayer(transform);
+            _controller.MovePlayer(transform);
         }
 
         [Constructor]
-        private void Construct(PlayerMovementPresenter presenter)
+        private void Construct(PlayerMovementController controller)
         {
-            _presenter = presenter ?? throw new ArgumentNullException(nameof(presenter));
+            _controller = controller ?? throw new ArgumentNullException(nameof(controller));
         }
 
         public void Show()

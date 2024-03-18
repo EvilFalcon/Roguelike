@@ -2,7 +2,7 @@
 
 namespace Sources.Game.DataTransferObjects.Implementation.DTO.Hero
 {
-    public class HeroDto
+    public class HeroDto : IDataFiels
     {
         
     }

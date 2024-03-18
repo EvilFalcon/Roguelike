@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Sources.Game.BoundedContexts.Scenes.Implementation.Factories;
 using Sources.Game.BoundedContexts.Scenes.Implementation.Modells;
+using Sources.Game.BoundedContexts.Scenes.Implementation.Models;
 using UniCtor.Builders;
 using UniCtor.Contexts;
 

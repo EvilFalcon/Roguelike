@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using Sources.Game.DataTransferObjects.Implementation.LayerDto;
+using Sources.Game.DataTransferObjects.Interfaces;
 
 namespace Sources.Game.DataTransferObjects.Implementation.DTO.Upgradable
 {
-    public class PlayerUpgradableDto
+    public class PlayerUpgradableDto : IDataFiels
     {
         public PlayerUpgradableDto(LayerUpgradableDto layerUpgradableDto)
         {
