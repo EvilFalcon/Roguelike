@@ -15,7 +15,7 @@ namespace Sources.Game.DataTransferObjects.Implementation.Services
 
         public void SaveData(object data)
         {
-            var extension = ".Json";
+            var extension = ".json";
             var path = @"F:\Roguelike\Assets\Resources\Data";
             var fileName = data.GetType().Name;
             var jsonString = JsonConvert.SerializeObject(data);
