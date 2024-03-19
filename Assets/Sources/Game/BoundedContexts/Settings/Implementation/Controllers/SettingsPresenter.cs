@@ -62,8 +62,8 @@ namespace Sources.Game.BoundedContexts.Settings.Implementation.Controllers
 
         public void OnBackButtonClick()
         {
-            _formService.ShowForm<MainGameMenuView>();
-            _formService.HideForm<SettingsView>();
+           // _formService.ShowForm<MainGameMenuView>();
+           // _formService.HideForm<SettingsView>();
         }
     }
 }

@@ -5,15 +5,19 @@ using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Controllers;
 using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Factories.Presenter;
 using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Views;
 using Sources.Game.BoundedContexts.Players.Implementation.Model;
+using Sources.Game.BoundedContexts.Scenes.Interfaces.Services;
 using Sources.Game.BoundedContexts.ViewFormServices.Interfaces;
 using UniCtor.Builders;
+using UniCtor.Contexts;
 using UniCtor.Sources.Di.Extensions.IDependencyResolvers;
+using UnityEngine;
 
 namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Factories.View
 {
     public class MainGameMenuViewFactory
     {
         private readonly MainGameMenuPresenterFactory _presenterFactory;
+        private readonly ISceneContext _sceneContext;
         private readonly IDependencyResolver _dependencyResolver;
         private readonly AssetService<MainGameMenuAssetProvider> _assetService;
         private readonly IFormService _formService;
@@ -21,21 +25,23 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Factories.Vie
         public MainGameMenuViewFactory
         (
             MainGameMenuPresenterFactory presenterFactory,
-            IDependencyResolver dependencyResolver,
+            ISceneContext sceneContext,
             AssetService<MainGameMenuAssetProvider> assetService,
             IFormService formService
-        )
+            )
         {
             _presenterFactory = presenterFactory ?? throw new ArgumentNullException(nameof(presenterFactory));
-            _dependencyResolver = dependencyResolver ?? throw new ArgumentNullException(nameof(dependencyResolver));
+            _sceneContext = sceneContext ?? throw new ArgumentNullException(nameof(sceneContext));
             _assetService = assetService ?? throw new ArgumentNullException(nameof(assetService));
             _formService = formService ?? throw new ArgumentNullException(nameof(formService));
         }
 
         public MainGameMenuView Create(Player player, LocalizationModel model)
         {
-            MainGameMenuView view = _dependencyResolver.InstantiateComponentFromPrefab(_assetService.Provider.MainMenuView);
-            MainGameMenuPresenter presenter = _presenterFactory.Create(view, player, model, _formService);
+            Debug.Log(_assetService.Provider.MainMenuView);
+            
+            MainGameMenuView view = _sceneContext.DependencyResolver.InstantiateComponentFromPrefab(_assetService.Provider.MainMenuView);
+            MainGameMenuPresenter presenter = _presenterFactory.Create(view, player, model);
             _formService.AddForm(view);
             presenter.Enable();
 

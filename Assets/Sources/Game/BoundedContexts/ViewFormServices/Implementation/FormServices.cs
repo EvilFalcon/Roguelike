@@ -11,12 +11,12 @@ namespace Sources.Game.BoundedContexts.ViewFormServices.Implementation
         public void AddForm<T>(T view) where T : IView =>
             _viewCollection[view.GetType().Name] = view;
 
-        public void RemoveForm<T>() where T : IView
+        public void RemoveForm(string view)
         {
-            if (_viewCollection.ContainsKey(nameof(T)) == false)
+            if (_viewCollection.ContainsKey(view) == false)
                 return;
 
-            _viewCollection.Remove(nameof(T));
+            _viewCollection.Remove(view);
         }
 
         public void RemoveAllForms()
@@ -25,20 +25,20 @@ namespace Sources.Game.BoundedContexts.ViewFormServices.Implementation
             _viewCollection.Clear();
         }
 
-        public void ShowForm<T>() where T : IView
+        public void ShowForm(string view)
         {
-            if (_viewCollection.ContainsKey(nameof(T)) == false)
+            if (_viewCollection.ContainsKey(view) == false)
                 return;
 
-            _viewCollection[nameof(T)].Show();
+            _viewCollection[view].Show();
         }
 
-        public void HideForm<T>() where T : IView
+        public void HideForm(string view)
         {
-            if (_viewCollection.ContainsKey(nameof(T)) == false)
+            if (_viewCollection.ContainsKey(view) == false)
                 return;
 
-            _viewCollection[nameof(T)].Hide();
+            _viewCollection[view].Hide();
         }
 
         public void HideFormAll()

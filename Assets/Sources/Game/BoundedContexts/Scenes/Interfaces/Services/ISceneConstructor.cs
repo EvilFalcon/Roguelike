@@ -1,6 +1,6 @@
 using UniCtor.Contexts;
 
-namespace Sources.Game.BoundedContexts.Assets.Interfaces.Scenes.Services
+namespace Sources.Game.BoundedContexts.Scenes.Interfaces.Services
 {
     public interface ISceneConstructor
     {

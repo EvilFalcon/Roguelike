@@ -8,7 +8,7 @@ using UniCtor.Contexts;
 
 namespace Sources.Game.BoundedContexts.Scenes.Interfaces.Factories
 {
-    public class SceneFactoryCollection
+    public class SceneFactoryCollection : ISceneFactoryProvider
     {
         private readonly Dictionary<string, Func<IDependencyResolver, ISceneFactory>> _sceneFactories;
 

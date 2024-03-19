@@ -7,6 +7,7 @@ using Sources.Game.BoundedContexts.Players.Interfaces;
 using Sources.Game.BoundedContexts.Scenes.Implementation.Modells;
 using Sources.Game.BoundedContexts.Scenes.Interfaces.Factories;
 using Sources.Game.BoundedContexts.Scenes.Interfaces.Services;
+using UniCtor.Contexts;
 
 namespace Sources.Game.BoundedContexts.Scenes.Implementation.Factories
 {
@@ -25,7 +26,7 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Factories
             _player = player ?? throw new ArgumentNullException(nameof(player));
         }
 
-        public IScene Create(ISceneSwitcher sceneSwitcher) =>
+        public IScene Create(ISceneSwitcher sceneSwitcher, ISceneContext sceneContext) =>
             new GameplayScene(sceneSwitcher, _assetService, _heroViewFactory, _heroFactory, _player);
     }
 }

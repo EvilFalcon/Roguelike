@@ -6,12 +6,13 @@ namespace Sources.Game.BoundedContexts.ViewFormServices.Interfaces
     {
         void AddForm<T>(T view) where T : IView;
 
-        void RemoveForm<T>() where T : IView;
+        void RemoveForm(string view);
 
         void RemoveAllForms();
 
-        void ShowForm<T>() where T : IView;
+        void ShowForm(string view);
 
-        void HideForm<T>() where T : IView;
+        void HideForm(string view);
+        void HideFormAll();
     }
 }

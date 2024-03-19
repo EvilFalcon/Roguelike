@@ -2161,8 +2161,9 @@ GameObject:
   - component: {fileID: 2720139400447867401}
   - component: {fileID: 4224155454421854821}
   - component: {fileID: 157700996487437061}
+  - component: {fileID: 8819913354494502957}
   m_Layer: 5
-  m_Name: MainGameMenu
+  m_Name: MainGameMenuView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2251,6 +2252,23 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8819913354494502957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3009814670849326695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0642e797fc044f5b25e3e317369a463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startGameButton: {fileID: 4830347879766310559}
+  _settingsGameButton: {fileID: 3614634508454650600}
+  _playersMoney: {fileID: 4984652383729015222}
+  _buttonStartGame: {fileID: 4579999835961833708}
+  _buttonSettings: {fileID: 1454525362325168566}
 --- !u!1 &3399558296759806243
 GameObject:
   m_ObjectHideFlags: 0
@@ -3638,7 +3656,6 @@ GameObject:
   - component: {fileID: 4435265721226234295}
   - component: {fileID: 4668569855581005580}
   - component: {fileID: 7935714593578250394}
-  - component: {fileID: 4012924101715067072}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -3733,23 +3750,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
---- !u!114 &4012924101715067072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5715199174412016176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0642e797fc044f5b25e3e317369a463, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _startGameButton: {fileID: 4830347879766310559}
-  _settingsGameButton: {fileID: 3614634508454650600}
-  _playersMoney: {fileID: 4984652383729015222}
-  _buttonStartGame: {fileID: 0}
-  _buttonSettings: {fileID: 0}
 --- !u!1 &5737510100140510058
 GameObject:
   m_ObjectHideFlags: 0
@@ -5611,8 +5611,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278245631
-  m_fontColor: {r: 1, g: 0.84843576, b: 0, a: 1}
+    rgba: 4280156415
+  m_fontColor: {r: 1, g: 0, b: 0.1181407, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
