@@ -1,4 +1,5 @@
-﻿using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Controllers;
+﻿using Sources.Game.BoundedContexts.Localizations.Implementation.Models;
+using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Controllers;
 using Sources.Game.Common.Mvp.Interfaces;
 using TMPro;
 using UnityEngine;
@@ -6,14 +7,14 @@ using UnityEngine.UI;
 
 namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Views
 {
-    public class MainGameMenuView : MonoBehaviour,IView
+    public class MainGameMenuView : MonoBehaviour, IView
     {
         [SerializeField] private TextMeshProUGUI _startGameButton;
         [SerializeField] private TextMeshProUGUI _settingsGameButton;
         [SerializeField] private TextMeshProUGUI _playersMoney;
         [SerializeField] private Button _buttonStartGame;
         [SerializeField] private Button _buttonSettings;
-        
+
         private MainGameMenuPresenter _presenter;
 
         public void Show()
@@ -22,7 +23,7 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Views
             _buttonSettings.onClick.AddListener(OnSettingsButtonClick);
             gameObject.SetActive(true);
         }
-        
+
         public void Hide()
         {
             _buttonStartGame.onClick.RemoveListener(OnStartGameButtonClick);

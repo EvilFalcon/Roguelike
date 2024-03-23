@@ -9,7 +9,7 @@ namespace Sources.MonoInstallers
     {
         public override void OnConfigure(IServiceCollection services)
         {
-           
+            
         }
     }
 }

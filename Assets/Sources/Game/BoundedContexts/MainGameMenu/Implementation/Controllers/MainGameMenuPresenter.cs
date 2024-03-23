@@ -7,6 +7,7 @@ using Sources.Game.BoundedContexts.Scenes.Interfaces.Services;
 using Sources.Game.BoundedContexts.Settings.Implementation.Views;
 using Sources.Game.BoundedContexts.ViewFormServices.Interfaces;
 using Sources.Game.Common.Mvp.Interfaces;
+using Sources.Game.DataTransferObjects.Implementation.DTO.Localizations;
 
 namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Controllers
 {
@@ -14,7 +15,7 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Controllers
     {
         private readonly MainGameMenuView _view;
         private readonly Player _player;
-        //private readonly LocalizationModel _localizationModel;
+        private readonly LocalizationModel _localizationModel;
         private readonly IFormService _formService;
         private readonly ISceneSwitcher _sceneSwitcher;
 
@@ -28,24 +29,27 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Controllers
         {
             _view = view;
             _player = player ?? throw new ArgumentNullException(nameof(player));
-            //_localizationModel = localizationModel ?? throw new ArgumentNullException(nameof(localizationModel));
+            _localizationModel = localizationModel ?? throw new ArgumentNullException(nameof(localizationModel));
             _formService = formService ?? throw new ArgumentNullException(nameof(formService));
             _sceneSwitcher = sceneSwitcher ?? throw new ArgumentNullException(nameof(sceneSwitcher));
         }
 
         public void Enable()
         {
-            
-          //  _localizationModel.PropertyChanged += OnChangedLocalization;
+            _localizationModel.PropertyChanged += OnChangedLocalization;
             _player.PropertyChanged += OnChangedMoney;
+
             _player.Money = 100000;
+            _view.SetButtonSettingsText(_localizationModel.MainMenu["Settings"]);
+            _view.SetButtonStartGameText(_localizationModel.MainMenu["Play"]);
         }
 
         private void OnChangedLocalization(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(Player.Money))
+            if (e.PropertyName == nameof(LocalizationData.MainMenu))
             {
-                _view.SetMoney(_player.Money);
+                _view.SetButtonSettingsText(_localizationModel.MainMenu["Settings"]);
+                _view.SetButtonStartGameText(_localizationModel.MainMenu["Play"]);
             }
         }
 

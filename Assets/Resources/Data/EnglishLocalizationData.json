@@ -1,0 +1,12 @@
+{
+  "mainMenu": {
+    "Play": "Play",
+    "Settings": "Settings",
+    "Quit": "Quit"
+  },
+  "settingsMenu": {
+    "Language": "Language",
+    "SoundEffectsVolume": "Sound Effects Volume",
+    "MusicVolume": "Music Volume"
+  }
+}

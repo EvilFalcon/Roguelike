@@ -1,11 +1,11 @@
 ﻿using System.IO;
 using Newtonsoft.Json;
-using UnityEditor.AddressableAssets.Build.Layout;
+using Sources.Game.DataTransferObjects.Interfaces;
 using UnityEngine;
 
 namespace Sources.Game.DataTransferObjects.Implementation.Services
 {
-    public class DataSaveLoadedServices
+    public class DataSaveLoadedGameProgressServices : ISaveLoadedGameProgresServices, ILoadDataFiles
     {
         public T LoadData<T>(T @object)
         {
@@ -14,6 +14,17 @@ namespace Sources.Game.DataTransferObjects.Implementation.Services
         }
 
         public void SaveData(object data)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public T LoadData<T>(T @object, string postfix)
+        {
+            string json = Resources.Load<TextAsset>($"Data/{postfix}{typeof(T).Name}").text;
+            return JsonConvert.DeserializeObject<T>(json);
+        }
+
+        public void SaveData(object data,string postfix = "")
         {
             var extension = ".json";
             var path = @"F:\Roguelike\Assets\Resources\Data";
@@ -28,5 +39,12 @@ namespace Sources.Game.DataTransferObjects.Implementation.Services
 
             File.WriteAllText(file, jsonString);
         }
+    }
+
+    public interface ISaveLoadedGameProgresServices
+    {
+        T LoadData<T>(T @object); 
+        T LoadData<T>(T @object, string postfix);
+        void SaveData(object data);
     }
 }

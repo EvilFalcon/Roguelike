@@ -7,8 +7,8 @@ namespace Sources.Game.DataTransferObjects.Implementation.DTO.Player
     {
         [JsonProperty(propertyName: "Money")] public int Money { get; set; }
 
-        [JsonProperty(propertyName: "GameProgres")]
-        public int GameProgres { get; set; }
+        [JsonProperty(propertyName: "GameProgress")]
+        public int GameProgress { get; set; }
 
         [JsonProperty(propertyName: "Health")] public int Health { get; set; }
 

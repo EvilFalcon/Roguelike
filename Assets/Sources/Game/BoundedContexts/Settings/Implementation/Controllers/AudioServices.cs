@@ -1,6 +1,8 @@
-﻿namespace Sources.Game.BoundedContexts.Settings.Implementation.Controllers
+﻿using Sources.Game.BoundedContexts.Settings.Interfaces;
+
+namespace Sources.Game.BoundedContexts.Settings.Implementation.Controllers
 {
-    public class AudioServices
+    public class AudioServices : IAudioServices
     {
         public AudioServices()
         {

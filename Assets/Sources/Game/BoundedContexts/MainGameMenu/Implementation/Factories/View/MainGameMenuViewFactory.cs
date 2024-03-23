@@ -36,12 +36,12 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Factories.Vie
             _formService = formService ?? throw new ArgumentNullException(nameof(formService));
         }
 
-        public MainGameMenuView Create(Player player, LocalizationModel model)
+        public MainGameMenuView Create(Player player)
         {
-            Debug.Log(_assetService.Provider.MainMenuView);
+            Debug.Log(_assetService.Provider.MainGameMenuView);
             
-            MainGameMenuView view = _sceneContext.DependencyResolver.InstantiateComponentFromPrefab(_assetService.Provider.MainMenuView);
-            MainGameMenuPresenter presenter = _presenterFactory.Create(view, player, model);
+            MainGameMenuView view = _sceneContext.DependencyResolver.InstantiateComponentFromPrefab(_assetService.Provider.MainGameMenuView);
+            MainGameMenuPresenter presenter = _presenterFactory.Create(view, player);
             _formService.AddForm(view);
             presenter.Enable();
 

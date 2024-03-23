@@ -5,9 +5,9 @@ namespace Sources.Game.BoundedContexts.Assets.Implementation
 {
     public class MainGameMenuAssetProvider : AssetProviderBase
     {
-        public MainGameMenuView MainMenuView { get; private set; }
+        public MainGameMenuView MainGameMenuView { get; private set; }
 
         public override async Task LoadAsync() =>
-            MainMenuView = await Load<MainGameMenuView>(nameof(MainGameMenuView));
+            MainGameMenuView = await Load<MainGameMenuView>(nameof(MainGameMenuView));
     }
 }
