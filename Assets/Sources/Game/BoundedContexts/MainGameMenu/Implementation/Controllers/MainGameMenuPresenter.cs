@@ -1,13 +1,12 @@
 ﻿using System;
 using System.ComponentModel;
-using Sources.Game.BoundedContexts.Localizations.Implementation.Models;
 using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Views;
 using Sources.Game.BoundedContexts.Players.Implementation.Model;
 using Sources.Game.BoundedContexts.Scenes.Interfaces.Services;
+using Sources.Game.BoundedContexts.Settings.Implementation.Controllers.Localizations.Implementation.Models;
 using Sources.Game.BoundedContexts.Settings.Implementation.Views;
 using Sources.Game.BoundedContexts.ViewFormServices.Interfaces;
 using Sources.Game.Common.Mvp.Interfaces;
-using Sources.Game.DataTransferObjects.Implementation.DTO.Localizations;
 
 namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Controllers
 {
@@ -20,7 +19,8 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Controllers
         private readonly ISceneSwitcher _sceneSwitcher;
 
         public MainGameMenuPresenter
-        (MainGameMenuView view,
+        (
+            MainGameMenuView view,
             Player player,
             LocalizationModel localizationModel,
             IFormService formService,
@@ -46,7 +46,7 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Controllers
 
         private void OnChangedLocalization(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(LocalizationData.MainMenu))
+            if (e.PropertyName == nameof(LocalizationModel.Language))
             {
                 _view.SetButtonSettingsText(_localizationModel.MainMenu["Settings"]);
                 _view.SetButtonStartGameText(_localizationModel.MainMenu["Play"]);
@@ -71,10 +71,7 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Controllers
             _sceneSwitcher.Change("GameplayScene");
         }
 
-        public void ShowSettings()
-        {
+        public void ShowSettings() =>
             _formService.ShowForm(nameof(SettingsView));
-            _formService.HideForm(nameof(MainGameMenuView));
-        }
     }
 }

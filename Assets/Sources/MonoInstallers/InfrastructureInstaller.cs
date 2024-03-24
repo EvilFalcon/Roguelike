@@ -3,13 +3,14 @@ using Sources.Game.BoundedContexts.Assets.Implementation;
 using Sources.Game.BoundedContexts.Assets.Interfaces.AssetsServices;
 using Sources.Game.BoundedContexts.Inputs.Implementation.InputServices;
 using Sources.Game.BoundedContexts.Inputs.Interfaces.InputServices;
-using Sources.Game.BoundedContexts.Localizations.Implementation.Services;
-using Sources.Game.BoundedContexts.Localizations.Interface;
 using Sources.Game.BoundedContexts.Scenes.Implementation.Factories;
 using Sources.Game.BoundedContexts.Scenes.Implementation.Services;
 using Sources.Game.BoundedContexts.Scenes.Interfaces.Factories;
 using Sources.Game.BoundedContexts.Scenes.Interfaces.Services;
 using Sources.Game.BoundedContexts.Settings.Implementation.Controllers;
+using Sources.Game.BoundedContexts.Settings.Implementation.Controllers.AudioServices;
+using Sources.Game.BoundedContexts.Settings.Implementation.Controllers.Localizations.Implementation.Services;
+using Sources.Game.BoundedContexts.Settings.Implementation.Controllers.Localizations.Interface;
 using Sources.Game.BoundedContexts.Settings.Interfaces;
 using Sources.Game.BoundedContexts.ViewFormServices.Implementation;
 using Sources.Game.BoundedContexts.ViewFormServices.Interfaces;
@@ -27,30 +28,16 @@ namespace Sources.MonoInstallers
             services
                 .RegisterAsSingleton<ISceneFactoryProvider, SceneFactoryCollection>()
                 .RegisterAsSingleton<ISaveLoadedGameProgresServices, DataSaveLoadedGameProgressServices>()
-                .RegisterAsSingleton<IInputService, StandaloneInputService>()
+                .RegisterAsSingleton<IInputService, StandaloneInputService>() /* TODO: вынести в отдельный модуль*/
                 .RegisterAsSingleton<AssetService<MainGameMenuAssetProvider>>()
                 .RegisterAsSingleton<AssetService<SettingsAssetProvider>>()
-                .RegisterAsSingleton<AssetService<HeroAssetProvider>>()
+                .RegisterAsSingleton<AssetService<HeroAssetProvider>>() /* TODO: вынести в отдельный модуль*/
                 .RegisterAsSingleton<ISceneConstructor, ISceneSwitcher, SceneConstructor>()
                 .RegisterAsSingleton<IAudioServices, AudioServices>()
                 .RegisterAsSingleton<ILoaderLocalizationService, ILocalizationService, LocalizationService>()
                 .RegisterAsSingleton<ISaveLoadedGameProgresServices, ILoadDataFiles, DataSaveLoadedGameProgressServices>()
                 .RegisterAsScoped<IFormService, FormServices>()
-                .RegisterAsScoped<IAssetService>
-                (
-                    serviceProvider =>
-                        new CompositeAssetService
-                        (
-                            serviceProvider.GetService<AssetService<HeroAssetProvider>>(),
-                            serviceProvider.GetService<AssetService<MainGameMenuAssetProvider>>(),
-                            serviceProvider.GetService<AssetService<SettingsAssetProvider>>()
-                        )
-                )
-                .RegisterAsScoped(serviceProvider =>
-                    serviceProvider.GetService<AssetService<MainGameMenuAssetProvider>>().Provider)
-                .RegisterAsScoped(serviceProvider =>
-                    serviceProvider.GetService<AssetService<SettingsAssetProvider>>().Provider);
-            ;
+                ;
         }
     }
 }

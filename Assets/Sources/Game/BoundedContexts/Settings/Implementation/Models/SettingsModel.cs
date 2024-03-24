@@ -1,5 +1,5 @@
 ﻿using Sources.Game.Common.Mvp.Implementation.Model;
-using Sources.Game.DataTransferObjects.Implementation.DTO;
+using Sources.Game.DataTransferObjects.Implementation.DTO.Settings;
 
 namespace Sources.Game.BoundedContexts.Settings.Implementation.Models
 {

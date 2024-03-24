@@ -2,8 +2,6 @@
 using Sources.Game.BoundedContexts.Assets.Implementation;
 using Sources.Game.BoundedContexts.Assets.Interfaces.AssetsServices;
 using Sources.Game.BoundedContexts.Assets.Interfaces.States;
-using Sources.Game.BoundedContexts.Localizations.Implementation.Services;
-using Sources.Game.BoundedContexts.Localizations.Interface;
 using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Factories.Presenter;
 using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Factories.View;
 using Sources.Game.BoundedContexts.Players.Implementation.Factories.PlayerModelFactories;
@@ -11,6 +9,7 @@ using Sources.Game.BoundedContexts.Scenes.Implementation.Models;
 using Sources.Game.BoundedContexts.Scenes.Interfaces.Factories;
 using Sources.Game.BoundedContexts.Scenes.Interfaces.Services;
 using Sources.Game.BoundedContexts.Settings.Implementation.Controllers;
+using Sources.Game.BoundedContexts.Settings.Implementation.Controllers.Localizations.Implementation.Services;
 using Sources.Game.BoundedContexts.Settings.Implementation.Factories.Presenters;
 using Sources.Game.BoundedContexts.Settings.Implementation.Factories.Views;
 using Sources.Game.BoundedContexts.Settings.Interfaces;

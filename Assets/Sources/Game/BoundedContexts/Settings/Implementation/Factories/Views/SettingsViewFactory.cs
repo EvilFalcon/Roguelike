@@ -18,9 +18,16 @@ namespace Sources.Game.BoundedContexts.Settings.Implementation.Factories.Views
         private readonly AssetService<SettingsAssetProvider> _assetService;
         private readonly IFormService _formService;
 
-        public SettingsViewFactory(SettingsPresenterFactory settingsPresenterFactory, ISceneContext sceneContext,AssetService<SettingsAssetProvider> assetService, IFormService formService)
+        public SettingsViewFactory
+        (
+            SettingsPresenterFactory settingsPresenterFactory,
+            ISceneContext sceneContext,
+            AssetService<SettingsAssetProvider> assetService,
+            IFormService formService
+        )
         {
-            _settingsPresenterFactory = settingsPresenterFactory ?? throw new ArgumentNullException(nameof(settingsPresenterFactory));
+            _settingsPresenterFactory =
+                settingsPresenterFactory ?? throw new ArgumentNullException(nameof(settingsPresenterFactory));
             _sceneContext = sceneContext ?? throw new ArgumentNullException(nameof(sceneContext));
             _assetService = assetService ?? throw new ArgumentNullException(nameof(assetService));
             _formService = formService ?? throw new ArgumentNullException(nameof(formService));
@@ -28,12 +35,14 @@ namespace Sources.Game.BoundedContexts.Settings.Implementation.Factories.Views
 
         public SettingsView Create(SettingsModel model)
         {
-            SettingsView view = _sceneContext.DependencyResolver.InstantiateComponentFromPrefab(_assetService.Provider.SettingsView);
+            SettingsView view =
+                _sceneContext.DependencyResolver.InstantiateComponentFromPrefab(_assetService.Provider.SettingsView);
             SettingsPresenter presenter = _settingsPresenterFactory.Create(model, view);
+            view.Construct(presenter);
+            
             _formService.AddForm(view);
-            _formService.HideForm(nameof(SettingsView));
-            presenter.Enable();
-
+            _formService.HideFormAll();
+            
             return view;
         }
     }

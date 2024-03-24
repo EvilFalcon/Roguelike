@@ -1,0 +1,14 @@
+﻿{
+  "CurrentLanguage":"Russian",
+  "mainMenu": {
+    "Play": "Играть",
+    "Settings": "Настройки",
+    "Quit": "Выход"
+  },
+  "settingsMenu": {
+    "Language": "Язык",
+    "SoundEffectsVolume": "Громкость звуков",
+    "MusicVolume": "Громкость музыки",
+    "BackButtonText": "Вернуться в меню"
+  }
+}

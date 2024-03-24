@@ -9,7 +9,21 @@ namespace Sources.MonoInstallers
     {
         public override void OnConfigure(IServiceCollection services)
         {
-            
+            services
+                .RegisterAsScoped<IAssetService>
+                (
+                    serviceProvider =>
+                        new CompositeAssetService
+                        (
+                            serviceProvider.GetService<AssetService<HeroAssetProvider>>(),
+                            serviceProvider.GetService<AssetService<MainGameMenuAssetProvider>>(),
+                            serviceProvider.GetService<AssetService<SettingsAssetProvider>>()
+                        )
+                )
+                .RegisterAsScoped(serviceProvider =>
+                    serviceProvider.GetService<AssetService<MainGameMenuAssetProvider>>().Provider)
+                .RegisterAsScoped(serviceProvider =>
+                    serviceProvider.GetService<AssetService<SettingsAssetProvider>>().Provider);
         }
     }
 }

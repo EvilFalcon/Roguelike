@@ -1,5 +1,7 @@
-﻿using Sources.Game.BoundedContexts.Settings.Implementation.Controllers;
+﻿using System;
+using Sources.Game.BoundedContexts.Settings.Implementation.Controllers;
 using Sources.Game.Common.Mvp.Interfaces;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +16,10 @@ namespace Sources.Game.BoundedContexts.Settings.Implementation.Views
         [SerializeField] private Button _setEngLocalizationButton;
         [SerializeField] private Button _backButton;
 
+        [SerializeField] private TextMeshProUGUI _musicVolumeText;
+        [SerializeField] private TextMeshProUGUI _soundEffectsVolumeText;
+        [SerializeField] private TextMeshProUGUI _backButtonText;
+
         private SettingsPresenter _presenter;
 
         public void Show()
@@ -23,6 +29,7 @@ namespace Sources.Game.BoundedContexts.Settings.Implementation.Views
             _soundEffectsVolume.onValueChanged.AddListener(OnSoundEffectsVolumeChanged);
             _setEngLocalizationButton.onClick.AddListener(OnEngLocalizationButtonClick);
             _setRusLocalizationButton.onClick.AddListener(OnRusLocalizationButtonClick);
+            _presenter?.Enable();
             gameObject.SetActive(true);
         }
 
@@ -33,7 +40,15 @@ namespace Sources.Game.BoundedContexts.Settings.Implementation.Views
             _soundEffectsVolume.onValueChanged.RemoveListener(OnSoundEffectsVolumeChanged);
             _setEngLocalizationButton.onClick.RemoveListener(OnEngLocalizationButtonClick);
             _setRusLocalizationButton.onClick.RemoveListener(OnRusLocalizationButtonClick);
+            _presenter.Disable();
             gameObject.SetActive(false);
+        }
+
+        public void SetLocalizationMode(string musicVolumeText, string soundEffectsVolumeText, string backButtonText)
+        {
+            _musicVolumeText.text = musicVolumeText;
+            _soundEffectsVolumeText.text = soundEffectsVolumeText;
+            _backButtonText.text = backButtonText;
         }
 
         public void Construct(SettingsPresenter presenter) =>

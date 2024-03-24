@@ -1,6 +1,5 @@
 ﻿using System;
 using Sources.Game.BoundedContexts.Assets.Implementation;
-using Sources.Game.BoundedContexts.Localizations.Implementation.Models;
 using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Controllers;
 using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Factories.Presenter;
 using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Views;
@@ -28,7 +27,7 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Factories.Vie
             ISceneContext sceneContext,
             AssetService<MainGameMenuAssetProvider> assetService,
             IFormService formService
-            )
+        )
         {
             _presenterFactory = presenterFactory ?? throw new ArgumentNullException(nameof(presenterFactory));
             _sceneContext = sceneContext ?? throw new ArgumentNullException(nameof(sceneContext));
@@ -39,11 +38,13 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Factories.Vie
         public MainGameMenuView Create(Player player)
         {
             Debug.Log(_assetService.Provider.MainGameMenuView);
-            
-            MainGameMenuView view = _sceneContext.DependencyResolver.InstantiateComponentFromPrefab(_assetService.Provider.MainGameMenuView);
+
+            MainGameMenuView view =
+                _sceneContext.DependencyResolver.InstantiateComponentFromPrefab(_assetService.Provider.MainGameMenuView);
             MainGameMenuPresenter presenter = _presenterFactory.Create(view, player);
             _formService.AddForm(view);
-            presenter.Enable();
+
+            view.Construct(presenter);
 
             return view;
         }

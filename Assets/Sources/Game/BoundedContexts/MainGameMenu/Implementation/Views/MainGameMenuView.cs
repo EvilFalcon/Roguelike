@@ -1,5 +1,4 @@
-﻿using Sources.Game.BoundedContexts.Localizations.Implementation.Models;
-using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Controllers;
+﻿using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Controllers;
 using Sources.Game.Common.Mvp.Interfaces;
 using TMPro;
 using UnityEngine;
@@ -22,6 +21,7 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Views
             _buttonStartGame.onClick.AddListener(OnStartGameButtonClick);
             _buttonSettings.onClick.AddListener(OnSettingsButtonClick);
             gameObject.SetActive(true);
+            _presenter.Enable();
         }
 
         public void Hide()
@@ -29,6 +29,7 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Views
             _buttonStartGame.onClick.RemoveListener(OnStartGameButtonClick);
             _buttonSettings.onClick.RemoveListener(OnSettingsButtonClick);
             gameObject.SetActive(false);
+            _presenter.Disable();
         }
 
         private void OnSettingsButtonClick()

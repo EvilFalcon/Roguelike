@@ -3,7 +3,7 @@ using Sources.Game.BoundedContexts.Assets.Implementation;
 using Sources.Game.BoundedContexts.Heroes.Interfaces;
 using UnityEngine;
 
-namespace Sources.Game.BoundedContexts.Players.Implementation.PlayerFactories.PlayerViewFactories
+namespace Sources.Game.BoundedContexts.Players.Implementation.Factories.PlayerViewFactories
 {
     public class HeroViewFactory
     {

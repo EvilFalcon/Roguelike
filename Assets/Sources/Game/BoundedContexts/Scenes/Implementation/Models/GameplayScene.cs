@@ -2,11 +2,11 @@
 using Sources.Game.BoundedContexts.Assets.Interfaces.AssetsServices;
 using Sources.Game.BoundedContexts.Assets.Interfaces.States;
 using Sources.Game.BoundedContexts.Heroes.Implementation.Factories;
-using Sources.Game.BoundedContexts.Players.Implementation.PlayerFactories.PlayerViewFactories;
+using Sources.Game.BoundedContexts.Players.Implementation.Factories.PlayerViewFactories;
 using Sources.Game.BoundedContexts.Players.Interfaces;
 using Sources.Game.BoundedContexts.Scenes.Interfaces.Services;
 
-namespace Sources.Game.BoundedContexts.Scenes.Implementation.Modells
+namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
 {
     public class GameplayScene : IScene
     {

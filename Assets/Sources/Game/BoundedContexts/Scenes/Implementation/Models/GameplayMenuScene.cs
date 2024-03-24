@@ -1,7 +1,6 @@
 ﻿using System;
 using Sources.Game.BoundedContexts.Assets.Interfaces.AssetsServices;
 using Sources.Game.BoundedContexts.Assets.Interfaces.States;
-using Sources.Game.BoundedContexts.Localizations.Implementation.Models;
 using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Factories.View;
 using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Views;
 using Sources.Game.BoundedContexts.Players.Implementation.Factories.PlayerModelFactories;
@@ -9,12 +8,11 @@ using Sources.Game.BoundedContexts.Players.Implementation.LiveData;
 using Sources.Game.BoundedContexts.Players.Implementation.Model;
 using Sources.Game.BoundedContexts.Settings.Implementation.Factories.Views;
 using Sources.Game.BoundedContexts.Settings.Implementation.Models;
+using Sources.Game.BoundedContexts.Settings.Implementation.Views;
 using Sources.Game.BoundedContexts.ViewFormServices.Interfaces;
-using Sources.Game.DataTransferObjects.Implementation.DTO;
-using Sources.Game.DataTransferObjects.Implementation.DTO.Localizations;
 using Sources.Game.DataTransferObjects.Implementation.DTO.Player;
+using Sources.Game.DataTransferObjects.Implementation.DTO.Settings;
 using Sources.Game.DataTransferObjects.Implementation.Services;
-using UnityEngine;
 
 namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
 {
@@ -49,14 +47,18 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
         public async void Enter()
         {
             await _assetService.LoadAsync();
+            Initialize();
 
+            _formServices.ShowForm(nameof(MainGameMenuView));
+        }
+
+        public void Initialize()
+        {
+            var settingsData = _saveLoadedGameProgresServices.LoadData(new SettingsData());
             PlayerDta playerDtaData = _saveLoadedGameProgresServices.LoadData(new PlayerDta());
             Player player = _playerFactory.Create(new PlayerLiveData(playerDtaData)); //TODO : переработать 
-            _gameMenuViewFactory.Create(player);
-            // _settingsViewFactory.Create(new SettingsModel(settingsDta));
-            _formServices.ShowForm(nameof(MainGameMenuView));
-
-            // _saveLoadedServices.SaveData(new PlayerDta());
+            MainGameMenuView gameMenuView = _gameMenuViewFactory.Create(player);
+            SettingsView settingsView = _settingsViewFactory.Create(new SettingsModel(settingsData));
         }
 
         public void Exit()
