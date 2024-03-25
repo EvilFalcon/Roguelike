@@ -53,6 +53,12 @@ namespace Sources.Game.BoundedContexts.Settings.Implementation.Views
 
         public void Construct(SettingsPresenter presenter) =>
             _presenter = presenter;
+        
+        public void SetMusicVolume(float volume) =>
+            _musicVolume.value = volume;
+
+        public void SetSoundVolume(float volume) =>
+            _soundEffectsVolume.value = volume;
 
         private void OnBackButtonClick() =>
             _presenter.OnBackButtonClick();

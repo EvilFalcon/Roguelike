@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
+using Sources.Game.BoundedContexts.Localizations.Implementation.Models;
 using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Views;
 using Sources.Game.BoundedContexts.Players.Implementation.Model;
 using Sources.Game.BoundedContexts.Scenes.Interfaces.Services;
-using Sources.Game.BoundedContexts.Settings.Implementation.Controllers.Localizations.Implementation.Models;
 using Sources.Game.BoundedContexts.Settings.Implementation.Views;
 using Sources.Game.BoundedContexts.ViewFormServices.Interfaces;
 using Sources.Game.Common.Mvp.Interfaces;

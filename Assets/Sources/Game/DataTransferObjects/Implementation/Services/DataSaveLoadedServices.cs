@@ -24,7 +24,7 @@ namespace Sources.Game.DataTransferObjects.Implementation.Services
             return JsonConvert.DeserializeObject<T>(json);
         }
 
-        public void SaveData(object data,string postfix = "")
+        public void SaveData(object data, string postfix = "")
         {
             var extension = ".json";
             var path = @"F:\Roguelike\Assets\Resources\Data";
@@ -43,7 +43,7 @@ namespace Sources.Game.DataTransferObjects.Implementation.Services
 
     public interface ISaveLoadedGameProgresServices
     {
-        T LoadData<T>(T @object); 
+        T LoadData<T>(T @object);
         T LoadData<T>(T @object, string postfix);
         void SaveData(object data);
     }

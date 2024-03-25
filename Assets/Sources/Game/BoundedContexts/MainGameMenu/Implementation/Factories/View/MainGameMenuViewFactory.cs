@@ -4,12 +4,10 @@ using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Controllers;
 using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Factories.Presenter;
 using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Views;
 using Sources.Game.BoundedContexts.Players.Implementation.Model;
-using Sources.Game.BoundedContexts.Scenes.Interfaces.Services;
 using Sources.Game.BoundedContexts.ViewFormServices.Interfaces;
 using UniCtor.Builders;
 using UniCtor.Contexts;
 using UniCtor.Sources.Di.Extensions.IDependencyResolvers;
-using UnityEngine;
 
 namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Factories.View
 {
@@ -37,8 +35,6 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Factories.Vie
 
         public MainGameMenuView Create(Player player)
         {
-            Debug.Log(_assetService.Provider.MainGameMenuView);
-
             MainGameMenuView view =
                 _sceneContext.DependencyResolver.InstantiateComponentFromPrefab(_assetService.Provider.MainGameMenuView);
             MainGameMenuPresenter presenter = _presenterFactory.Create(view, player);

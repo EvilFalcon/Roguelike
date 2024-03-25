@@ -14,9 +14,10 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Services
 
         private readonly StateMachine<IState> _stateMachine;
 
-        public SceneConstructor(
+        public SceneConstructor
+        (
             ISceneFactoryProvider sceneFactoryProvider
-)
+        )
         {
             _sceneFactoryProvider = sceneFactoryProvider ?? throw new ArgumentNullException(nameof(sceneFactoryProvider));
             _stateMachine = new StateMachine<IState>();

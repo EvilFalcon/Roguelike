@@ -1,9 +1,9 @@
 ﻿using System;
+using Sources.Game.BoundedContexts.Localizations.Interface;
 using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Controllers;
 using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Views;
 using Sources.Game.BoundedContexts.Players.Implementation.Model;
 using Sources.Game.BoundedContexts.Scenes.Interfaces.Services;
-using Sources.Game.BoundedContexts.Settings.Implementation.Controllers.Localizations.Interface;
 using Sources.Game.BoundedContexts.ViewFormServices.Interfaces;
 
 namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Factories.Presenter

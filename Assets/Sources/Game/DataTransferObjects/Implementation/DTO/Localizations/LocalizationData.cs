@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace Sources.Game.DataTransferObjects.Implementation.DTO.Localizations
 {
+    [Serializable]
     public class LocalizationData
     {
         [JsonProperty(propertyName: "MainMenu")]

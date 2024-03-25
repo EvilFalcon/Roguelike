@@ -1,9 +1,9 @@
-﻿using Sources.Game.BoundedContexts.Settings.Implementation.Controllers.Localizations.Implementation.Models;
-using Sources.Game.BoundedContexts.Settings.Implementation.Controllers.Localizations.Interface;
+﻿using Sources.Game.BoundedContexts.Localizations.Implementation.Models;
+using Sources.Game.BoundedContexts.Localizations.Interface;
 using Sources.Game.DataTransferObjects.Implementation.DTO.Localizations;
 using Sources.Game.DataTransferObjects.Interfaces;
 
-namespace Sources.Game.BoundedContexts.Settings.Implementation.Controllers.Localizations.Implementation.Services
+namespace Sources.Game.BoundedContexts.Localizations.Implementation.Services
 {
     public class LocalizationService : ILoaderLocalizationService, ILocalizationService
     {

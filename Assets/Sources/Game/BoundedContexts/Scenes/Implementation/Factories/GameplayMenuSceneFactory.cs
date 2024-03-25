@@ -2,6 +2,8 @@
 using Sources.Game.BoundedContexts.Assets.Implementation;
 using Sources.Game.BoundedContexts.Assets.Interfaces.AssetsServices;
 using Sources.Game.BoundedContexts.Assets.Interfaces.States;
+using Sources.Game.BoundedContexts.Audio.Interfaces;
+using Sources.Game.BoundedContexts.Localizations.Implementation.Services;
 using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Factories.Presenter;
 using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Factories.View;
 using Sources.Game.BoundedContexts.Players.Implementation.Factories.PlayerModelFactories;
@@ -9,7 +11,6 @@ using Sources.Game.BoundedContexts.Scenes.Implementation.Models;
 using Sources.Game.BoundedContexts.Scenes.Interfaces.Factories;
 using Sources.Game.BoundedContexts.Scenes.Interfaces.Services;
 using Sources.Game.BoundedContexts.Settings.Implementation.Controllers;
-using Sources.Game.BoundedContexts.Settings.Implementation.Controllers.Localizations.Implementation.Services;
 using Sources.Game.BoundedContexts.Settings.Implementation.Factories.Presenters;
 using Sources.Game.BoundedContexts.Settings.Implementation.Factories.Views;
 using Sources.Game.BoundedContexts.Settings.Interfaces;
@@ -27,7 +28,7 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Factories
         private readonly ISceneSwitcher _sceneSwitcher;
         private readonly AssetService<MainGameMenuAssetProvider> _gameMenuViewFactory;
         private readonly AssetService<SettingsAssetProvider> _settingsAssetProvider;
-        private readonly IAudioServices _audioServices;
+        private readonly IAudioController _audioController;
         private readonly LocalizationService _localizationService;
         private readonly IFormService _formService;
         private readonly ISceneContext _dependencyResolver;
@@ -39,7 +40,7 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Factories
             ISceneSwitcher sceneSwitcher,
             AssetService<MainGameMenuAssetProvider> gameMenuViewFactory,
             AssetService<SettingsAssetProvider> settingsAssetProvider,
-            IAudioServices audioServices,
+            IAudioController audioController,
             LocalizationService localizationService,
             IFormService formService
         )
@@ -51,7 +52,7 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Factories
             _sceneSwitcher = sceneSwitcher ?? throw new ArgumentNullException(nameof(sceneSwitcher));
             _gameMenuViewFactory = gameMenuViewFactory ?? throw new ArgumentNullException(nameof(gameMenuViewFactory));
             _settingsAssetProvider = settingsAssetProvider ?? throw new ArgumentNullException(nameof(settingsAssetProvider));
-            _audioServices = audioServices ?? throw new ArgumentNullException(nameof(audioServices));
+            _audioController = audioController ?? throw new ArgumentNullException(nameof(audioController));
             _localizationService = localizationService ?? throw new ArgumentNullException(nameof(localizationService));
             _formService = formService ?? throw new ArgumentNullException(nameof(formService));
         }
@@ -63,7 +64,7 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Factories
             MainGameMenuPresenterFactory mainGameMenuPresenterFactory =
                 new MainGameMenuPresenterFactory(_formService, _sceneSwitcher, _localizationService);
 
-            var settingsPresenterFactory = new SettingsPresenterFactory(_localizationService, _audioServices, _formService);
+            var settingsPresenterFactory = new SettingsPresenterFactory(_localizationService, _audioController, _formService);
             var settingsViewFactory =
                 new SettingsViewFactory(settingsPresenterFactory, sceneContext, _settingsAssetProvider, _formService);
 
