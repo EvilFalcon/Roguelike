@@ -3,6 +3,7 @@ using Sources.Game.BoundedContexts.Assets.Interfaces.AssetsServices;
 using Sources.Game.BoundedContexts.Assets.Interfaces.States;
 using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Factories.View;
 using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Views;
+using Sources.Game.BoundedContexts.Maperis.Interfaces;
 using Sources.Game.BoundedContexts.Players.Implementation.Factories.PlayerModelFactories;
 using Sources.Game.BoundedContexts.Players.Implementation.LiveData;
 using Sources.Game.BoundedContexts.Players.Implementation.Model;
@@ -19,7 +20,8 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
     public class GameplayMenuScene : IScene
     {
         private readonly IAssetService _assetService;
-        private readonly ISaveLoadedGameProgresServices _saveLoadedGameProgresServices;
+        private readonly ISaveLoadedServices _saveLoadedServices;
+        private readonly ISettingsModelProvider _settingsModelProvider;
         private readonly MainGameMenuViewFactory _gameMenuViewFactory;
         private readonly SettingsViewFactory _settingsViewFactory;
         private readonly PlayerFactory _playerFactory;
@@ -28,7 +30,8 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
         public GameplayMenuScene
         (
             IAssetService assetService,
-            ISaveLoadedGameProgresServices saveLoadedGameProgressServices,
+            ISaveLoadedServices saveLoadedGameProgressServices,
+            ISettingsModelProvider settingsModelProvider,
             MainGameMenuViewFactory gameMenuViewFactory,
             SettingsViewFactory settingsViewFactory,
             PlayerFactory playerFactory,
@@ -36,8 +39,9 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
         )
         {
             _assetService = assetService ?? throw new ArgumentNullException(nameof(assetService));
-            _saveLoadedGameProgresServices = saveLoadedGameProgressServices ??
-                                             throw new ArgumentNullException(nameof(saveLoadedGameProgressServices));
+            _saveLoadedServices = saveLoadedGameProgressServices ??
+                                  throw new ArgumentNullException(nameof(saveLoadedGameProgressServices));
+            _settingsModelProvider = settingsModelProvider ?? throw new ArgumentNullException(nameof(settingsModelProvider));
             _gameMenuViewFactory = gameMenuViewFactory ?? throw new ArgumentNullException(nameof(gameMenuViewFactory));
             _settingsViewFactory = settingsViewFactory ?? throw new ArgumentNullException(nameof(settingsViewFactory));
             _playerFactory = playerFactory ?? throw new ArgumentNullException(nameof(playerFactory));
@@ -54,11 +58,10 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
 
         public void Initialize()
         {
-            var settingsData = _saveLoadedGameProgresServices.LoadData(new SettingsData());
-            PlayerDta playerDtaData = _saveLoadedGameProgresServices.LoadData(new PlayerDta());
+            PlayerDta playerDtaData = _saveLoadedServices.Load(new PlayerDta());
             Player player = _playerFactory.Create(new PlayerLiveData(playerDtaData)); //TODO : переработать 
             MainGameMenuView gameMenuView = _gameMenuViewFactory.Create(player);
-            SettingsView settingsView = _settingsViewFactory.Create(new SettingsModel(settingsData));
+            SettingsView settingsView = _settingsViewFactory.Create(_settingsModelProvider.Model);
         }
 
         public void Exit()

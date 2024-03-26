@@ -31,7 +31,15 @@ namespace Sources.Game.BoundedContexts.Settings.Implementation.Models
         public float SoundEffectsVolume
         {
             get => _soundEffectsVolume;
-            set => TrySetField(ref _musicVolume, value);
+            set => TrySetField(ref _soundEffectsVolume, value);
         }
+        
+        public SettingsData Save() =>
+            new SettingsData()
+            {
+                LocalizationMode = LocalizationMode,
+                MusicVolume = MusicVolume,
+                SoundEffectsVolume = SoundEffectsVolume
+            };
     }
 }

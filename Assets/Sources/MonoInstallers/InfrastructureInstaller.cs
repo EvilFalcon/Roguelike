@@ -8,6 +8,8 @@ using Sources.Game.BoundedContexts.Inputs.Implementation.InputServices;
 using Sources.Game.BoundedContexts.Inputs.Interfaces.InputServices;
 using Sources.Game.BoundedContexts.Localizations.Implementation.Services;
 using Sources.Game.BoundedContexts.Localizations.Interface;
+using Sources.Game.BoundedContexts.Maperis.Implementation.Settings;
+using Sources.Game.BoundedContexts.Maperis.Interfaces;
 using Sources.Game.BoundedContexts.Scenes.Implementation.Services;
 using Sources.Game.BoundedContexts.Scenes.Interfaces.Factories;
 using Sources.Game.BoundedContexts.Scenes.Interfaces.Services;
@@ -25,17 +27,16 @@ namespace Sources.MonoInstallers
         public override void OnConfigure(IServiceCollection services)
         {
             services
+                .RegisterAsSingleton<ISettingsModelProvider, SettingsProvider>()
                 .RegisterAsSingleton(FindObjectOfType<AudioView>())
                 .RegisterAsSingleton<IAudioController, IMusicController, ISoundController, AudioController>()
                 .RegisterAsSingleton<ISceneFactoryProvider, SceneFactoryCollection>()
-                .RegisterAsSingleton<ISaveLoadedGameProgresServices, DataSaveLoadedGameProgressServices>()
+                .RegisterAsSingleton<ISaveLoadedServices, ILoadDataFiles, SaveLoadedService>()
                 .RegisterAsSingleton<IInputService, StandaloneInputService>() /* TODO: вынести в отдельный модуль*/
-                .RegisterAsSingleton<AssetService<MainGameMenuAssetProvider>>()
-                .RegisterAsSingleton<AssetService<SettingsAssetProvider>>()
                 .RegisterAsSingleton<AssetService<HeroAssetProvider>>() /* TODO: вынести в отдельный модуль*/
                 .RegisterAsSingleton<ISceneConstructor, ISceneSwitcher, SceneConstructor>()
                 .RegisterAsSingleton<ILoaderLocalizationService, ILocalizationService, LocalizationService>()
-                .RegisterAsSingleton<ISaveLoadedGameProgresServices, ILoadDataFiles, DataSaveLoadedGameProgressServices>()
+                .RegisterAsSingleton<ISaveLoadedServices, ILoadDataFiles, SaveLoadedService>()
                 .RegisterAsScoped<IFormService, FormServices>()
                 .RegisterAsScoped<IAssetService>
                 (

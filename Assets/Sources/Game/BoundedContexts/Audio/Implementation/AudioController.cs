@@ -9,8 +9,10 @@ namespace Sources.Game.BoundedContexts.Audio.Implementation
     {
         private readonly AudioView _audioView;
 
-        public AudioController(AudioView audioView) =>
+        public AudioController(AudioView audioView)
+        {
             _audioView = audioView ?? throw new ArgumentNullException(nameof(audioView));
+        }
 
         public void EnableAudio() =>
             _audioView.Show();

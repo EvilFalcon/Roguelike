@@ -17,6 +17,7 @@ namespace Sources.Game.BoundedContexts.Scenes.Interfaces.Factories
             {
                 [nameof(GameplayMenuScene)] = ResolveFactory<GameplayMenuSceneFactory>,
                 [nameof(GameplayScene)] = ResolveFactory<GameplaySceneFactory>,
+                [nameof(InitScene)] = ResolveFactory<InitSceneFactory>
             };
         }
 

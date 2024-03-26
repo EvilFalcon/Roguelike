@@ -10,6 +10,8 @@ namespace Sources.MonoInstallers
         public override void OnConfigure(IServiceCollection services)
         {
             services
+                .RegisterAsScoped<AssetService<MainGameMenuAssetProvider>>()
+                .RegisterAsScoped<AssetService<SettingsAssetProvider>>()
                 .RegisterAsScoped<IAssetService>
                 (
                     serviceProvider =>

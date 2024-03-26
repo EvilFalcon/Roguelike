@@ -23,8 +23,10 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Services
             _stateMachine = new StateMachine<IState>();
         }
 
-        public void Change(string sceneName) =>
+        public void Change(string sceneName)
+        {
             SceneManager.LoadScene(sceneName);
+        }
 
         public void ConstructScene(ISceneContext sceneContext)
         {

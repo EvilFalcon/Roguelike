@@ -17,7 +17,8 @@ namespace Sources.Game.BoundedContexts.Settings.Implementation.Controllers
         private readonly SettingsModel _model;
         private readonly SettingsView _view;
         private readonly ILocalizationService _loaderLocalizationService;
-        private readonly IAudioController _audioController;
+        private readonly ISoundController _soundController;
+        private readonly IMusicController _musicController;
         private readonly IFormService _formService;
         private LocalizationModel _localizationModel;
 
@@ -26,14 +27,16 @@ namespace Sources.Game.BoundedContexts.Settings.Implementation.Controllers
             SettingsModel model,
             SettingsView view,
             ILocalizationService service,
-            IAudioController audioController,
+            ISoundController audioController,
+            IMusicController musicController,
             IFormService formService
         )
         {
             _model = model ?? throw new ArgumentNullException(nameof(model));
             _view = view ?? throw new ArgumentNullException(nameof(view));
             _loaderLocalizationService = service ?? throw new ArgumentNullException(nameof(service));
-            _audioController = audioController ?? throw new ArgumentNullException(nameof(audioController));
+            _soundController = audioController ?? throw new ArgumentNullException(nameof(audioController));
+            _musicController = musicController ?? throw new ArgumentNullException(nameof(musicController));
             _formService = formService ?? throw new ArgumentNullException(nameof(formService));
             _localizationModel = _loaderLocalizationService.Localization;
         }
@@ -42,10 +45,6 @@ namespace Sources.Game.BoundedContexts.Settings.Implementation.Controllers
         {
             _view.SetMusicVolume(_model.MusicVolume);
             _view.SetSoundVolume(_model.SoundEffectsVolume);
-            _audioController.SetMusicVolume(_model.MusicVolume);
-            _audioController.SetSoundVolume(_model.SoundEffectsVolume);
-            _audioController.PlaySound();
-            _audioController.PlayMusic();
             _localizationModel.PropertyChanged += OnLocalization;
             _loaderLocalizationService.SetLanguage(_model.LocalizationMode);
             SetLocalization();
@@ -56,20 +55,35 @@ namespace Sources.Game.BoundedContexts.Settings.Implementation.Controllers
             _localizationModel.PropertyChanged -= OnLocalization;
         }
 
-        public void SetMusicVolume(float value) =>
-            _audioController.SetMusicVolume(value);
+        public void SetMusicVolume(float value)
+        {
+            _model.MusicVolume = value;
+            _musicController.SetMusicVolume(value);
+        }
 
-        public void SetSoundEffectsVolume(float value) =>
-            _audioController.SetSoundVolume(value);
+        public void SetSoundEffectsVolume(float value)
+        {
+            _model.SoundEffectsVolume = value;
+            _soundController.SetSoundVolume(value);
+        }
 
-        public void SetRusLocalization() =>
+        public void SetRusLocalization()
+        {
+            _soundController.PlaySound();
             _loaderLocalizationService.SetLanguage(_model.LocalizationMode = "Russian");
+        }
 
-        public void SetEngLocalization() =>
+        public void SetEngLocalization()
+        {
+            _soundController.PlaySound();
             _loaderLocalizationService.SetLanguage(_model.LocalizationMode = "English");
+        }
 
-        public void OnBackButtonClick() =>
+        public void OnBackButtonClick()
+        {
+            _soundController.PlaySound();
             _formService.HideForm(nameof(SettingsView));
+        }
 
         private void OnLocalization(object sender, PropertyChangedEventArgs e)
         {

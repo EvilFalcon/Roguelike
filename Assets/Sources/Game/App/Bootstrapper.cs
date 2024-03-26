@@ -11,14 +11,13 @@ namespace Sources.Game.App
     public class Bootstrapper : MonoBehaviour
     {
         [Constructor]
-        private void Construct(ISceneContext sceneContext, ISceneConstructor sceneConstructor,AudioViewFactory audioViewFactory)
+        private void Construct(ISceneContext sceneContext, ISceneConstructor sceneConstructor)
         {
             ISceneContext context = sceneContext ?? throw new ArgumentNullException(nameof(sceneContext));
 
             if (sceneConstructor == null)
                 throw new ArgumentNullException(nameof(sceneConstructor));
-
-           // audioViewFactory.Create();
+            
             sceneConstructor.ConstructScene(context);
         }
     }

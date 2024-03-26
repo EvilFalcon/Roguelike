@@ -2,6 +2,7 @@
 {
     public interface ILoadDataFiles
     {
-        T LoadData<T>(T @object, string postfix);
+        T Load<T>(T @object, string postfix);
+        T Load<T>(string key);
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
+using Sources.Game.BoundedContexts.Audio.Implementation;
+using Sources.Game.BoundedContexts.Audio.Interfaces;
 using Sources.Game.BoundedContexts.Localizations.Implementation.Models;
 using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Views;
 using Sources.Game.BoundedContexts.Players.Implementation.Model;
@@ -17,6 +19,7 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Controllers
         private readonly LocalizationModel _localizationModel;
         private readonly IFormService _formService;
         private readonly ISceneSwitcher _sceneSwitcher;
+        private readonly ISoundController _audioController;
 
         public MainGameMenuPresenter
         (
@@ -24,7 +27,8 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Controllers
             Player player,
             LocalizationModel localizationModel,
             IFormService formService,
-            ISceneSwitcher sceneSwitcher
+            ISceneSwitcher sceneSwitcher,
+            ISoundController audioController
         )
         {
             _view = view;
@@ -32,6 +36,7 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Controllers
             _localizationModel = localizationModel ?? throw new ArgumentNullException(nameof(localizationModel));
             _formService = formService ?? throw new ArgumentNullException(nameof(formService));
             _sceneSwitcher = sceneSwitcher ?? throw new ArgumentNullException(nameof(sceneSwitcher));
+            _audioController = audioController ?? throw new ArgumentNullException(nameof(audioController));
         }
 
         public void Enable()
@@ -68,10 +73,14 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Controllers
 
         public void StartGame()
         {
+            _audioController.PlaySound();
             _sceneSwitcher.Change("GameplayScene");
         }
 
-        public void ShowSettings() =>
+        public void ShowSettings()
+        {
+            _audioController.PlaySound();
             _formService.ShowForm(nameof(SettingsView));
+        }
     }
 }

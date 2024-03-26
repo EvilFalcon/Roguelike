@@ -19,14 +19,14 @@ namespace Sources.Game.BoundedContexts.Localizations.Implementation.Services
             _localization ?? LoadLocalizationModel(); // TODO: LocalizationModel Localization { get; private set; }
 
         public LocalizationModel LoadLocalizationModel(string language = "English") =>
-            _localization = new LocalizationModel(_loadDataFiles.LoadData(new LocalizationData(), language));
+            _localization = new LocalizationModel(_loadDataFiles.Load(new LocalizationData(), language));
 
         public void SetLanguage(string language)
         {
             if (Localization.Language == language)
                 return;
 
-            Localization.SetLocalizationData(_loadDataFiles.LoadData(new LocalizationData(), language));
+            Localization.SetLocalizationData(_loadDataFiles.Load(new LocalizationData(), language));
         }
     }
 }
