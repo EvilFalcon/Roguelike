@@ -7,7 +7,6 @@ namespace Sources.MonoInstallers
 {
     public class GameMenuSceneInstaller : MonoInstaller
     {
-
         public override void OnConfigure(IServiceCollection services)
         {
             services
@@ -19,7 +18,6 @@ namespace Sources.MonoInstallers
                     serviceProvider =>
                         new CompositeAssetService
                         (
-                            serviceProvider.GetService<AssetService<HeroAssetProvider>>(),
                             serviceProvider.GetService<AssetService<MainGameMenuAssetProvider>>(),
                             serviceProvider.GetService<AssetService<SettingsAssetProvider>>(),
                             serviceProvider.GetService<AssetService<UpgradeStatsAssetProvider>>()

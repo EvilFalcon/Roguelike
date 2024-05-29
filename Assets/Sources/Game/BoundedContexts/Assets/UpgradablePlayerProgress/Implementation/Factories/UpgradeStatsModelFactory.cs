@@ -12,7 +12,6 @@ namespace Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implement
         public UpgradeStatsModelFactory(ISaveLoadedServices saveLoadedServices)
         {
             _saveLoadedServices = saveLoadedServices ?? throw new ArgumentNullException(nameof(saveLoadedServices));
-            _saveLoadedServices.SystemCreateJson(new UpgradableData());
         }
 
         public UpgradeStatsModel Create() =>

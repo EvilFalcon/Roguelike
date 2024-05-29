@@ -1,8 +1,15 @@
 {
-  "Money": 9999999,
+  "Money": 9000000,
   "GameProgress": 1,
   "Health": 100,
-  "AttackDelay": 20,
+  "AttackDelay": 10.0,
   "ArmorModifier": 20,
-  "AttackModifier": 45
+  "AttackModifier": 45,
+
+  "UpgradeStats": {
+    "Armor": 0,
+    "AttackDelay": 0,
+    "Health": 0,
+    "Attack": 0
+  }
 }

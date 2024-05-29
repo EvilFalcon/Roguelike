@@ -99,7 +99,8 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Factories
                 new UpgradeStatsPresenterFactory
                 (
                     _localizationService,
-                    _upgradableService
+                    _upgradableService,
+                    _formService
                 ),
                 _upgradeStatsViewProvider
             );

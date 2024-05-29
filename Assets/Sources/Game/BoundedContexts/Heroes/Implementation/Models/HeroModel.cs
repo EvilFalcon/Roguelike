@@ -20,6 +20,6 @@ namespace Sources.Game.BoundedContexts.Heroes.Implementation.Models
 
         public int AttackModifier { get; }
 
-        public int AttackDelay { get; }
+        public float AttackDelay { get; }
     }
 }

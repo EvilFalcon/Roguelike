@@ -28,7 +28,10 @@ namespace Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implement
             _upgradableAttack.onClick.AddListener(OnUpgradableAttackButtonClick);
             _upgradableAttackDelay.onClick.AddListener(OnUpgradableAttackDelayButtonClick);
             _upgradableArmor.onClick.AddListener(OnUpgradableArmorButtonClick);
+            
+            _upgradablePanelClose.onClick.AddListener(OnCloseButtonClick);
             gameObject.SetActive(true);
+            _presenter.Enable();
         }
 
         public void Hide()
@@ -37,7 +40,14 @@ namespace Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implement
             _upgradableAttack.onClick.RemoveListener(OnUpgradableAttackButtonClick);
             _upgradableAttackDelay.onClick.RemoveListener(OnUpgradableAttackDelayButtonClick);
             _upgradableArmor.onClick.RemoveListener(OnUpgradableArmorButtonClick);
+            _upgradablePanelClose.onClick.RemoveListener(OnCloseButtonClick);
             gameObject.SetActive(false);
+            _presenter.Disable();
+        }
+
+        private void OnCloseButtonClick()
+        {
+            _presenter.CloseViewPanel();
         }
 
         public void Construct(UpgradeStatsPresenter presenter) =>

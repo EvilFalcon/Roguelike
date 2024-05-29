@@ -48,7 +48,6 @@ namespace Sources.Game.DataTransferObjects.Implementation.Services
 
     public interface ISaveLoadedServices
     {
-        void SystemCreateJson(object data, string postfix = "");
         T Load<T>(string key);
         T Load<T>(T @object, string postfix = "");
         void Save(string key, object @object);

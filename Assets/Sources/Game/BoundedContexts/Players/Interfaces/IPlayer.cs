@@ -10,7 +10,7 @@ namespace Sources.Game.BoundedContexts.Players.Interfaces
 
         public int ArmorModifier { get; }
 
-        public int AttackDelay { get; }
+        public float AttackDelay { get; }
         public int HealthModifier { get; }
 
         event PropertyChangedEventHandler PropertyChanged;

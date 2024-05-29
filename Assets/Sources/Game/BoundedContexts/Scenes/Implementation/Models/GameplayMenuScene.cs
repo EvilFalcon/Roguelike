@@ -64,9 +64,6 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
 
         private void Initialize()
         {
-            _saveLoadedServices.SystemCreateJson(new UpgradeStatsModel(new UpgradableData()));
-            UpgradableData upgradableData = _saveLoadedServices.Load(new UpgradableData());
-            
             UpgradeStatsModel upgradeStatsModel = _upgradeStatsModelFactory.Create();
             Player player = _playerModelFactory.Create(); //TODO : переработать 
             MainGameMenuView gameMenuView = _gameMenuViewFactory.Create(player);

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 using Sources.Game.DataTransferObjects.Interfaces;
 
 namespace Sources.Game.DataTransferObjects.Implementation.DTO.Player
@@ -15,10 +16,13 @@ namespace Sources.Game.DataTransferObjects.Implementation.DTO.Player
         public int Health { get; set; }
 
         [JsonProperty(propertyName: "AttackDelay")]
-        public int AttackDelay { get; set; }
+        public float AttackDelay { get; set; }
 
         [JsonProperty(propertyName: "ArmorModifier")]
         public int ArmorModifier { get; set; }
+
+        [JsonProperty(propertyName: "UpgradeStats")]
+        public Dictionary<string, int> UpgradeStats { get; set; }
 
         [JsonProperty(propertyName: "AttackModifier")]
         public int AttackModifier { get; set; }

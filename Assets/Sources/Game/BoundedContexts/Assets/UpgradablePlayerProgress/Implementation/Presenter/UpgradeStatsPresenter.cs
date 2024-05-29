@@ -7,6 +7,8 @@ using Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implementatio
 using Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Interfaces;
 using Sources.Game.BoundedContexts.Localizations.Implementation.Models;
 using Sources.Game.BoundedContexts.Players.Interfaces;
+using Sources.Game.BoundedContexts.ViewFormServices.Interfaces;
+using UnityEngine;
 
 namespace Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implementation.Presenter
 {
@@ -17,6 +19,7 @@ namespace Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implement
         private readonly IPlayer _player;
         private readonly LocalizationModel _localizationModel;
         private readonly UpgradableService _upgradableService;
+        private readonly IFormService _formService;
 
         public UpgradeStatsPresenter
         (
@@ -24,7 +27,8 @@ namespace Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implement
             UpgradeStatsModel upgradeStatsModel,
             IPlayer player,
             LocalizationModel localizationModel,
-            UpgradableService upgradableService
+            UpgradableService upgradableService,
+            IFormService formService
         )
         {
             _view = view ?? throw new ArgumentNullException(nameof(view));
@@ -32,6 +36,7 @@ namespace Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implement
             _player = player ?? throw new ArgumentNullException(nameof(player));
             _localizationModel = localizationModel ?? throw new ArgumentNullException(nameof(localizationModel));
             _upgradableService = upgradableService ?? throw new ArgumentNullException(nameof(upgradableService));
+            _formService = formService ?? throw new ArgumentNullException(nameof(formService));
         }
 
         public void Enable()
@@ -48,11 +53,15 @@ namespace Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implement
         {
             try
             {
-                _upgradableService.UpgradeArmor();
+                _upgradableService.UpgradeArmorStat("Armor", _upgradeStatsModel, (IUpgradable)_player);
             }
             catch (ExceptionImpossibleTransaction)
             {
-                Console.WriteLine("not enough money" + _player.Money + " " + _upgradeStatsModel.CurrentArmorLevel);
+                Debug.Log("not enough money" + _player.Money + " ");//TODO: дополнить реализацию
+            }
+            catch (IndexOutOfRangeException)
+            {
+                Debug.Log("max level reached");//TODO: дополнить реализацию
             }
         }
 
@@ -60,11 +69,15 @@ namespace Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implement
         {
             try
             {
-                _upgradableService.UpgradeAttackDelay();
+                _upgradableService.UpgradeAttackDelay("AttackDelay", _upgradeStatsModel, (IUpgradable)_player);
             }
             catch (ExceptionImpossibleTransaction)
             {
-                Console.WriteLine("not enough money" + _player.Money + " " + _upgradeStatsModel.CurrentAttackDelay);
+                Debug.Log("not enough money" + _player.Money + " ");//TODO: дополнить реализацию
+            }
+            catch (IndexOutOfRangeException)
+            {
+                Debug.Log("max level reached");//TODO: дополнить реализацию
             }
         }
 
@@ -72,11 +85,15 @@ namespace Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implement
         {
             try
             {
-                _upgradableService.UpgradeAttack();
+                _upgradableService.UpgradeAttack("Attack", _upgradeStatsModel, (IUpgradable)_player);
             }
             catch (ExceptionImpossibleTransaction)
             {
-                Console.WriteLine("not enough money" + _player.Money + " " + _upgradeStatsModel.CurrentAttackLevel);
+                Debug.Log("not enough money" + _player.Money + " ");//TODO: дополнить реализацию
+            }
+            catch (IndexOutOfRangeException)
+            {
+                Debug.Log("max level reached");//TODO: дополнить реализацию
             }
         }
 
@@ -84,12 +101,22 @@ namespace Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implement
         {
             try
             {
-                _upgradableService.UpgradeHealth();
+                _upgradableService.UpgradeHealth("Health", _upgradeStatsModel, (IUpgradable)_player);
             }
             catch (ExceptionImpossibleTransaction)
             {
-                Console.WriteLine("not enough money" + _player.Money + " " + _upgradeStatsModel.CurrentHealthLevel);
+                Debug.Log("not enough money" + _player.Money + " "); //TODO: дополнить реализацию
             }
+            catch (IndexOutOfRangeException)
+            {
+                Debug.Log("max level reached");//TODO: дополнить реализацию
+            }
+            
+        }
+        
+        public void CloseViewPanel()
+        {
+            _formService.HideForm(nameof(UpgradeStatsView));
         }
 
         private void OnLocalization(object sender, PropertyChangedEventArgs e)

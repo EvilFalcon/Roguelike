@@ -9,6 +9,6 @@ namespace Sources.Game.BoundedContexts.Assets.Implementation
         public AudioView AudioView { get; private set; }
 
         public override async Task LoadAsync() =>
-            AudioView = await Load<AudioView>(nameof(MainGameMenuView));
+            AudioView = await Load<AudioView>(nameof(AudioView));
     }
 }

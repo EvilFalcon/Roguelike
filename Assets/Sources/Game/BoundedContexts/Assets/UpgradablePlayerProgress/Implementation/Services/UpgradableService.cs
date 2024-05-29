@@ -1,5 +1,4 @@
-﻿
-using Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implementation.Exceptions;
+﻿using Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implementation.Exceptions;
 using Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implementation.Model;
 using Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Interfaces;
 
@@ -7,58 +6,37 @@ namespace Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implement
 {
     public class UpgradableService
     {
-        private readonly UpgradeStatsModel _upgradableModel;
-        private readonly IUpgradable _player;
+        public void UpgradeArmorStat(string upgradeKey, UpgradeStatsModel upgradableModel, IUpgradable player) =>
+            player.ArmorModifier += PerformUpgrade(upgradeKey, player, upgradableModel);
 
-        public UpgradableService(UpgradeStatsModel upgradableModel, IUpgradable player)
+        public void UpgradeHealth(string upgradeKey, UpgradeStatsModel upgradableModel, IUpgradable player)
         {
-            _upgradableModel = upgradableModel;
-            _player = player;
+            var a = PerformUpgrade(upgradeKey, player, upgradableModel);
+            player.HealthModifier += a;
         }
 
-        public void UpgradeArmor()
-        {
-            UpgradeStat("armor", _upgradableModel.CurrentArmorLevel);
-            _upgradableModel.CurrentArmorLevel++;
-            
-        }
+        public void UpgradeAttack(string upgradeKey, UpgradeStatsModel upgradableModel, IUpgradable player) =>
+            player.AttackModifier += PerformUpgrade(upgradeKey, player, upgradableModel);
 
-        public void UpgradeAttack()
-        {
-            UpgradeStat("attack", _upgradableModel.CurrentAttackLevel);
-            _upgradableModel.CurrentAttackLevel++;
-        }
+        public void UpgradeAttackDelay(string upgradeKey, UpgradeStatsModel upgradableModel, IUpgradable player) =>
+            player.AttackDelay -= PerformUpgrade(upgradeKey, player, upgradableModel) / 150f;
 
-        public void UpgradeAttackDelay()
+        private int PerformUpgrade(string upgradeKey, IUpgradable player, UpgradeStatsModel upgradableModel)
         {
-            UpgradeStat("attackDelay", _upgradableModel.CurrentAttackDelay);
-            _upgradableModel.CurrentAttackDelay++;
-        }
+            int price = CalculateUpgradePrice(upgradeKey, player.UpgradeLevelStats[upgradeKey], upgradableModel);
 
-        public void UpgradeHealth()
-        {
-            UpgradeStat("health", _upgradableModel.CurrentHealthLevel);
-            _upgradableModel.CurrentHealthLevel++;
-        }
-
-        private void UpgradeStat(string upgradeKey, int upgradeLevel)
-        {
-            int price = CalculateUpgradePrice(upgradeKey, upgradeLevel);
-
-            if (_player.Money < price)
-            {
+            if (player.Money < price)
                 throw new ExceptionImpossibleTransaction("not enough money");
-            }
 
-            _player.Money -= price;
-            upgradeLevel += 1;
-            _player.ArmorModifier += _upgradableModel.UpgradeStats[upgradeKey][upgradeLevel];
+            player.Money -= price;
+            player.UpgradeLevelStats[upgradeKey] += 1;
+            return upgradableModel.UpgradeStats[upgradeKey][player.UpgradeLevelStats[upgradeKey]];
         }
 
-        private int CalculateUpgradePrice(string upgradeKey, int currentLevel)
+        private int CalculateUpgradePrice(string upgradeKey, int currentLevel, UpgradeStatsModel upgradableModel)
         {
             int nextLevel = currentLevel + 1;
-            return _upgradableModel.UpgradeStats[upgradeKey][nextLevel] * nextLevel;
+            return upgradableModel.UpgradeStats[upgradeKey][nextLevel] * nextLevel;
         }
     }
 }

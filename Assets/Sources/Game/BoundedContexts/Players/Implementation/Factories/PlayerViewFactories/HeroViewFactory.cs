@@ -16,7 +16,7 @@ namespace Sources.Game.BoundedContexts.Players.Implementation.Factories.PlayerVi
 
         public GameObject Create(IHero hero)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }
