@@ -20,15 +20,11 @@ namespace Sources.Game.Common.Mvp.Implementation.PlayerMovement
             _camera = Camera.main; //TODO : вынести в CameraService? 
         }  
 
-        public void OnEnabled()
-        {
+        public void OnEnabled() =>
             _view.Show();
-        }
 
-        public void OnDisabled()
-        {
+        public void OnDisabled() =>
             _view.Hide();
-        }
 
         public void MovePlayer(Transform transform)
         {

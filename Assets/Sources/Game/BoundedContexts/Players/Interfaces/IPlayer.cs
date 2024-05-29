@@ -1,14 +1,18 @@
-﻿namespace Sources.Game.BoundedContexts.Players.Interfaces
+﻿using System.ComponentModel;
+
+namespace Sources.Game.BoundedContexts.Players.Interfaces
 {
     public interface IPlayer
     {
-        public int Money { get ;}
+        public int Money { get; }
 
-        public int AttackModifier{ get ;}
+        public int AttackModifier { get; }
 
-        public int ArmorModifier{ get ;}
+        public int ArmorModifier { get; }
 
-        public int AttackDelay{ get ;}
-        public int HealthModifier{ get ;}
+        public int AttackDelay { get; }
+        public int HealthModifier { get; }
+
+        event PropertyChangedEventHandler PropertyChanged;
     }
 }

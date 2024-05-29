@@ -7,6 +7,7 @@ namespace Sources.Game.Common.Mvp.Implementation.Model
 {
     public class ObservableModel : INotifyPropertyChanged
     {
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]

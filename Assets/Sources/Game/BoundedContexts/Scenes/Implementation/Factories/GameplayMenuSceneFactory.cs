@@ -2,6 +2,8 @@
 using Sources.Game.BoundedContexts.Assets.Implementation;
 using Sources.Game.BoundedContexts.Assets.Interfaces.AssetsServices;
 using Sources.Game.BoundedContexts.Assets.Interfaces.States;
+using Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implementation.Factories;
+using Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implementation.Services;
 using Sources.Game.BoundedContexts.Audio.Interfaces;
 using Sources.Game.BoundedContexts.Localizations.Implementation.Services;
 using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Factories.Presenter;
@@ -11,11 +13,8 @@ using Sources.Game.BoundedContexts.Players.Implementation.Factories.PlayerModelF
 using Sources.Game.BoundedContexts.Scenes.Implementation.Models;
 using Sources.Game.BoundedContexts.Scenes.Interfaces.Factories;
 using Sources.Game.BoundedContexts.Scenes.Interfaces.Services;
-using Sources.Game.BoundedContexts.Settings.Implementation.Controllers;
 using Sources.Game.BoundedContexts.Settings.Implementation.Factories.Presenters;
 using Sources.Game.BoundedContexts.Settings.Implementation.Factories.Views;
-using Sources.Game.BoundedContexts.Settings.Interfaces;
-using Sources.Game.BoundedContexts.ViewFormServices.Implementation;
 using Sources.Game.BoundedContexts.ViewFormServices.Interfaces;
 using Sources.Game.DataTransferObjects.Implementation.Services;
 using UniCtor.Contexts;
@@ -28,11 +27,15 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Factories
         private readonly ISaveLoadedServices _saveLoadedServices;
         private readonly ISceneSwitcher _sceneSwitcher;
         private readonly ISettingsModelProvider _settingsModelProvider;
-        private readonly AssetService<MainGameMenuAssetProvider> _gameMenuViewFactory;
+        private readonly AssetService<MainGameMenuAssetProvider> _gameMenuViewProvider;
         private readonly AssetService<SettingsAssetProvider> _settingsAssetProvider;
+        private readonly AssetService<UpgradeStatsAssetProvider> _upgradeStatsViewProvider;
         private readonly ISoundController _soundController;
         private readonly IMusicController _musicController;
         private readonly LocalizationService _localizationService;
+        private readonly PlayerModelFactory _playerModelFactory;
+        private readonly UpgradableService _upgradableService;
+        private readonly UpgradeStatsModelFactory _upgradeStatsModelFactory;
         private readonly IFormService _formService;
         private readonly ISceneContext _dependencyResolver;
 
@@ -42,11 +45,15 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Factories
             ISaveLoadedServices saveLoadedGameProgressServices,
             ISceneSwitcher sceneSwitcher,
             ISettingsModelProvider settingsModelProvider,
-            AssetService<MainGameMenuAssetProvider> gameMenuViewFactory,
+            AssetService<MainGameMenuAssetProvider> gameMenuViewProvider,
             AssetService<SettingsAssetProvider> settingsAssetProvider,
+            AssetService<UpgradeStatsAssetProvider> upgradeStatsViewProvider,
             ISoundController soundController,
             IMusicController musicController,
             LocalizationService localizationService,
+            PlayerModelFactory playerModelFactory,
+            UpgradableService upgradableService,
+            UpgradeStatsModelFactory upgradeStatsModelFactory,
             IFormService formService
         )
         {
@@ -56,18 +63,24 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Factories
                                   throw new ArgumentNullException(nameof(saveLoadedGameProgressServices));
             _sceneSwitcher = sceneSwitcher ?? throw new ArgumentNullException(nameof(sceneSwitcher));
             _settingsModelProvider = settingsModelProvider ?? throw new ArgumentNullException(nameof(settingsModelProvider));
-            _gameMenuViewFactory = gameMenuViewFactory ?? throw new ArgumentNullException(nameof(gameMenuViewFactory));
+            _gameMenuViewProvider = gameMenuViewProvider ?? throw new ArgumentNullException(nameof(gameMenuViewProvider));
             _settingsAssetProvider = settingsAssetProvider ?? throw new ArgumentNullException(nameof(settingsAssetProvider));
+            _upgradeStatsViewProvider =
+                upgradeStatsViewProvider ?? throw new ArgumentNullException(nameof(upgradeStatsViewProvider));
             _soundController = soundController ?? throw new ArgumentNullException(nameof(soundController));
             _musicController = musicController ?? throw new ArgumentNullException(nameof(musicController));
             _localizationService = localizationService ?? throw new ArgumentNullException(nameof(localizationService));
+            _playerModelFactory = playerModelFactory ?? throw new ArgumentNullException(nameof(playerModelFactory));
+            _upgradableService = upgradableService ?? throw new ArgumentNullException(nameof(upgradableService));
+            _upgradeStatsModelFactory =
+                upgradeStatsModelFactory ?? throw new ArgumentNullException(nameof(upgradeStatsModelFactory));
+
             _formService = formService ?? throw new ArgumentNullException(nameof(formService));
         }
 
         public IScene Create(ISceneSwitcher sceneSwitcher, ISceneContext sceneContext)
         {
             _localizationService.LoadLocalizationModel();
-            PlayerFactory playerFactory = new PlayerFactory();
             MainGameMenuPresenterFactory mainGameMenuPresenterFactory =
                 new MainGameMenuPresenterFactory(_formService, _sceneSwitcher, _localizationService, _soundController);
 
@@ -77,7 +90,19 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Factories
                 new SettingsViewFactory(settingsPresenterFactory, sceneContext, _settingsAssetProvider, _formService);
 
             MainGameMenuViewFactory mainGameMenuViewFactory =
-                new MainGameMenuViewFactory(mainGameMenuPresenterFactory, sceneContext, _gameMenuViewFactory, _formService);
+                new MainGameMenuViewFactory(mainGameMenuPresenterFactory, sceneContext, _gameMenuViewProvider, _formService);
+
+            UpgradeStatsViewFactory upgradeStatsViewFactory = new UpgradeStatsViewFactory
+            (
+                sceneContext,
+                _formService,
+                new UpgradeStatsPresenterFactory
+                (
+                    _localizationService,
+                    _upgradableService
+                ),
+                _upgradeStatsViewProvider
+            );
 
             return new GameplayMenuScene
             (
@@ -86,7 +111,9 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Factories
                 _settingsModelProvider,
                 mainGameMenuViewFactory,
                 settingsViewFactory,
-                playerFactory,
+                upgradeStatsViewFactory,
+                _playerModelFactory,
+                _upgradeStatsModelFactory,
                 _formService
             );
         }

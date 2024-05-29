@@ -16,7 +16,14 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
         private readonly HeroModelFactory _heroFactory;
         private readonly IPlayer _player;
 
-        public GameplayScene(ISceneSwitcher sceneSwitcher,IAssetService assetService, HeroViewFactory heroViewFactory,HeroModelFactory heroFactory, IPlayer player)
+        public GameplayScene
+        (
+            ISceneSwitcher sceneSwitcher,
+            IAssetService assetService,
+            HeroViewFactory heroViewFactory,
+            HeroModelFactory heroFactory,
+            IPlayer player
+        )
         {
             _sceneSwitcher = sceneSwitcher ?? throw new ArgumentNullException(nameof(sceneSwitcher));
             _assetService = assetService ?? throw new ArgumentNullException(nameof(assetService));
@@ -27,9 +34,10 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
 
         public async void Enter()
         {
+            
             await _assetService.LoadAsync();
             var player = _heroFactory.Create(_player);
-            
+
             _heroViewFactory.Create(player);
         }
 

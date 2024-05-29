@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
-using Sources.Game.BoundedContexts.Audio.Implementation;
+using Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implementation.Views;
 using Sources.Game.BoundedContexts.Audio.Interfaces;
 using Sources.Game.BoundedContexts.Localizations.Implementation.Models;
 using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Views;
@@ -44,9 +44,31 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Controllers
             _localizationModel.PropertyChanged += OnChangedLocalization;
             _player.PropertyChanged += OnChangedMoney;
 
-            _player.Money = 100000;
+            _view.SetMoney(_player.Money);
             _view.SetButtonSettingsText(_localizationModel.MainMenu["Settings"]);
             _view.SetButtonStartGameText(_localizationModel.MainMenu["Play"]);
+        }
+        
+        public void Disable()
+        {
+            _player.PropertyChanged -= OnChangedMoney;
+        }
+
+        public void StartGame()
+        {
+            _audioController.PlaySound();
+            _sceneSwitcher.Change("GameplayScene");
+        }
+
+        public void ShowSettings()
+        {
+            _audioController.PlaySound();
+            _formService.ShowForm(nameof(SettingsView));
+        }
+
+        public void ShowUpgradeStats()
+        {
+            _formService.ShowForm(nameof(UpgradeStatsView));
         }
 
         private void OnChangedLocalization(object sender, PropertyChangedEventArgs e)
@@ -66,21 +88,6 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Controllers
             }
         }
 
-        public void Disable()
-        {
-            _player.PropertyChanged -= OnChangedMoney;
-        }
-
-        public void StartGame()
-        {
-            _audioController.PlaySound();
-            _sceneSwitcher.Change("GameplayScene");
-        }
-
-        public void ShowSettings()
-        {
-            _audioController.PlaySound();
-            _formService.ShowForm(nameof(SettingsView));
-        }
+        
     }
 }

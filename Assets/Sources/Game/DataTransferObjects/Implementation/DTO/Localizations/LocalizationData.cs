@@ -16,5 +16,8 @@ namespace Sources.Game.DataTransferObjects.Implementation.DTO.Localizations
 
         [JsonProperty(propertyName: "CurrentLanguage")]
         public string CurrentLanguage { get; set; }
+
+        [JsonProperty(propertyName: "UpgradableStats")]
+        public IReadOnlyDictionary<string, string> UpgradablePlayerStats { get; set; }
     }
 }

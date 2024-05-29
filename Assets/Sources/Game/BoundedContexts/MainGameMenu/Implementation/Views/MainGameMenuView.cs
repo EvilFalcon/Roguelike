@@ -11,8 +11,11 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Views
         [SerializeField] private TextMeshProUGUI _startGameButton;
         [SerializeField] private TextMeshProUGUI _settingsGameButton;
         [SerializeField] private TextMeshProUGUI _playersMoney;
+        [SerializeField] private TextMeshProUGUI _upgradeStats;
+       
         [SerializeField] private Button _buttonStartGame;
         [SerializeField] private Button _buttonSettings;
+        [SerializeField] private Button _buttonUpgradeStats;
 
         private MainGameMenuPresenter _presenter;
 
@@ -20,6 +23,7 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Views
         {
             _buttonStartGame.onClick.AddListener(OnStartGameButtonClick);
             _buttonSettings.onClick.AddListener(OnSettingsButtonClick);
+            _buttonUpgradeStats.onClick.AddListener(OnUpgradeStatsButtonClick);
             gameObject.SetActive(true);
             _presenter.Enable();
         }
@@ -28,18 +32,9 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Views
         {
             _buttonStartGame.onClick.RemoveListener(OnStartGameButtonClick);
             _buttonSettings.onClick.RemoveListener(OnSettingsButtonClick);
+            _buttonUpgradeStats.onClick.RemoveListener(OnUpgradeStatsButtonClick);
             gameObject.SetActive(false);
             _presenter.Disable();
-        }
-
-        private void OnSettingsButtonClick()
-        {
-            _presenter.ShowSettings();
-        }
-
-        public void OnStartGameButtonClick()
-        {
-            _presenter.StartGame();
         }
 
         public void SetMoney(int playerMoney) =>
@@ -53,5 +48,14 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Views
 
         public void Construct(MainGameMenuPresenter presenter) =>
             _presenter = presenter;
+
+        private void OnSettingsButtonClick() =>
+            _presenter.ShowSettings();
+
+        private void OnUpgradeStatsButtonClick() =>
+            _presenter.ShowUpgradeStats();
+
+        private void OnStartGameButtonClick() =>
+            _presenter.StartGame();
     }
 }

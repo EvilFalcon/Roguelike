@@ -5,7 +5,6 @@ using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Factories.Present
 using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Views;
 using Sources.Game.BoundedContexts.Players.Implementation.Model;
 using Sources.Game.BoundedContexts.ViewFormServices.Interfaces;
-using UniCtor.Builders;
 using UniCtor.Contexts;
 using UniCtor.Sources.Di.Extensions.IDependencyResolvers;
 
@@ -15,7 +14,6 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Factories.Vie
     {
         private readonly MainGameMenuPresenterFactory _presenterFactory;
         private readonly ISceneContext _sceneContext;
-        private readonly IDependencyResolver _dependencyResolver;
         private readonly AssetService<MainGameMenuAssetProvider> _assetService;
         private readonly IFormService _formService;
 

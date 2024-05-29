@@ -1,6 +1,4 @@
-﻿using System;
-using Sources.Game.Common.Mvp.Interfaces.IPlayerMovement;
-using UniCtor.Attributes;
+﻿using Sources.Game.Common.Mvp.Interfaces.IPlayerMovement;
 using UnityEngine;
 
 namespace Sources.Game.Common.Mvp.Implementation.PlayerMovement
@@ -12,31 +10,18 @@ namespace Sources.Game.Common.Mvp.Implementation.PlayerMovement
         [SerializeField] private CharacterController _characterController;
         private PlayerMovementController _controller;
 
-        private void Update()
-        {
+        private void Update() =>
             _controller.MovePlayer(transform);
-        }
 
-        [Constructor]
-        private void Construct(PlayerMovementController controller)
-        {
-            _controller = controller ?? throw new ArgumentNullException(nameof(controller));
-        }
-
-        public void Show()
-        {
+        public void Show() =>
             gameObject.SetActive(true);
-        }
 
-        public void Hide()
-        {
+        public void Hide() =>
             gameObject.SetActive(false);
-        }
 
-        public void Move(Vector3 direction)
-        {
+        public void Move(Vector3 direction) =>
             _characterController.Move(direction); //TODO : NullReferenceException как пофиксить.
-        } 
+
         //TODO : У view нет пресентора это нормально ??
     }
 }

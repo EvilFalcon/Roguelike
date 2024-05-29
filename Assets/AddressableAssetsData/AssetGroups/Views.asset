@@ -18,7 +18,7 @@ MonoBehaviour:
   m_GUID: 70a6228930d979049bca671ed4639673
   m_SerializeEntries:
   - m_GUID: b9d58573af5b9354dbcce7a1f397ae92
-    m_Address: HeroMove
+    m_Address: Player
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
@@ -29,6 +29,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ad55e03b0f34e18489d0f2a29de0ef41
     m_Address: SettingsView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6c1fa87c36a2383459ece6a9fa35c83b
+    m_Address: UpgradeStatsView
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

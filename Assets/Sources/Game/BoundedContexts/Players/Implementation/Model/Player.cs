@@ -1,5 +1,4 @@
 ﻿using Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Interfaces;
-using Sources.Game.BoundedContexts.Players.Implementation.LiveData;
 using Sources.Game.BoundedContexts.Players.Interfaces;
 using Sources.Game.Common.Mvp.Implementation.Model;
 using Sources.Game.DataTransferObjects.Implementation.DTO.Player;
@@ -15,7 +14,7 @@ namespace Sources.Game.BoundedContexts.Players.Implementation.Model
         private int _helhsDelay;
         private int _healthModifier;
 
-        public Player(PlayerLiveData playerLiveData)
+        public Player(PlayerData playerLiveData)
         {
             _money = playerLiveData.Money;
             _attackModifier = playerLiveData.AttackModifier;

@@ -23,4 +23,5 @@ namespace Sources.Game.BoundedContexts.Audio.Implementation.Factories.View
             return view;
         }
     }
+    //TODO: А нуженли вообще этот класс?
 }
