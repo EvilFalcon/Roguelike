@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using Sources.Game.BoundedContexts.ViewFormServices.Interfaces;
-using Sources.Game.Common.Mvp.Interfaces;
+using Sources.Game.IDontCno;
 
 namespace Sources.Game.BoundedContexts.ViewFormServices.Implementation
 {
-    public class FormServices : IFormService
+    public class ViewServices : IViewService
     {
         Dictionary<string, IView> _viewCollection = new Dictionary<string, IView>();
 

@@ -15,20 +15,20 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Factories.Vie
         private readonly MainGameMenuPresenterFactory _presenterFactory;
         private readonly ISceneContext _sceneContext;
         private readonly AssetService<MainGameMenuAssetProvider> _assetService;
-        private readonly IFormService _formService;
+        private readonly IViewService _viewService;
 
         public MainGameMenuViewFactory
         (
             MainGameMenuPresenterFactory presenterFactory,
             ISceneContext sceneContext,
             AssetService<MainGameMenuAssetProvider> assetService,
-            IFormService formService
+            IViewService viewService
         )
         {
             _presenterFactory = presenterFactory ?? throw new ArgumentNullException(nameof(presenterFactory));
             _sceneContext = sceneContext ?? throw new ArgumentNullException(nameof(sceneContext));
             _assetService = assetService ?? throw new ArgumentNullException(nameof(assetService));
-            _formService = formService ?? throw new ArgumentNullException(nameof(formService));
+            _viewService = viewService ?? throw new ArgumentNullException(nameof(viewService));
         }
 
         public MainGameMenuView Create(Player player)
@@ -36,7 +36,7 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Factories.Vie
             MainGameMenuView view =
                 _sceneContext.DependencyResolver.InstantiateComponentFromPrefab(_assetService.Provider.MainGameMenuView);
             MainGameMenuPresenter presenter = _presenterFactory.Create(view, player);
-            _formService.AddForm(view);
+            _viewService.AddForm(view);
 
             view.Construct(presenter);
 

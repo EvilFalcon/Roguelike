@@ -19,7 +19,7 @@ namespace Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implement
         private readonly IPlayer _player;
         private readonly LocalizationModel _localizationModel;
         private readonly UpgradableService _upgradableService;
-        private readonly IFormService _formService;
+        private readonly IViewService _viewService;
 
         public UpgradeStatsPresenter
         (
@@ -28,7 +28,7 @@ namespace Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implement
             IPlayer player,
             LocalizationModel localizationModel,
             UpgradableService upgradableService,
-            IFormService formService
+            IViewService viewService
         )
         {
             _view = view ?? throw new ArgumentNullException(nameof(view));
@@ -36,7 +36,7 @@ namespace Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implement
             _player = player ?? throw new ArgumentNullException(nameof(player));
             _localizationModel = localizationModel ?? throw new ArgumentNullException(nameof(localizationModel));
             _upgradableService = upgradableService ?? throw new ArgumentNullException(nameof(upgradableService));
-            _formService = formService ?? throw new ArgumentNullException(nameof(formService));
+            _viewService = viewService ?? throw new ArgumentNullException(nameof(viewService));
         }
 
         public void Enable()
@@ -116,7 +116,7 @@ namespace Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implement
         
         public void CloseViewPanel()
         {
-            _formService.HideForm(nameof(UpgradeStatsView));
+            _viewService.HideForm(nameof(UpgradeStatsView));
         }
 
         private void OnLocalization(object sender, PropertyChangedEventArgs e)

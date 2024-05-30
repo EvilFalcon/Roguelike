@@ -36,7 +36,7 @@ namespace Sources.MonoInstallers
 
                 .RegisterAsSingleton<ISceneConstructor, ISceneSwitcher, SceneConstructor>()
                 .RegisterAsSingleton<ILoaderLocalizationService, ILocalizationService, LocalizationService>()
-                .RegisterAsScoped<IFormService, FormServices>();
+                .RegisterAsScoped<IViewService, ViewServices>();
 
         }
     }

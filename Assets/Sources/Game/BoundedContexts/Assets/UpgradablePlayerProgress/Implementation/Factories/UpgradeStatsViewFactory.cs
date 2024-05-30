@@ -15,12 +15,12 @@ namespace Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implement
         private readonly UpgradeStatsPresenterFactory _presenterFactory;
         private readonly AssetService<UpgradeStatsAssetProvider> _assetService;
         private readonly ISceneContext _sceneContext;
-        private readonly IFormService _formService;
+        private readonly IViewService _viewService;
 
         public UpgradeStatsViewFactory
         (
             ISceneContext sceneContext,
-            IFormService formService,
+            IViewService viewService,
             UpgradeStatsPresenterFactory presenterFactory,
             AssetService<UpgradeStatsAssetProvider> assetService
         )
@@ -28,7 +28,7 @@ namespace Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implement
             _presenterFactory = presenterFactory ?? throw new ArgumentNullException(nameof(presenterFactory));
             _assetService = assetService ?? throw new ArgumentNullException(nameof(assetService));
             _sceneContext = sceneContext ?? throw new ArgumentNullException(nameof(sceneContext));
-            _formService = formService ?? throw new ArgumentNullException(nameof(formService));
+            _viewService = viewService ?? throw new ArgumentNullException(nameof(viewService));
         }
 
         public UpgradeStatsView Create(UpgradeStatsModel model, IPlayer player)
@@ -38,9 +38,9 @@ namespace Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implement
             UpgradeStatsPresenter presenter = _presenterFactory.Create(view, model, player);
             view.Construct(presenter);
             
-            _formService.AddForm(view);
+            _viewService.AddForm(view);
             
-            _formService.HideForm(nameof(UpgradeStatsView));
+            _viewService.HideForm(nameof(UpgradeStatsView));
             return view;
         }
     }

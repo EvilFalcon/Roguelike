@@ -12,7 +12,7 @@ namespace Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implement
         public void UpgradeHealth(string upgradeKey, UpgradeStatsModel upgradableModel, IUpgradable player)
         {
             var a = PerformUpgrade(upgradeKey, player, upgradableModel);
-            player.HealthModifier += a;
+            player.Health += a;
         }
 
         public void UpgradeAttack(string upgradeKey, UpgradeStatsModel upgradableModel, IUpgradable player) =>

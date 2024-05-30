@@ -8,7 +8,7 @@ using Sources.Game.BoundedContexts.Players.Implementation.Model;
 using Sources.Game.BoundedContexts.Scenes.Interfaces.Services;
 using Sources.Game.BoundedContexts.Settings.Implementation.Views;
 using Sources.Game.BoundedContexts.ViewFormServices.Interfaces;
-using Sources.Game.Common.Mvp.Interfaces;
+using Sources.Game.IDontCno;
 
 namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Controllers
 {
@@ -17,7 +17,7 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Controllers
         private readonly MainGameMenuView _view;
         private readonly Player _player;
         private readonly LocalizationModel _localizationModel;
-        private readonly IFormService _formService;
+        private readonly IViewService _viewService;
         private readonly ISceneSwitcher _sceneSwitcher;
         private readonly ISoundController _audioController;
 
@@ -26,7 +26,7 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Controllers
             MainGameMenuView view,
             Player player,
             LocalizationModel localizationModel,
-            IFormService formService,
+            IViewService viewService,
             ISceneSwitcher sceneSwitcher,
             ISoundController audioController
         )
@@ -34,7 +34,7 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Controllers
             _view = view;
             _player = player ?? throw new ArgumentNullException(nameof(player));
             _localizationModel = localizationModel ?? throw new ArgumentNullException(nameof(localizationModel));
-            _formService = formService ?? throw new ArgumentNullException(nameof(formService));
+            _viewService = viewService ?? throw new ArgumentNullException(nameof(viewService));
             _sceneSwitcher = sceneSwitcher ?? throw new ArgumentNullException(nameof(sceneSwitcher));
             _audioController = audioController ?? throw new ArgumentNullException(nameof(audioController));
         }
@@ -63,12 +63,12 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Controllers
         public void ShowSettings()
         {
             _audioController.PlaySound();
-            _formService.ShowForm(nameof(SettingsView));
+            _viewService.ShowForm(nameof(SettingsView));
         }
 
         public void ShowUpgradeStats()
         {
-            _formService.ShowForm(nameof(UpgradeStatsView));
+            _viewService.ShowForm(nameof(UpgradeStatsView));
         }
 
         private void OnChangedLocalization(object sender, PropertyChangedEventArgs e)

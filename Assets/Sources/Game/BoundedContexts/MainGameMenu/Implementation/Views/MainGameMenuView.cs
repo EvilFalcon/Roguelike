@@ -1,5 +1,5 @@
 ﻿using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Controllers;
-using Sources.Game.Common.Mvp.Interfaces;
+using Sources.Game.IDontCno;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

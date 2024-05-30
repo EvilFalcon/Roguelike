@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using JetBrains.Annotations;
 
-namespace Sources.Game.Common.Mvp.Implementation.Model
+namespace Sources.Game.Common.Models
 {
     public class ObservableModel : INotifyPropertyChanged
     {

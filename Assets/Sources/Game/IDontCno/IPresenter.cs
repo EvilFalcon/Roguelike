@@ -1,4 +1,4 @@
-﻿namespace Sources.Game.Common.Mvp.Interfaces
+﻿namespace Sources.Game.IDontCno
 {
     public interface IPresenter
     {

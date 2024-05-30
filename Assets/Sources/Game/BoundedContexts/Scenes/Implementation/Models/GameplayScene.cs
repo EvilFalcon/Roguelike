@@ -2,8 +2,9 @@
 using Sources.Game.BoundedContexts.Assets.Interfaces.AssetsServices;
 using Sources.Game.BoundedContexts.Assets.Interfaces.States;
 using Sources.Game.BoundedContexts.Heroes.Implementation.Factories;
+using Sources.Game.BoundedContexts.Heroes.Implementation.Factories.Models;
+using Sources.Game.BoundedContexts.Heroes.Implementation.Factories.Views;
 using Sources.Game.BoundedContexts.Heroes.Implementation.Models;
-using Sources.Game.BoundedContexts.Players.Implementation.Factories.PlayerViewFactories;
 using Sources.Game.BoundedContexts.Players.Interfaces;
 using Sources.Game.BoundedContexts.Scenes.Interfaces.Services;
 

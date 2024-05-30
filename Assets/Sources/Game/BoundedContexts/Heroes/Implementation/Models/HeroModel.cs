@@ -1,6 +1,7 @@
 ﻿using Sources.Game.BoundedContexts.Heroes.Interfaces;
+using Sources.Game.BoundedContexts.Heroes.Interfaces.Model;
 using Sources.Game.BoundedContexts.Players.Interfaces;
-using Sources.Game.Common.Mvp.Implementation.Model;
+using Sources.Game.Common.Models;
 
 namespace Sources.Game.BoundedContexts.Heroes.Implementation.Models
 {
@@ -11,8 +12,11 @@ namespace Sources.Game.BoundedContexts.Heroes.Implementation.Models
             AttackDelay = player.AttackDelay;
             AttackModifier = player.AttackModifier;
             ArmorModifier = player.ArmorModifier;
-            Health = player.HealthModifier;
+            Health = player.Health;
+            Speed = player.Speed;
         }
+
+        public float Speed { get; }
 
         public int Health { get; }
 

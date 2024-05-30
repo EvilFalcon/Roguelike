@@ -1,24 +1,24 @@
-﻿using Sources.Game.BoundedContexts.Inputs.Interfaces.InputServices;
-using Sources.Game.BoundedContexts.Players.Interfaces;
-using Sources.Game.Common.Mvp.Interfaces.IPlayerMovement;
+﻿using Sources.Game.BoundedContexts.Heroes.Implementation.Models;
+using Sources.Game.BoundedContexts.Heroes.Interfaces.View;
+using Sources.Game.BoundedContexts.Inputs.Interfaces.InputServices;
 using UnityEngine;
 
-namespace Sources.Game.Common.Mvp.Implementation.PlayerMovement
+namespace Sources.Game.BoundedContexts.Heroes.Implementation.Controllers
 {
-    public class PlayerMovementController
+    public class HeroMovementController
     {
-        private readonly IPlayer _model;
+        private readonly HeroModel _model;
         private readonly IPlayerMovementView _view;
         private readonly IInputService _inputService;
         private readonly Camera _camera;
 
-        public PlayerMovementController(IPlayerMovementView view, IInputService inputService)
+        public HeroMovementController(IPlayerMovementView view, HeroModel model, IInputService inputService)
         {
-            //_model = model; //TODO : Стоит ли брать информацию о позиции персонажа из компонентов модели или стоит это брать со View?
             _view = view;
+            _model = model;
             _inputService = inputService;
-            _camera = Camera.main; //TODO : вынести в CameraService? 
-        }  
+            _camera = Camera.main;
+        }
 
         public void OnEnabled() =>
             _view.Show();
@@ -35,7 +35,7 @@ namespace Sources.Game.Common.Mvp.Implementation.PlayerMovement
 
             movementVector += Physics.gravity;
 
-            Vector3 deltaPosition = movementVector * (4 * Time.deltaTime); //TODO : вынести в конфиг 4. брать из модели?
+            Vector3 deltaPosition = movementVector * (_model.Speed * Time.deltaTime);
 
             _view.Move(deltaPosition);
         }
@@ -44,7 +44,7 @@ namespace Sources.Game.Common.Mvp.Implementation.PlayerMovement
         {
             movementVector = Vector3.zero;
 
-            if ((_inputService.Axis.sqrMagnitude < 0.01f)) //TODO : вынести в конфиг 0.01f 
+            if (_inputService.Axis.sqrMagnitude < 0.5f) //TODO : вынести в конфиг 0.5f 
                 return false;
 
             movementVector = _camera.transform.TransformDirection(_inputService.Axis);

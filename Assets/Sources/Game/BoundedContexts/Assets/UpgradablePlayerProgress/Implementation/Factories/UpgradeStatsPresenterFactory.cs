@@ -13,23 +13,23 @@ namespace Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implement
     {
         private readonly LocalizationService _localizationService;
         private readonly UpgradableService _upgradableService;
-        private readonly IFormService _formService;
+        private readonly IViewService _viewService;
 
         public UpgradeStatsPresenterFactory
         (
             LocalizationService localizationService,
             UpgradableService upgradableService,
-            IFormService formService
+            IViewService viewService
         )
         {
             _localizationService = localizationService ?? throw new ArgumentNullException(nameof(localizationService));
             _upgradableService = upgradableService ?? throw new ArgumentNullException(nameof(upgradableService));
-            _formService = formService ?? throw new ArgumentNullException(nameof(formService));
+            _viewService = viewService ?? throw new ArgumentNullException(nameof(viewService));
         }
 
         public UpgradeStatsPresenter Create(UpgradeStatsView view, UpgradeStatsModel model, IPlayer player)
         {
-            return new UpgradeStatsPresenter(view, model, player, _localizationService.Localization, _upgradableService, _formService);
+            return new UpgradeStatsPresenter(view, model, player, _localizationService.Localization, _upgradableService, _viewService);
         }
     }
 }

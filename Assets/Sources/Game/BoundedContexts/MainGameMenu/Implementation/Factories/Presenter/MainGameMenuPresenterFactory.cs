@@ -11,7 +11,7 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Factories.Pre
 {
     public class MainGameMenuPresenterFactory
     {
-        private readonly IFormService _formService;
+        private readonly IViewService _viewService;
         private readonly ISceneSwitcher _sceneSwitcher;
         private readonly ILocalizationService _localizationService;
         private readonly ISoundController _soundController;
@@ -20,19 +20,19 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Factories.Pre
 
         public MainGameMenuPresenterFactory
         (
-            IFormService formService,
+            IViewService viewService,
             ISceneSwitcher sceneSwitcher,
             ILocalizationService localizationService,
             ISoundController soundController
         )
         {
-            _formService = formService ?? throw new ArgumentNullException(nameof(formService));
+            _viewService = viewService ?? throw new ArgumentNullException(nameof(viewService));
             _sceneSwitcher = sceneSwitcher ?? throw new ArgumentNullException(nameof(sceneSwitcher));
             _localizationService = localizationService ?? throw new ArgumentNullException(nameof(localizationService));
             _soundController = soundController ?? throw new ArgumentNullException(nameof(soundController));
         }
 
         public MainGameMenuPresenter Create(MainGameMenuView view, Player player) =>
-            new(view, player, _localizationService.Localization, _formService, _sceneSwitcher, _soundController);
+            new(view, player, _localizationService.Localization, _viewService, _sceneSwitcher, _soundController);
     }
 }

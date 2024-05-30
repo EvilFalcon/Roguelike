@@ -18,13 +18,16 @@ namespace Sources.Game.DataTransferObjects.Implementation.DTO.Player
         [JsonProperty(propertyName: "AttackDelay")]
         public float AttackDelay { get; set; }
 
-        [JsonProperty(propertyName: "ArmorModifier")]
+        [JsonProperty(propertyName: "Armor")]
         public int ArmorModifier { get; set; }
 
         [JsonProperty(propertyName: "UpgradeStats")]
         public Dictionary<string, int> UpgradeStats { get; set; }
 
-        [JsonProperty(propertyName: "AttackModifier")]
+        [JsonProperty(propertyName: "Attack")]
         public int AttackModifier { get; set; }
+        
+        [JsonProperty(propertyName: "Speed")]
+        public float Speed { get; }
     }
 }

@@ -36,7 +36,7 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Factories
         private readonly PlayerModelFactory _playerModelFactory;
         private readonly UpgradableService _upgradableService;
         private readonly UpgradeStatsModelFactory _upgradeStatsModelFactory;
-        private readonly IFormService _formService;
+        private readonly IViewService _viewService;
         private readonly ISceneContext _dependencyResolver;
 
         public GameplayMenuSceneFactory
@@ -54,7 +54,7 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Factories
             PlayerModelFactory playerModelFactory,
             UpgradableService upgradableService,
             UpgradeStatsModelFactory upgradeStatsModelFactory,
-            IFormService formService
+            IViewService viewService
         )
         {
             _assetService = assetService ?? throw new ArgumentNullException(nameof(assetService));
@@ -75,32 +75,32 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Factories
             _upgradeStatsModelFactory =
                 upgradeStatsModelFactory ?? throw new ArgumentNullException(nameof(upgradeStatsModelFactory));
 
-            _formService = formService ?? throw new ArgumentNullException(nameof(formService));
+            _viewService = viewService ?? throw new ArgumentNullException(nameof(viewService));
         }
 
         public IScene Create(ISceneSwitcher sceneSwitcher, ISceneContext sceneContext)
         {
             _localizationService.LoadLocalizationModel();
             MainGameMenuPresenterFactory mainGameMenuPresenterFactory =
-                new MainGameMenuPresenterFactory(_formService, _sceneSwitcher, _localizationService, _soundController);
+                new MainGameMenuPresenterFactory(_viewService, _sceneSwitcher, _localizationService, _soundController);
 
             var settingsPresenterFactory =
-                new SettingsPresenterFactory(_localizationService, _soundController, _musicController, _formService);
+                new SettingsPresenterFactory(_localizationService, _soundController, _musicController, _viewService);
             var settingsViewFactory =
-                new SettingsViewFactory(settingsPresenterFactory, sceneContext, _settingsAssetProvider, _formService);
+                new SettingsViewFactory(settingsPresenterFactory, sceneContext, _settingsAssetProvider, _viewService);
 
             MainGameMenuViewFactory mainGameMenuViewFactory =
-                new MainGameMenuViewFactory(mainGameMenuPresenterFactory, sceneContext, _gameMenuViewProvider, _formService);
+                new MainGameMenuViewFactory(mainGameMenuPresenterFactory, sceneContext, _gameMenuViewProvider, _viewService);
 
             UpgradeStatsViewFactory upgradeStatsViewFactory = new UpgradeStatsViewFactory
             (
                 sceneContext,
-                _formService,
+                _viewService,
                 new UpgradeStatsPresenterFactory
                 (
                     _localizationService,
                     _upgradableService,
-                    _formService
+                    _viewService
                 ),
                 _upgradeStatsViewProvider
             );
@@ -115,7 +115,7 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Factories
                 upgradeStatsViewFactory,
                 _playerModelFactory,
                 _upgradeStatsModelFactory,
-                _formService
+                _viewService
             );
         }
     }

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Interfaces;
 using Sources.Game.BoundedContexts.Players.Interfaces;
-using Sources.Game.Common.Mvp.Implementation.Model;
+using Sources.Game.Common.Models;
 using Sources.Game.DataTransferObjects.Implementation.DTO.Player;
 
 namespace Sources.Game.BoundedContexts.Players.Implementation.Model
@@ -12,7 +12,7 @@ namespace Sources.Game.BoundedContexts.Players.Implementation.Model
         private int _attackModifier;
         private int _armorModifier;
         private float _attackDelay;
-        private int _healthModifier;
+        private int _health;
         private Dictionary<string, int> _upgradeLevelStats;
 
         public Player(PlayerData playerLiveData)
@@ -21,7 +21,7 @@ namespace Sources.Game.BoundedContexts.Players.Implementation.Model
             _attackModifier = playerLiveData.AttackModifier;
             _armorModifier = playerLiveData.ArmorModifier;
             _attackDelay = playerLiveData.AttackDelay;
-            _healthModifier = playerLiveData.Health;
+            _health = playerLiveData.Health;
             UpgradeLevelStats = playerLiveData.UpgradeStats;
         }
 
@@ -55,13 +55,12 @@ namespace Sources.Game.BoundedContexts.Players.Implementation.Model
             set => TrySetField(ref _attackDelay, value);
         }
 
-        public int HealthModifier
+        public int Health
         {
-            get => _healthModifier;
-            set => TrySetField(ref _healthModifier, value);
+            get => _health;
+            set => TrySetField(ref _health, value);
         }
 
-        
-        
+        public float Speed { get; }
     }
 }

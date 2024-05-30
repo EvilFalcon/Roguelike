@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Sources.Game.Common.Mvp.Implementation.Model;
+using Sources.Game.Common.Models;
 using Sources.Game.DataTransferObjects.Implementation.Upgradable;
 
 namespace Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implementation.Model

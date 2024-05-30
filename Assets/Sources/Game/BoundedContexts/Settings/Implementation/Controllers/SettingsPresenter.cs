@@ -7,7 +7,7 @@ using Sources.Game.BoundedContexts.Settings.Implementation.Models;
 using Sources.Game.BoundedContexts.Settings.Implementation.Views;
 using Sources.Game.BoundedContexts.Settings.Interfaces;
 using Sources.Game.BoundedContexts.ViewFormServices.Interfaces;
-using Sources.Game.Common.Mvp.Interfaces;
+using Sources.Game.IDontCno;
 using UnityEngine;
 
 namespace Sources.Game.BoundedContexts.Settings.Implementation.Controllers
@@ -19,7 +19,7 @@ namespace Sources.Game.BoundedContexts.Settings.Implementation.Controllers
         private readonly ILocalizationService _loaderLocalizationService;
         private readonly ISoundController _soundController;
         private readonly IMusicController _musicController;
-        private readonly IFormService _formService;
+        private readonly IViewService _viewService;
         private LocalizationModel _localizationModel;
 
         public SettingsPresenter
@@ -29,7 +29,7 @@ namespace Sources.Game.BoundedContexts.Settings.Implementation.Controllers
             ILocalizationService service,
             ISoundController audioController,
             IMusicController musicController,
-            IFormService formService
+            IViewService viewService
         )
         {
             _model = model ?? throw new ArgumentNullException(nameof(model));
@@ -37,7 +37,7 @@ namespace Sources.Game.BoundedContexts.Settings.Implementation.Controllers
             _loaderLocalizationService = service ?? throw new ArgumentNullException(nameof(service));
             _soundController = audioController ?? throw new ArgumentNullException(nameof(audioController));
             _musicController = musicController ?? throw new ArgumentNullException(nameof(musicController));
-            _formService = formService ?? throw new ArgumentNullException(nameof(formService));
+            _viewService = viewService ?? throw new ArgumentNullException(nameof(viewService));
             _localizationModel = _loaderLocalizationService.Localization;
         }
 
@@ -82,7 +82,7 @@ namespace Sources.Game.BoundedContexts.Settings.Implementation.Controllers
         public void OnBackButtonClick()
         {
             _soundController.PlaySound();
-            _formService.HideForm(nameof(SettingsView));
+            _viewService.HideForm(nameof(SettingsView));
         }
 
         private void OnLocalization(object sender, PropertyChangedEventArgs e)

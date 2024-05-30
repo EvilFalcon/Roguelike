@@ -13,23 +13,23 @@ namespace Sources.Game.BoundedContexts.Settings.Implementation.Factories.Present
         private readonly ILocalizationService _service;
         private readonly ISoundController _soundController;
         private readonly IMusicController _musicController;
-        private readonly IFormService _formService;
+        private readonly IViewService _viewService;
 
         public SettingsPresenterFactory
         (
             ILocalizationService service,
             ISoundController soundController,
             IMusicController musicController,
-            IFormService formService
+            IViewService viewService
         )
         {
             _service = service;
             _soundController = soundController;
             _musicController = musicController;
-            _formService = formService;
+            _viewService = viewService;
         }
 
         public SettingsPresenter Create(SettingsModel model, SettingsView view) =>
-            new(model, view, _service, _soundController, _musicController, _formService);
+            new(model, view, _service, _soundController, _musicController, _viewService);
     }
 }

@@ -3,8 +3,9 @@
   "GameProgress": 1,
   "Health": 100,
   "AttackDelay": 10.0,
-  "ArmorModifier": 20,
-  "AttackModifier": 45,
+  "Armor": 20,
+  "Attack": 45,
+  "Speed": 4.0,
 
   "UpgradeStats": {
     "Armor": 0,

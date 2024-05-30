@@ -1,6 +1,6 @@
 ﻿using Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implementation.Presenter;
 using Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Interfaces;
-using Sources.Game.Common.Mvp.Interfaces;
+using Sources.Game.IDontCno;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

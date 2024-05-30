@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Sources.Game.Common.Mvp.Interfaces.IPlayerMovement
+namespace Sources.Game.BoundedContexts.Heroes.Interfaces.View
 {
     public interface IPlayerMovementView
     {

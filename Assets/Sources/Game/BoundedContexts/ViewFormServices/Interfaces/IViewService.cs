@@ -1,8 +1,8 @@
-﻿using Sources.Game.Common.Mvp.Interfaces;
+﻿using Sources.Game.IDontCno;
 
 namespace Sources.Game.BoundedContexts.ViewFormServices.Interfaces
 {
-    public interface IFormService
+    public interface IViewService
     {
         void AddForm<T>(T view) where T : IView;
 

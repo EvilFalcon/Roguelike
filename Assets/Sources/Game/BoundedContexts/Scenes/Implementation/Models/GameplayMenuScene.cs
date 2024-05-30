@@ -27,7 +27,7 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
         private readonly UpgradeStatsViewFactory _upgradeStatsViewFactory;
         private readonly PlayerModelFactory _playerModelFactory;
         private readonly UpgradeStatsModelFactory _upgradeStatsModelFactory;
-        private readonly IFormService _formServices;
+        private readonly IViewService _viewServices;
 
         public GameplayMenuScene
         (
@@ -39,7 +39,7 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
             UpgradeStatsViewFactory upgradeStatsViewFactory,
             PlayerModelFactory playerModelFactory,
             UpgradeStatsModelFactory upgradeStatsModelFactory,
-            IFormService formServices
+            IViewService viewServices
         )
         {
             _assetService = assetService ?? throw new ArgumentNullException(nameof(assetService));
@@ -51,7 +51,7 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
             _upgradeStatsViewFactory = upgradeStatsViewFactory ?? throw new ArgumentNullException(nameof(upgradeStatsViewFactory));
             _playerModelFactory = playerModelFactory ?? throw new ArgumentNullException(nameof(playerModelFactory));
             _upgradeStatsModelFactory = upgradeStatsModelFactory ?? throw new ArgumentNullException(nameof(upgradeStatsModelFactory));
-            _formServices = formServices ?? throw new ArgumentNullException(nameof(formServices));
+            _viewServices = viewServices ?? throw new ArgumentNullException(nameof(viewServices));
         }
 
         public async void Enter()
@@ -59,7 +59,7 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
             await _assetService.LoadAsync();
             Initialize();
 
-            _formServices.ShowForm(nameof(MainGameMenuView));
+            _viewServices.ShowForm(nameof(MainGameMenuView));
         }
 
         private void Initialize()
@@ -73,7 +73,7 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
 
         public void Exit()
         {
-            _formServices.HideFormAll();
+            _viewServices.HideFormAll();
         }
     }
     /*
