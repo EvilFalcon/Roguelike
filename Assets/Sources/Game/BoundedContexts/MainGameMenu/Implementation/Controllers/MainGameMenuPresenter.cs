@@ -63,13 +63,12 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Controllers
         public void ShowSettings()
         {
             _audioController.PlaySound();
+            
             _viewService.ShowForm(nameof(SettingsView));
         }
 
-        public void ShowUpgradeStats()
-        {
+        public void ShowUpgradeStats() =>
             _viewService.ShowForm(nameof(UpgradeStatsView));
-        }
 
         private void OnChangedLocalization(object sender, PropertyChangedEventArgs e)
         {
@@ -83,11 +82,7 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Controllers
         private void OnChangedMoney(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == nameof(Player.Money))
-            {
                 _view.SetMoney(_player.Money);
-            }
         }
-
-        
     }
 }

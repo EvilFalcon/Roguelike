@@ -28,6 +28,6 @@ namespace Sources.Game.DataTransferObjects.Implementation.DTO.Player
         public int AttackModifier { get; set; }
         
         [JsonProperty(propertyName: "Speed")]
-        public float Speed { get; }
+        public float Speed { get; set; }
     }
 }

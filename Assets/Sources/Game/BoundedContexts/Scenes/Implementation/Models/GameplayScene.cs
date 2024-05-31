@@ -36,7 +36,6 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
 
         public async void Enter()
         {
-            
             await _assetService.LoadAsync();
             HeroModel player = _heroFactory.Create(_player);
 

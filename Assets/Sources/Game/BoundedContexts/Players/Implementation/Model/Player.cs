@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Interfaces;
 using Sources.Game.BoundedContexts.Players.Interfaces;
 using Sources.Game.Common.Models;
@@ -23,6 +24,8 @@ namespace Sources.Game.BoundedContexts.Players.Implementation.Model
             _attackDelay = playerLiveData.AttackDelay;
             _health = playerLiveData.Health;
             UpgradeLevelStats = playerLiveData.UpgradeStats;
+            Speed = playerLiveData.Speed;
+            SavedKey = playerLiveData.GetType().Name;
         }
 
         public Dictionary<string, int> UpgradeLevelStats
@@ -62,5 +65,14 @@ namespace Sources.Game.BoundedContexts.Players.Implementation.Model
         }
 
         public float Speed { get; }
+        
+        public event Action<object> ModelChanged;
+        public string SavedKey { get; } //TODO Избавится от этого свойства путем изменения фабрики У всех моделей
+
+        protected override void OnPropertyChanged(string propertyName = null)
+        {
+            base.OnPropertyChanged(propertyName);
+            ModelChanged?.Invoke(this);
+        }
     }
 }

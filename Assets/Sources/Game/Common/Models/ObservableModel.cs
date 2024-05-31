@@ -7,7 +7,6 @@ namespace Sources.Game.Common.Models
 {
     public class ObservableModel : INotifyPropertyChanged
     {
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
@@ -16,7 +15,8 @@ namespace Sources.Game.Common.Models
 
         protected bool TrySetField<T>(ref T field, T value, [CallerMemberName] string propertyName = null)
         {
-            if (EqualityComparer<T>.Default.Equals(field, value)) return false;
+            if (EqualityComparer<T>.Default.Equals(field, value))
+                return false;
 
             field = value;
 

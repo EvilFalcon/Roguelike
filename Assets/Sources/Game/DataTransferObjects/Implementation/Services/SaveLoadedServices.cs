@@ -15,7 +15,7 @@ namespace Sources.Game.DataTransferObjects.Implementation.Services
             _saveLoadPlayerPrefs = saveLoadPlayerPrefs ?? throw new ArgumentNullException(nameof(saveLoadPlayerPrefs));
         }
 
-        public T Load<T>(string key)
+        public T Load<T>(string key)  
         {
             if (_saveLoadPlayerPrefs.Load(key, out string json) == false)
                 json = Resources.Load<TextAsset>($"Data/{key}").text;
@@ -26,7 +26,7 @@ namespace Sources.Game.DataTransferObjects.Implementation.Services
         public void Save(string key, object @object) =>
             _saveLoadPlayerPrefs.Save(key, @object);
 
-        public T Load<T>(T @object, string postfix = "") =>
+        public T Load<T>(T @object, string postfix = "") => 
             Load<T>($"{postfix}{typeof(T).Name}");
 
         public void SystemCreateJson(object data, string postfix = "") //TODO: после добавления файлов в ресурсы этот метод не нужен

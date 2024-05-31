@@ -12,6 +12,7 @@ using Sources.Game.BoundedContexts.Players.Implementation.Model;
 using Sources.Game.BoundedContexts.Settings.Implementation.Factories.Views;
 using Sources.Game.BoundedContexts.Settings.Implementation.Views;
 using Sources.Game.BoundedContexts.ViewFormServices.Interfaces;
+using Sources.Game.Common.Models;
 using Sources.Game.DataTransferObjects.Implementation.Services;
 using Sources.Game.DataTransferObjects.Implementation.Upgradable;
 
@@ -28,10 +29,10 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
         private readonly PlayerModelFactory _playerModelFactory;
         private readonly UpgradeStatsModelFactory _upgradeStatsModelFactory;
         private readonly IViewService _viewServices;
+        private readonly ModelRepository _modelRepository;
 
         public GameplayMenuScene
-        (
-            IAssetService assetService,
+        (IAssetService assetService,
             ISaveLoadedServices saveLoadedGameProgressServices,
             ISettingsModelProvider settingsModelProvider,
             MainGameMenuViewFactory gameMenuViewFactory,
@@ -39,8 +40,8 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
             UpgradeStatsViewFactory upgradeStatsViewFactory,
             PlayerModelFactory playerModelFactory,
             UpgradeStatsModelFactory upgradeStatsModelFactory,
-            IViewService viewServices
-        )
+            IViewService viewServices,
+            ModelRepository modelRepository)
         {
             _assetService = assetService ?? throw new ArgumentNullException(nameof(assetService));
             _saveLoadedServices = saveLoadedGameProgressServices ??
@@ -52,6 +53,7 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
             _playerModelFactory = playerModelFactory ?? throw new ArgumentNullException(nameof(playerModelFactory));
             _upgradeStatsModelFactory = upgradeStatsModelFactory ?? throw new ArgumentNullException(nameof(upgradeStatsModelFactory));
             _viewServices = viewServices ?? throw new ArgumentNullException(nameof(viewServices));
+            _modelRepository = modelRepository ?? throw new ArgumentNullException(nameof(modelRepository));
         }
 
         public async void Enter()
@@ -66,6 +68,7 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
         {
             UpgradeStatsModel upgradeStatsModel = _upgradeStatsModelFactory.Create();
             Player player = _playerModelFactory.Create(); //TODO : переработать 
+            _modelRepository.AddModel(player);
             MainGameMenuView gameMenuView = _gameMenuViewFactory.Create(player);
             SettingsView settingsView = _settingsViewFactory.Create(_settingsModelProvider.Model);
             UpgradeStatsView upgradeStatsView = _upgradeStatsViewFactory.Create(upgradeStatsModel, player);
