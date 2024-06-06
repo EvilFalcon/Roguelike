@@ -2211,7 +2211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
+  m_IgnoreReversedGraphics: 0
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
@@ -2230,6 +2230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _musicVolume: {fileID: 671746248425449370}
   _soundEffectsVolume: {fileID: 7104689029746738179}
+  _canvas: {fileID: 217207216015421503}
   _setRusLocalizationButton: {fileID: 9185810950240832588}
   _setEngLocalizationButton: {fileID: 8457558590023851107}
   _backButton: {fileID: 3706601529540118633}

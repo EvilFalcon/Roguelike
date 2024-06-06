@@ -34,7 +34,7 @@ namespace Sources.MonoInstallers
                 .RegisterAsSingleton<ISceneFactoryProvider, SceneFactoryCollection>()
                 .RegisterAsSingleton<UpgradableService>()
 
-                .RegisterAsSingleton<ISceneConstructor, ISceneSwitcher, SceneConstructor>()
+                .RegisterAsSingleton<ISceneConstructor, ISceneSwitcher, SceneService>()
                 .RegisterAsSingleton<ILoaderLocalizationService, ILocalizationService, LocalizationService>()
                 .RegisterAsScoped<IViewService, ViewServices>();
 

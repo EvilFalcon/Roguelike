@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Enemyes
+  m_EditorClassIdentifier: 
+  m_GroupName: Enemyes
+  m_Data:
+    m_SerializedData: []
+  m_GUID: ea4a05506fbe849498b4262d7159dffb
+  m_SerializeEntries:
+  - m_GUID: 3b2bc9ea12bebd34db0ea2d87f964288
+    m_Address: DragonView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 94dd2061678f8a94caf477d694a3e473
+    m_Address: WerewolfView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 30f8c980be89f0940bb5a9f140304bb9, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 895ff461625d81845b272a2dfe5cc732, type: 2}
+    - {fileID: 11400000, guid: 62f94470c18cdca4b9fcba4f264f5741, type: 2}

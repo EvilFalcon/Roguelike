@@ -390,7 +390,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 58.95
+  m_fontSize: 61.25
   m_fontSizeBase: 75
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -934,6 +934,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0642e797fc044f5b25e3e317369a463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canvas: {fileID: 2720139400447867401}
   _startGameButton: {fileID: 4830347879766310559}
   _settingsGameButton: {fileID: 3614634508454650600}
   _playersMoney: {fileID: 4984652383729015222}
@@ -2129,7 +2130,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 54.15
+  m_fontSize: 56.25
   m_fontSizeBase: 75
   m_fontWeight: 400
   m_enableAutoSizing: 1

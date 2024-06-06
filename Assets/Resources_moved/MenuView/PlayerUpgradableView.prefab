@@ -3035,6 +3035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25f43fe8a79c4d358ec6bffcb162314f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canvas: {fileID: 4857824758009690976}
   _upgradableHealth: {fileID: 1002547827732832577}
   _upgradableAttack: {fileID: 7103006942502271391}
   _upgradableAttackDelay: {fileID: 4681304148319990140}

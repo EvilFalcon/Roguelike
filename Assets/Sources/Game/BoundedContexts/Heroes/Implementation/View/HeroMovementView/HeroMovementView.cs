@@ -14,6 +14,7 @@ namespace Sources.Game.BoundedContexts.Heroes.Implementation.View.HeroMovementVi
         private HeroMovementController _controller;
 
         public Transform Transform => transform;
+        public event Action TransformChanged;
 
         private void Update() =>
             _controller.MovePlayer(transform);
@@ -24,8 +25,11 @@ namespace Sources.Game.BoundedContexts.Heroes.Implementation.View.HeroMovementVi
         public void Hide() =>
             gameObject.SetActive(false);
 
-        public void Move(Vector3 direction) =>
-            _characterController.Move(direction); //TODO : NullReferenceException как пофиксить.
+        public void Move(Vector3 direction)
+        {
+            _characterController.Move(direction);
+            TransformChanged?.Invoke();
+        }
 
         //TODO : У view нет пресентора это нормально ??
         public void Construct(HeroMovementController controller)

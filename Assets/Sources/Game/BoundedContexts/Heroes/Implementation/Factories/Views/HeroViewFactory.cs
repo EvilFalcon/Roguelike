@@ -7,6 +7,7 @@ using Sources.Game.BoundedContexts.Heroes.Implementation.View.HeroMovementView;
 using Sources.Game.BoundedContexts.ViewFormServices.Interfaces;
 using UniCtor.Contexts;
 using UniCtor.Sources.Di.Extensions.IDependencyResolvers;
+using UnityEngine;
 
 namespace Sources.Game.BoundedContexts.Heroes.Implementation.Factories.Views
 {
@@ -35,7 +36,8 @@ namespace Sources.Game.BoundedContexts.Heroes.Implementation.Factories.Views
         public HeroMovementView Create(HeroModel hero)
         {
             HeroMovementView view =
-                _sceneContext.DependencyResolver.InstantiateComponentFromPrefab(_assetService.Provider.Player);
+                _sceneContext.DependencyResolver.InstantiateComponentFromPrefab(_assetService.Provider.Player,
+                    new Vector3(43, 0, 43), Quaternion.identity);
 
             HeroMovementController heroMovementController = _heroMovementControllerFactory.Create(view, hero);
 
