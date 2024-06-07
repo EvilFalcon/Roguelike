@@ -642,6 +642,7 @@ GameObject:
   - component: {fileID: -2717884311226063363}
   - component: {fileID: 5522415926570319854}
   - component: {fileID: 6358775790458541550}
+  - component: {fileID: 6118704493290184984}
   m_Layer: 0
   m_Name: Werewolf
   m_TagString: Untagged
@@ -749,6 +750,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3529361c744b455193c96e4651902641, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6118704493290184984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5520583845748892553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c394fb7a4154a22b8ef02549a21f871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5520583845748892557
@@ -1365,10 +1378,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5520583845748473843}
-  - component: {fileID: 993643465471012296}
-  - component: {fileID: 6948137958660976415}
+  - component: {fileID: 356401384496014201}
+  - component: {fileID: 5230790832018271396}
   m_Layer: 0
-  m_Name: RigRArmFinger3
+  m_Name: heand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1389,7 +1402,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5520583845748473837}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &993643465471012296
+--- !u!135 &356401384496014201
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1404,13 +1417,13 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.41
-  m_Center: {x: 0.03, y: 0, z: -0.1}
---- !u!114 &6948137958660976415
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5230790832018271396
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1685,7 +1698,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5520583845748473733}
   m_Layer: 0
-  m_Name: RigLArmFinger3
+  m_Name: Heand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

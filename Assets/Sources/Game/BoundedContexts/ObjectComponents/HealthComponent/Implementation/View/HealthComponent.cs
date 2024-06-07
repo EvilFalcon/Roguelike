@@ -1,13 +1,14 @@
-﻿using Sources.Game.Common.Mvp.Interface;
+﻿using Sources.Game.BoundedContexts.ObjectComponents.HealthComponent.Implementation.Presenter;
+using Sources.Game.Common.Mvp.Interface;
 using UnityEngine;
 
 namespace Sources.Game.BoundedContexts.ObjectComponents.HealthComponent.Implementation.View
 {
-    public class HealthView : ComponentBase, IDamageable, IHeal
+    public class HealthComponent : ComponentBase, IDamageable, IHeal
     {
-        private IHealthPresenter _presenter;
+        private HealthPresenter _presenter;
 
-        public void Conctruct(IHealthPresenter presenter)
+        public void Conctruct(HealthPresenter presenter)
         {
             _presenter = presenter;
         }
@@ -16,7 +17,6 @@ namespace Sources.Game.BoundedContexts.ObjectComponents.HealthComponent.Implemen
         {
             _presenter.TakeDamage(damage);
         }
-        
 
         public void Heal(int health)
         {
@@ -26,12 +26,6 @@ namespace Sources.Game.BoundedContexts.ObjectComponents.HealthComponent.Implemen
 
     public interface IHeal
     {
-        void Heal(int health);
-    }
-
-    public interface IHealthPresenter
-    {
-        void TakeDamage(int damage);
         void Heal(int health);
     }
 }

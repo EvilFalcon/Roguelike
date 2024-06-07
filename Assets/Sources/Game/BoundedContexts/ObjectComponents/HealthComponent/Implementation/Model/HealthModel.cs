@@ -1,5 +1,6 @@
 ﻿using System;
 using Sources.Game.BoundedContexts.ObjectComponents.HealthComponent.Interfaces;
+using Sources.Game.BoundedContexts.ObjectComponents.HealthComponent.Interfaces.Models;
 using Sources.Game.Common.Models;
 
 namespace Sources.Game.BoundedContexts.ObjectComponents.HealthComponent.Implementation.Model

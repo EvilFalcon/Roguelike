@@ -1,7 +1,7 @@
 ﻿using System;
 using Sources.Game.BoundedContexts.Heroes.Implementation.Controllers;
 using Sources.Game.BoundedContexts.Heroes.Implementation.Models;
-using Sources.Game.BoundedContexts.Heroes.Implementation.View.HeroMovementView;
+using Sources.Game.BoundedContexts.Heroes.Implementation.View;
 using Sources.Game.BoundedContexts.Inputs.Interfaces.InputServices;
 
 namespace Sources.Game.BoundedContexts.Heroes.Implementation.Factories.Controllers

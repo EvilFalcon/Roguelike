@@ -6,11 +6,9 @@ using Sources.Game.BoundedContexts.Enemies.Implementation.Factories;
 using Sources.Game.BoundedContexts.Enemies.Implementation.Factories.Dragon;
 using Sources.Game.BoundedContexts.Enemies.Implementation.Factories.EnemyModels;
 using Sources.Game.BoundedContexts.Enemies.Implementation.Factories.Werewolf;
-using Sources.Game.BoundedContexts.Enemies.Implementation.Models;
 using Sources.Game.BoundedContexts.Heroes.Implementation.Factories.Models;
 using Sources.Game.BoundedContexts.Heroes.Implementation.Factories.Views;
 using Sources.Game.BoundedContexts.Heroes.Implementation.Models;
-using Sources.Game.BoundedContexts.Players.Interfaces;
 using Sources.Game.BoundedContexts.Scenes.Interfaces.Services;
 using Sources.Game.BoundedContexts.SpawnerObjects.Implementation;
 using Sources.Game.BoundedContexts.SpawnerObjects.Implementation.EnemyPools;
@@ -80,27 +78,27 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
             //_saveLoadedService.SystemCreateJson();
             await _assetService.LoadAsync();
             HeroModel player = _heroFactory.Create();
-            Enemy enemy = _enemyFactory.Create();
 
-            var heroView = _heroViewFactory.Create(player);
-            SpawnerObject spawnerObjects = new SpawnerObject(heroView, new Dictionary<Type, SpawnObjectPool[]>
+            var hero = _heroViewFactory.Create(player);
+            SpawnerObject spawnerObjects = new SpawnerObject(hero.HeroTransform, new Dictionary<Type, SpawnObjectPool[]>
             {
                 {
                     typeof(EnemyPool), new SpawnObjectPool[]
                     {
                         new EnemyPool(_werewolfFactory,
-                            heroView, _enemyModelFactory),
-                        new EnemyPool(_dragonFactory, heroView, _enemyModelFactory)
+                            hero.HeroTransform, _enemyModelFactory),
+                      //  new EnemyPool(_dragonFactory, hero.HeroTransform, _enemyModelFactory)
                     }
                 },
             });
 
-            spawnerObjects.Spawn(typeof(EnemyPool), 25);
+            spawnerObjects.Spawn(typeof(EnemyPool), 1);
+            Initialize();
+            AddListeners();
         }
-        
+
         private void Initialize()
         {
-            AddListeners();
         }
 
         public void Exit()

@@ -3,7 +3,9 @@ using Sources.Game.BoundedContexts.Assets.Implementation;
 using Sources.Game.BoundedContexts.Heroes.Implementation.Controllers;
 using Sources.Game.BoundedContexts.Heroes.Implementation.Factories.Controllers;
 using Sources.Game.BoundedContexts.Heroes.Implementation.Models;
-using Sources.Game.BoundedContexts.Heroes.Implementation.View.HeroMovementView;
+using Sources.Game.BoundedContexts.Heroes.Implementation.View;
+using Sources.Game.BoundedContexts.ObjectComponents.HealthComponent.Implementation.Presenter;
+using Sources.Game.BoundedContexts.ObjectComponents.HealthComponent.Implementation.View;
 using Sources.Game.BoundedContexts.ViewFormServices.Interfaces;
 using UniCtor.Contexts;
 using UniCtor.Sources.Di.Extensions.IDependencyResolvers;
@@ -33,17 +35,24 @@ namespace Sources.Game.BoundedContexts.Heroes.Implementation.Factories.Views
                                              throw new ArgumentNullException(nameof(heroMovementControllerFactory));
         }
 
-        public HeroMovementView Create(HeroModel hero)
+        public Hero Create(HeroModel hero)
         {
-            HeroMovementView view =
+            Hero view =
                 _sceneContext.DependencyResolver.InstantiateComponentFromPrefab(_assetService.Provider.Player,
                     new Vector3(43, 0, 43), Quaternion.identity);
 
-            HeroMovementController heroMovementController = _heroMovementControllerFactory.Create(view, hero);
+            HeroMovementView heroMovementView = view.GetComponent<HeroMovementView>();
+            HeroMovementController heroMovementController = _heroMovementControllerFactory.Create(heroMovementView, hero);
+            view.Construct(heroMovementView);
 
-            _viewService.AddForm(view);
+            HealthComponent healthComponent = view.GetComponent<HealthComponent>();
+            HealthPresenter healthPresenter = new HeroHealthPresenter(healthComponent, hero);
+            healthComponent.Conctruct(healthPresenter);
+            healthPresenter.Enable();
 
-            view.Construct(heroMovementController);
+            _viewService.AddForm(heroMovementView);
+
+            heroMovementView.Construct(heroMovementController);
 
             return view;
         }

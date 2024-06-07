@@ -4,7 +4,7 @@ using Sources.Game.BoundedContexts.Heroes.Interfaces.View;
 using Sources.Game.IDontCno;
 using UnityEngine;
 
-namespace Sources.Game.BoundedContexts.Heroes.Implementation.View.HeroMovementView
+namespace Sources.Game.BoundedContexts.Heroes.Implementation.View
 {
     [RequireComponent(typeof(CharacterController))]
     [RequireComponent(typeof(Animator))]

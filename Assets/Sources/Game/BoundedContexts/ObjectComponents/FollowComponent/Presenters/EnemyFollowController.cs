@@ -1,7 +1,6 @@
 ﻿using Sources.Game.BoundedContexts.Heroes.Interfaces.View;
-using Sources.Game.BoundedContexts.ObjectComponents.FollowComponent;
 
-namespace Sources.Game.BoundedContexts.ObjectComponents.Presenters
+namespace Sources.Game.BoundedContexts.ObjectComponents.FollowComponent.Presenters
 {
     public class EnemyFollowController
     {
@@ -15,9 +14,10 @@ namespace Sources.Game.BoundedContexts.ObjectComponents.Presenters
         }
 
         public void Enable()
-        {
+        { 
             _followComponent.Enable();
             _target.TransformChanged += OnPositionTargetChanged;
+            SetSpeed();
             SetDestination();
         }
 
@@ -30,15 +30,13 @@ namespace Sources.Game.BoundedContexts.ObjectComponents.Presenters
         private void OnPositionTargetChanged() =>
             SetDestination();
 
-        public void SetSpeed()
-        {
+        private void SetSpeed() =>
             _followComponent.NavMeshAgent.speed = 3;
-        }
 
-        private void SetDestination()
-        {
-            _followComponent.NavMeshAgent.SetDestination(_target.Transform.position);
+        private void SetStoppingDistance() =>
+            _followComponent.NavMeshAgent.stoppingDistance = 2.4f;
+
+        private void SetDestination() =>
             _followComponent.NavMeshAgent.destination = _target.Transform.position;
-        }
     }
 }

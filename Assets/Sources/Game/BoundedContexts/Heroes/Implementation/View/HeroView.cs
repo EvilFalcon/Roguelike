@@ -1,10 +1,15 @@
 ﻿using Sources.Game.BoundedContexts.Heroes.Implementation.Controllers;
+using Sources.Game.BoundedContexts.ObjectComponents.AttackComponents;
+using Sources.Game.BoundedContexts.ObjectComponents.HealthComponent.Implementation.View;
 using Sources.Game.Common.Mvp;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Sources.Game.BoundedContexts.Heroes.Implementation.View
 {
+    [RequireComponent(typeof(HeroMovementView))]
+    [RequireComponent(typeof(HealthComponent))]
+    
     public class HeroView : ViewBase
     {
         [SerializeField] private Slider _experienceSlider;

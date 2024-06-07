@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sources.Game.BoundedContexts.ObjectComponents.HealthComponent.Interfaces
+namespace Sources.Game.BoundedContexts.ObjectComponents.HealthComponent.Interfaces.Models
 {
     public interface IHealthModel
     {
