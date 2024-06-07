@@ -26,7 +26,7 @@ namespace Sources.Game.BoundedContexts.Localizations.Implementation.Models
         public IReadOnlyDictionary<string, string> MainMenu { get; private set; }
 
         public IReadOnlyDictionary<string, string> SettingsMenu { get; private set; }
-        public IReadOnlyDictionary<string,string> UpgradablePlayerStats { get; private set; }
+        public IReadOnlyDictionary<string, string> UpgradablePlayerStats { get; private set; }
 
         public void SetLocalizationData(LocalizationData localizationData)
         {
@@ -34,7 +34,6 @@ namespace Sources.Game.BoundedContexts.Localizations.Implementation.Models
             SettingsMenu = localizationData.SettingsMenu;
             UpgradablePlayerStats = localizationData.UpgradablePlayerStats;
             Language = localizationData.CurrentLanguage;
-            
         }
     }
 }

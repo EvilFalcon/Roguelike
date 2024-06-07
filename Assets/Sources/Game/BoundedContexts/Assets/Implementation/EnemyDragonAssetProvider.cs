@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Sources.Game.BoundedContexts.Enemies.View.Dragon;
+using Sources.Game.BoundedContexts.Enemies.Implementation.View.Dragon;
 
 namespace Sources.Game.BoundedContexts.Assets.Implementation
 {

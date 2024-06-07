@@ -38,7 +38,6 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Factories
         private readonly UpgradableService _upgradableService;
         private readonly UpgradeStatsModelFactory _upgradeStatsModelFactory;
         private readonly IViewService _viewService;
-        private readonly ModelRepository _modelRepository;
         private readonly ISceneContext _dependencyResolver;
 
         public GameplayMenuSceneFactory
@@ -56,8 +55,7 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Factories
             PlayerModelFactory playerModelFactory,
             UpgradableService upgradableService,
             UpgradeStatsModelFactory upgradeStatsModelFactory,
-            IViewService viewService,
-            ModelRepository modelRepository
+            IViewService viewService
         )
         {
             _assetService = assetService ?? throw new ArgumentNullException(nameof(assetService));
@@ -79,7 +77,6 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Factories
                 upgradeStatsModelFactory ?? throw new ArgumentNullException(nameof(upgradeStatsModelFactory));
 
             _viewService = viewService ?? throw new ArgumentNullException(nameof(viewService));
-            _modelRepository = modelRepository ?? throw new ArgumentNullException(nameof(modelRepository));
         }
 
         public IScene Create(ISceneSwitcher sceneSwitcher, ISceneContext sceneContext)
@@ -119,8 +116,7 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Factories
                 upgradeStatsViewFactory,
                 _playerModelFactory,
                 _upgradeStatsModelFactory,
-                _viewService,
-                _modelRepository
+                _viewService
             );
         }
     }

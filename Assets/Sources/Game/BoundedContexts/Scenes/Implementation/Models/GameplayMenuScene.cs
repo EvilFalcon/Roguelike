@@ -3,18 +3,14 @@ using Sources.Game.BoundedContexts.Assets.Interfaces.AssetsServices;
 using Sources.Game.BoundedContexts.Assets.Interfaces.States;
 using Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implementation.Factories;
 using Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implementation.Model;
-using Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implementation.Views;
 using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Factories.View;
 using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Views;
 using Sources.Game.BoundedContexts.Maperis.Interfaces;
 using Sources.Game.BoundedContexts.Players.Implementation.Factories.PlayerModelFactories;
 using Sources.Game.BoundedContexts.Players.Implementation.Model;
 using Sources.Game.BoundedContexts.Settings.Implementation.Factories.Views;
-using Sources.Game.BoundedContexts.Settings.Implementation.Views;
 using Sources.Game.BoundedContexts.ViewFormServices.Interfaces;
-using Sources.Game.Common.Models;
 using Sources.Game.DataTransferObjects.Implementation.Services;
-using Sources.Game.DataTransferObjects.Implementation.Upgradable;
 
 namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
 {
@@ -29,7 +25,6 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
         private readonly PlayerModelFactory _playerModelFactory;
         private readonly UpgradeStatsModelFactory _upgradeStatsModelFactory;
         private readonly IViewService _viewServices;
-        private readonly ModelRepository _modelRepository;
 
         public GameplayMenuScene
         (IAssetService assetService,
@@ -40,8 +35,8 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
             UpgradeStatsViewFactory upgradeStatsViewFactory,
             PlayerModelFactory playerModelFactory,
             UpgradeStatsModelFactory upgradeStatsModelFactory,
-            IViewService viewServices,
-            ModelRepository modelRepository)
+            IViewService viewServices
+        )
         {
             _assetService = assetService ?? throw new ArgumentNullException(nameof(assetService));
             _saveLoadedServices = saveLoadedGameProgressServices ??
@@ -49,11 +44,12 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
             _settingsModelProvider = settingsModelProvider ?? throw new ArgumentNullException(nameof(settingsModelProvider));
             _gameMenuViewFactory = gameMenuViewFactory ?? throw new ArgumentNullException(nameof(gameMenuViewFactory));
             _settingsViewFactory = settingsViewFactory ?? throw new ArgumentNullException(nameof(settingsViewFactory));
-            _upgradeStatsViewFactory = upgradeStatsViewFactory ?? throw new ArgumentNullException(nameof(upgradeStatsViewFactory));
+            _upgradeStatsViewFactory =
+                upgradeStatsViewFactory ?? throw new ArgumentNullException(nameof(upgradeStatsViewFactory));
             _playerModelFactory = playerModelFactory ?? throw new ArgumentNullException(nameof(playerModelFactory));
-            _upgradeStatsModelFactory = upgradeStatsModelFactory ?? throw new ArgumentNullException(nameof(upgradeStatsModelFactory));
+            _upgradeStatsModelFactory =
+                upgradeStatsModelFactory ?? throw new ArgumentNullException(nameof(upgradeStatsModelFactory));
             _viewServices = viewServices ?? throw new ArgumentNullException(nameof(viewServices));
-            _modelRepository = modelRepository ?? throw new ArgumentNullException(nameof(modelRepository));
         }
 
         public async void Enter()
@@ -68,10 +64,9 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
         {
             UpgradeStatsModel upgradeStatsModel = _upgradeStatsModelFactory.Create();
             Player player = _playerModelFactory.Create(); //TODO : переработать 
-            _modelRepository.AddModel(player);
-            MainGameMenuView gameMenuView = _gameMenuViewFactory.Create(player);
-            SettingsView settingsView = _settingsViewFactory.Create(_settingsModelProvider.Model);
-            UpgradeStatsView upgradeStatsView = _upgradeStatsViewFactory.Create(upgradeStatsModel, player);
+            _gameMenuViewFactory.Create(player);
+            _settingsViewFactory.Create(_settingsModelProvider.Model);
+            _upgradeStatsViewFactory.Create(upgradeStatsModel, player);
         }
 
         public void Exit()

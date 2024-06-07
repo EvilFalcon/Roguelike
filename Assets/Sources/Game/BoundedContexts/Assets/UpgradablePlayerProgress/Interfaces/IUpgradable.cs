@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using Sources.Game.BoundedContexts.Players.Interfaces;
 using Sources.Game.Common.Models;
 
 namespace Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Interfaces
 {
-    public interface IUpgradable: IModel
+    public interface IUpgradable
     {
         int Money { get; set; }
         int AttackModifier { get; set; }

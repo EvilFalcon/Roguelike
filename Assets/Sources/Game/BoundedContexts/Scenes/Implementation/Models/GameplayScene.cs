@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using Sources.Game.BoundedContexts.Assets.Interfaces.AssetsServices;
 using Sources.Game.BoundedContexts.Assets.Interfaces.States;
-using Sources.Game.BoundedContexts.Enemies.Dragon;
-using Sources.Game.BoundedContexts.Enemies.Factories.Werewolf;
+using Sources.Game.BoundedContexts.Enemies.Implementation.Factories;
+using Sources.Game.BoundedContexts.Enemies.Implementation.Factories.Dragon;
+using Sources.Game.BoundedContexts.Enemies.Implementation.Factories.EnemyModels;
+using Sources.Game.BoundedContexts.Enemies.Implementation.Factories.Werewolf;
+using Sources.Game.BoundedContexts.Enemies.Implementation.Models;
 using Sources.Game.BoundedContexts.Heroes.Implementation.Factories.Models;
 using Sources.Game.BoundedContexts.Heroes.Implementation.Factories.Views;
 using Sources.Game.BoundedContexts.Heroes.Implementation.Models;
 using Sources.Game.BoundedContexts.Players.Interfaces;
 using Sources.Game.BoundedContexts.Scenes.Interfaces.Services;
-using Sources.Game.BoundedContexts.SpawnerObjects.EnemyPools;
-using Sources.Game.BoundedContexts.SpawnerObjects.View;
+using Sources.Game.BoundedContexts.SpawnerObjects.Implementation;
+using Sources.Game.BoundedContexts.SpawnerObjects.Implementation.EnemyPools;
+using Sources.Game.BoundedContexts.SpawnerObjects.Implementation.View;
 using Sources.Game.Common.StateMachines.Interfaces.Hendlers;
 using Sources.Game.Common.StateMachines.Interfaces.Services;
+using Sources.Game.DataTransferObjects.Implementation.Services;
 
 namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
 {
@@ -26,9 +31,11 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
         private readonly IFixedUpdateService _fixedUpdateService;
         private readonly ILateUpdateHandler _lateUpdateHandler;
         private readonly ILateUpdateService _lateUpdateService;
+        private readonly EnemyFactory _enemyFactory;
+        private readonly EnemyModelFactory _enemyModelFactory;
+        private readonly SaveLoadedService _saveLoadedService;
         private readonly HeroViewFactory _heroViewFactory;
         private readonly HeroModelFactory _heroFactory;
-        private readonly IPlayer _player;
         private readonly WerewolfFactory _werewolfFactory;
         private readonly DragonFactory _dragonFactory;
 
@@ -42,47 +49,58 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
             IFixedUpdateService fixedUpdateService,
             ILateUpdateHandler lateUpdateHandler,
             ILateUpdateService lateUpdateService,
+            EnemyFactory enemyFactory,
+            EnemyModelFactory enemyModelFactory,
+            SaveLoadedService saveLoadedService,
             HeroViewFactory heroViewFactory,
             HeroModelFactory heroFactory,
-            IPlayer player,
             WerewolfFactory werewolfFactory,
             DragonFactory dragonFactory
         )
         {
             _sceneSwitcher = sceneSwitcher ?? throw new ArgumentNullException(nameof(sceneSwitcher));
             _assetService = assetService ?? throw new ArgumentNullException(nameof(assetService));
-            _updateHandler = updateHandler;
-            _updateService = updateService;
-            _fixedUpdateHandler = fixedUpdateHandler;
-            _fixedUpdateService = fixedUpdateService;
-            _lateUpdateHandler = lateUpdateHandler;
-            _lateUpdateService = lateUpdateService;
+            _updateHandler = updateHandler ?? throw new ArgumentNullException(nameof(updateHandler));
+            _updateService = updateService ?? throw new ArgumentNullException(nameof(updateService));
+            _fixedUpdateHandler = fixedUpdateHandler ?? throw new ArgumentNullException(nameof(fixedUpdateHandler));
+            _fixedUpdateService = fixedUpdateService ?? throw new ArgumentNullException(nameof(fixedUpdateService));
+            _lateUpdateHandler = lateUpdateHandler ?? throw new ArgumentNullException(nameof(lateUpdateHandler));
+            _lateUpdateService = lateUpdateService ?? throw new ArgumentNullException(nameof(lateUpdateService));
+            _enemyFactory = enemyFactory ?? throw new ArgumentNullException(nameof(enemyFactory));
+            _enemyModelFactory = enemyModelFactory ?? throw new ArgumentNullException(nameof(enemyModelFactory));
+            _saveLoadedService = saveLoadedService ?? throw new ArgumentNullException(nameof(saveLoadedService));
             _heroViewFactory = heroViewFactory ?? throw new ArgumentNullException(nameof(heroViewFactory));
             _heroFactory = heroFactory ?? throw new ArgumentNullException(nameof(heroFactory));
-            _player = player ?? throw new ArgumentNullException(nameof(player));
             _werewolfFactory = werewolfFactory ?? throw new ArgumentNullException(nameof(werewolfFactory));
             _dragonFactory = dragonFactory ?? throw new ArgumentNullException(nameof(dragonFactory));
         }
 
         public async void Enter()
         {
+            //_saveLoadedService.SystemCreateJson();
             await _assetService.LoadAsync();
-            HeroModel player = _heroFactory.Create(_player);
+            HeroModel player = _heroFactory.Create();
+            Enemy enemy = _enemyFactory.Create();
 
             var heroView = _heroViewFactory.Create(player);
-            SpawnerObject spawnerObjects = new SpawnerObject(heroView, new Dictionary<Type, SpawnObjectPool[]>()
+            SpawnerObject spawnerObjects = new SpawnerObject(heroView, new Dictionary<Type, SpawnObjectPool[]>
             {
                 {
                     typeof(EnemyPool), new SpawnObjectPool[]
                     {
                         new EnemyPool(_werewolfFactory,
-                            heroView),
-                        new EnemyPool(_dragonFactory, heroView)
+                            heroView, _enemyModelFactory),
+                        new EnemyPool(_dragonFactory, heroView, _enemyModelFactory)
                     }
                 },
             });
 
             spawnerObjects.Spawn(typeof(EnemyPool), 25);
+        }
+        
+        private void Initialize()
+        {
+            AddListeners();
         }
 
         public void Exit()
@@ -109,7 +127,7 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
 
         public void LateUpdate(float deltaTime)
         {
-            _updateHandler.Update(deltaTime);
+            _lateUpdateHandler.LateUpdate(deltaTime);
         }
     }
 }

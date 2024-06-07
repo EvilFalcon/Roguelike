@@ -38,9 +38,7 @@ namespace Sources.Game.BoundedContexts.ObjectComponents.Presenters
         private void SetDestination()
         {
             _followComponent.NavMeshAgent.SetDestination(_target.Transform.position);
+            _followComponent.NavMeshAgent.destination = _target.Transform.position;
         }
-        
-        
-        
     }
 }

@@ -1,6 +1,4 @@
-﻿using Sources.Game.BoundedContexts.Heroes.Interfaces.View;
-using Sources.Game.BoundedContexts.ObjectComponents.Presenters;
-using UnityEngine.AI;
+﻿using UnityEngine.AI;
 
 namespace Sources.Game.BoundedContexts.ObjectComponents.FollowComponent
 {

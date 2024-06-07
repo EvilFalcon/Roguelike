@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Sources.Game.BoundedContexts.Enemies.View.Werewolf;
+using Sources.Game.BoundedContexts.Enemies.Implementation.View.Werewolf;
 
 namespace Sources.Game.BoundedContexts.Assets.Implementation
 {

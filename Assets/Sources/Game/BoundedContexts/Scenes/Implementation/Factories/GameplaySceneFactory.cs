@@ -1,9 +1,10 @@
 using System;
 using Sources.Game.BoundedContexts.Assets.Interfaces.AssetsServices;
 using Sources.Game.BoundedContexts.Assets.Interfaces.States;
-using Sources.Game.BoundedContexts.Enemies.Dragon;
-using Sources.Game.BoundedContexts.Enemies.Factories.Werewolf;
-using Sources.Game.BoundedContexts.Heroes.Implementation.Factories;
+using Sources.Game.BoundedContexts.Enemies.Implementation.Factories;
+using Sources.Game.BoundedContexts.Enemies.Implementation.Factories.Dragon;
+using Sources.Game.BoundedContexts.Enemies.Implementation.Factories.EnemyModels;
+using Sources.Game.BoundedContexts.Enemies.Implementation.Factories.Werewolf;
 using Sources.Game.BoundedContexts.Heroes.Implementation.Factories.Models;
 using Sources.Game.BoundedContexts.Heroes.Implementation.Factories.Views;
 using Sources.Game.BoundedContexts.Players.Implementation.Factories.PlayerModelFactories;
@@ -12,6 +13,7 @@ using Sources.Game.BoundedContexts.Scenes.Interfaces.Factories;
 using Sources.Game.BoundedContexts.Scenes.Interfaces.Services;
 using Sources.Game.Common.StateMachines.Interfaces.Hendlers;
 using Sources.Game.Common.StateMachines.Interfaces.Services;
+using Sources.Game.DataTransferObjects.Implementation.Services;
 using UniCtor.Contexts;
 
 namespace Sources.Game.BoundedContexts.Scenes.Implementation.Factories
@@ -25,9 +27,11 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Factories
         private readonly IFixedUpdateService _fixedUpdateService;
         private readonly ILateUpdateHandler _lateUpdateHandler;
         private readonly ILateUpdateService _lateUpdateService;
+        private readonly EnemyFactory _enemyFactory;
+        private readonly EnemyModelFactory _enemyModelFactory;
+        private readonly SaveLoadedService _saveLoadedService;
         private readonly HeroViewFactory _heroViewFactory;
         private readonly HeroModelFactory _heroFactory;
-        private readonly PlayerModelFactory _playerModelFactory;
         private readonly WerewolfFactory _werewolfFactory;
         private readonly DragonFactory _dragonFactory;
 
@@ -40,6 +44,9 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Factories
             IFixedUpdateService fixedUpdateService,
             ILateUpdateHandler lateUpdateHandler,
             ILateUpdateService lateUpdateService,
+            EnemyFactory enemyFactory,
+            EnemyModelFactory enemyModelFactory,
+            SaveLoadedService saveLoadedService,
             HeroViewFactory heroViewFactory,
             HeroModelFactory heroFactory,
             PlayerModelFactory playerModelFactory,
@@ -54,9 +61,11 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Factories
             _fixedUpdateService = fixedUpdateService ?? throw new ArgumentNullException(nameof(fixedUpdateService));
             _lateUpdateHandler = lateUpdateHandler ?? throw new ArgumentNullException(nameof(lateUpdateHandler));
             _lateUpdateService = lateUpdateService ?? throw new ArgumentNullException(nameof(lateUpdateService));
+            _enemyFactory = enemyFactory ?? throw new ArgumentNullException(nameof(enemyFactory));
+            _enemyModelFactory = enemyModelFactory ?? throw new ArgumentNullException(nameof(enemyModelFactory));
+            _saveLoadedService = saveLoadedService ?? throw new ArgumentNullException(nameof(saveLoadedService));
             _heroViewFactory = heroViewFactory ?? throw new ArgumentNullException(nameof(heroViewFactory));
-            _heroFactory = heroFactory ?? throw new ArgumentNullException(nameof(heroFactory));
-            _playerModelFactory = playerModelFactory ?? throw new ArgumentNullException(nameof(playerModelFactory));
+            _heroFactory = heroFactory ?? throw new ArgumentNullException(nameof(heroFactory)); ;
             _werewolfFactory = werewolfFactory ?? throw new ArgumentNullException(nameof(werewolfFactory));
             _dragonFactory = dragonFactory ?? throw new ArgumentNullException(nameof(dragonFactory));
         }
@@ -71,9 +80,11 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Factories
                 _fixedUpdateService,
                 _lateUpdateHandler,
                 _lateUpdateService,
+                _enemyFactory,
+                _enemyModelFactory,
+                _saveLoadedService,
                 _heroViewFactory,
                 _heroFactory,
-                _playerModelFactory.Create(),
                 _werewolfFactory,
                 _dragonFactory
             );

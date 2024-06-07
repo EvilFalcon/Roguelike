@@ -4,6 +4,6 @@ namespace Sources.Game.BoundedContexts.Maperis.Interfaces
 {
     public interface ISettingsModelProvider
     {
-        SettingsModel Model { get;}
+        SettingsModel Model { get; }
     }
 }

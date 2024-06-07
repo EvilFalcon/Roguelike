@@ -33,11 +33,9 @@ namespace Sources.MonoInstallers
                 .RegisterAsSingleton<IAudioController, IMusicController, ISoundController, AudioController>()
                 .RegisterAsSingleton<ISceneFactoryProvider, SceneFactoryCollection>()
                 .RegisterAsSingleton<UpgradableService>()
-
                 .RegisterAsSingleton<ISceneConstructor, ISceneSwitcher, SceneService>()
                 .RegisterAsSingleton<ILoaderLocalizationService, ILocalizationService, LocalizationService>()
                 .RegisterAsScoped<IViewService, ViewServices>();
-
         }
     }
 }

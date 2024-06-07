@@ -17,7 +17,7 @@ namespace Sources.Game.BoundedContexts.Heroes.Implementation.View.HeroMovementVi
         public event Action TransformChanged;
 
         private void Update() =>
-            _controller.MovePlayer(transform);
+            _controller.MovePlayer(transform); // TODO : убрать костыль
 
         public void Show() =>
             gameObject.SetActive(true);
@@ -30,8 +30,7 @@ namespace Sources.Game.BoundedContexts.Heroes.Implementation.View.HeroMovementVi
             _characterController.Move(direction);
             TransformChanged?.Invoke();
         }
-
-        //TODO : У view нет пресентора это нормально ??
+        
         public void Construct(HeroMovementController controller)
         {
             if (controller == null)

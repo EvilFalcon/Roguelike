@@ -1,7 +1,10 @@
-﻿namespace Sources.Game.BoundedContexts.Heroes.Interfaces.Model
+﻿using Sources.Game.BoundedContexts.Players.Interfaces;
+using Sources.Game.Common.Models;
+
+namespace Sources.Game.BoundedContexts.Heroes.Interfaces.Model
 {
-    public interface IHero
+    public interface IHero : IModel
+
     {
-        
     }
 }

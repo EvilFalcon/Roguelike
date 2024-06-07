@@ -7,7 +7,7 @@ namespace Sources.Game.BoundedContexts.Inputs.Implementation.InputServices
         public override Vector2 Axis
         {
             get
-            {
+            {       
                 Vector2 axis = SimpleInputAxis();
 
                 if (axis == Vector2.zero)
@@ -21,7 +21,7 @@ namespace Sources.Game.BoundedContexts.Inputs.Implementation.InputServices
 
         private Vector2 UnityAxis()
         {
-            return new Vector2(UnityEngine.Input.GetAxis(Horizontal), UnityEngine.Input.GetAxis(Vertical));
+            return new Vector2(Input.GetAxis(Horizontal), Input.GetAxis(Vertical));
         }
     }
 }
