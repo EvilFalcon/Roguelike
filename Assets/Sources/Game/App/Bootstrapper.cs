@@ -12,11 +12,11 @@ namespace Sources.Game.App
         [Constructor]
         private void Construct(ISceneContext sceneContext, ISceneConstructor sceneConstructor)
         {
-            ISceneContext context = sceneContext ?? throw new ArgumentNullException(nameof(sceneContext));
+            var context = sceneContext ?? throw new ArgumentNullException(nameof(sceneContext));
 
             if (sceneConstructor == null)
                 throw new ArgumentNullException(nameof(sceneConstructor));
-            
+
             sceneConstructor.ConstructScene(context);
         }
     }

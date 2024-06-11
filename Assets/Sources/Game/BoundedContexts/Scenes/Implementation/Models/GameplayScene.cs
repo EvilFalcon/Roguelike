@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using Sources.Game.BoundedContexts.Assets.Interfaces.AssetsServices;
 using Sources.Game.BoundedContexts.Assets.Interfaces.States;
-using Sources.Game.BoundedContexts.Enemies.Implementation.Factories;
 using Sources.Game.BoundedContexts.Enemies.Implementation.Factories.Dragon;
 using Sources.Game.BoundedContexts.Enemies.Implementation.Factories.EnemyModels;
 using Sources.Game.BoundedContexts.Enemies.Implementation.Factories.Werewolf;
@@ -29,7 +28,6 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
         private readonly IFixedUpdateService _fixedUpdateService;
         private readonly ILateUpdateHandler _lateUpdateHandler;
         private readonly ILateUpdateService _lateUpdateService;
-        private readonly EnemyFactory _enemyFactory;
         private readonly EnemyModelFactory _enemyModelFactory;
         private readonly SaveLoadedService _saveLoadedService;
         private readonly HeroViewFactory _heroViewFactory;
@@ -47,7 +45,6 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
             IFixedUpdateService fixedUpdateService,
             ILateUpdateHandler lateUpdateHandler,
             ILateUpdateService lateUpdateService,
-            EnemyFactory enemyFactory,
             EnemyModelFactory enemyModelFactory,
             SaveLoadedService saveLoadedService,
             HeroViewFactory heroViewFactory,
@@ -64,7 +61,6 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
             _fixedUpdateService = fixedUpdateService ?? throw new ArgumentNullException(nameof(fixedUpdateService));
             _lateUpdateHandler = lateUpdateHandler ?? throw new ArgumentNullException(nameof(lateUpdateHandler));
             _lateUpdateService = lateUpdateService ?? throw new ArgumentNullException(nameof(lateUpdateService));
-            _enemyFactory = enemyFactory ?? throw new ArgumentNullException(nameof(enemyFactory));
             _enemyModelFactory = enemyModelFactory ?? throw new ArgumentNullException(nameof(enemyModelFactory));
             _saveLoadedService = saveLoadedService ?? throw new ArgumentNullException(nameof(saveLoadedService));
             _heroViewFactory = heroViewFactory ?? throw new ArgumentNullException(nameof(heroViewFactory));
@@ -80,6 +76,7 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
             HeroModel player = _heroFactory.Create();
 
             var hero = _heroViewFactory.Create(player);
+
             SpawnerObject spawnerObjects = new SpawnerObject(hero.HeroTransform, new Dictionary<Type, SpawnObjectPool[]>
             {
                 {
@@ -87,14 +84,14 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
                     {
                         new EnemyPool(_werewolfFactory,
                             hero.HeroTransform, _enemyModelFactory),
-                      //  new EnemyPool(_dragonFactory, hero.HeroTransform, _enemyModelFactory)
+                    //    new EnemyPool(_dragonFactory, hero.HeroTransform, _enemyModelFactory)
                     }
                 },
             });
 
-            spawnerObjects.Spawn(typeof(EnemyPool), 1);
+            spawnerObjects.Spawn(typeof(EnemyPool), 100);
             Initialize();
-            AddListeners();
+           // AddListeners();
         }
 
         private void Initialize()

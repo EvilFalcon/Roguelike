@@ -1,9 +1,7 @@
 ﻿using System;
 using Sources.Game.BoundedContexts.Enemies.Implementation.View.Dragon;
-using Sources.Game.BoundedContexts.ObjectComponents.HealthComponent.Implementation.View;
 using Sources.Game.BoundedContexts.ObjectComponents.HealthComponent.Interfaces.Presenters;
 using Sources.Game.BoundedContexts.SpawnerObjects.Implementation.EnemyPools;
-using Sources.Game.BoundedContexts.SpawnerObjects.interfaces;
 using Sources.Game.Common.Models;
 using UnityEngine;
 

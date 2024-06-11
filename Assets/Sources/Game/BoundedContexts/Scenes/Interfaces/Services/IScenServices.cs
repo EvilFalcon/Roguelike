@@ -1,5 +1,4 @@
-﻿using Sources.Game.Common.StateMachines.Interfaces;
-using Sources.Game.Common.StateMachines.Interfaces.Hendlers;
+﻿using Sources.Game.Common.StateMachines.Interfaces.Hendlers;
 
 namespace Sources.Game.BoundedContexts.Scenes.Interfaces.Services
 {

@@ -5,10 +5,9 @@ namespace Sources.Game.BoundedContexts.ObjectComponents.HealthComponent.Interfac
     public interface IHealthModel
     {
         int Health { get; }
-        
+
         event Action Die;
-        
+
         void TakeDamage(int damage);
-        
     }
 }

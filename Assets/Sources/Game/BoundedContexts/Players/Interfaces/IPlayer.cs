@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using Sources.Game.Common.Models;
 
 namespace Sources.Game.BoundedContexts.Players.Interfaces
 {

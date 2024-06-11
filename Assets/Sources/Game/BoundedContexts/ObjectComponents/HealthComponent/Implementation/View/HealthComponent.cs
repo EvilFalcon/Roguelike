@@ -1,6 +1,5 @@
 ﻿using Sources.Game.BoundedContexts.ObjectComponents.HealthComponent.Implementation.Presenter;
 using Sources.Game.Common.Mvp.Interface;
-using UnityEngine;
 
 namespace Sources.Game.BoundedContexts.ObjectComponents.HealthComponent.Implementation.View
 {

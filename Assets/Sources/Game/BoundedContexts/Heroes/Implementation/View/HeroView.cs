@@ -1,5 +1,4 @@
 ﻿using Sources.Game.BoundedContexts.Heroes.Implementation.Controllers;
-using Sources.Game.BoundedContexts.ObjectComponents.AttackComponents;
 using Sources.Game.BoundedContexts.ObjectComponents.HealthComponent.Implementation.View;
 using Sources.Game.Common.Mvp;
 using UnityEngine;
@@ -9,12 +8,11 @@ namespace Sources.Game.BoundedContexts.Heroes.Implementation.View
 {
     [RequireComponent(typeof(HeroMovementView))]
     [RequireComponent(typeof(HealthComponent))]
-    
     public class HeroView : ViewBase
     {
         [SerializeField] private Slider _experienceSlider;
         [SerializeField] private Slider _healthSlider;
-        
+
         private HeroPresenter _presenter;
 
         protected override void Enable()
@@ -31,12 +29,12 @@ namespace Sources.Game.BoundedContexts.Heroes.Implementation.View
         {
             _presenter = presenter;
         }
-        
+
         public void SetExperience(int experience)
         {
             _experienceSlider.value = experience;
         }
-        
+
         public void SetHealth(int health)
         {
             _healthSlider.value = health;

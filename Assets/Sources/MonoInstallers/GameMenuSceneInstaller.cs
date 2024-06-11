@@ -1,7 +1,5 @@
 ﻿using Sources.Game.BoundedContexts.Assets.Implementation;
 using Sources.Game.BoundedContexts.Assets.Interfaces.AssetsServices;
-using Sources.Game.BoundedContexts.Inputs.Implementation.InputServices;
-using Sources.Game.BoundedContexts.Inputs.Interfaces.InputServices;
 using UniCtor.Installers;
 using UniCtor.Services;
 

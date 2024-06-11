@@ -15,9 +15,9 @@ namespace Sources.Game.BoundedContexts.Heroes.Implementation.Factories.Controlle
             _inputService = inputService ?? throw new ArgumentNullException(nameof(inputService));
         }
 
-        public HeroMovementController Create(HeroMovementView view,HeroModel model)
+        public HeroMovementController Create(HeroMovementView view, HeroModel model)
         {
-            return new HeroMovementController(view,model,_inputService);
+            return new HeroMovementController(view, model, _inputService);
         }
     }
 }

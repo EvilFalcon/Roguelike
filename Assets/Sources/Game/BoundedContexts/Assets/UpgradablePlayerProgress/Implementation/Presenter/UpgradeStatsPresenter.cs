@@ -57,11 +57,11 @@ namespace Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implement
             }
             catch (ExceptionImpossibleTransaction)
             {
-                Debug.Log("not enough money" + _player.Money + " ");//TODO: дополнить реализацию
+                Debug.Log("not enough money" + _player.Money + " "); //TODO: дополнить реализацию
             }
             catch (IndexOutOfRangeException)
             {
-                Debug.Log("max level reached");//TODO: дополнить реализацию
+                Debug.Log("max level reached"); //TODO: дополнить реализацию
             }
         }
 
@@ -73,11 +73,11 @@ namespace Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implement
             }
             catch (ExceptionImpossibleTransaction)
             {
-                Debug.Log("not enough money" + _player.Money + " ");//TODO: дополнить реализацию
+                Debug.Log("not enough money" + _player.Money + " "); //TODO: дополнить реализацию
             }
             catch (IndexOutOfRangeException)
             {
-                Debug.Log("max level reached");//TODO: дополнить реализацию
+                Debug.Log("max level reached"); //TODO: дополнить реализацию
             }
         }
 
@@ -89,11 +89,11 @@ namespace Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implement
             }
             catch (ExceptionImpossibleTransaction)
             {
-                Debug.Log("not enough money" + _player.Money + " ");//TODO: дополнить реализацию
+                Debug.Log("not enough money" + _player.Money + " "); //TODO: дополнить реализацию
             }
             catch (IndexOutOfRangeException)
             {
-                Debug.Log("max level reached");//TODO: дополнить реализацию
+                Debug.Log("max level reached"); //TODO: дополнить реализацию
             }
         }
 
@@ -109,11 +109,10 @@ namespace Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implement
             }
             catch (IndexOutOfRangeException)
             {
-                Debug.Log("max level reached");//TODO: дополнить реализацию
+                Debug.Log("max level reached"); //TODO: дополнить реализацию
             }
-            
         }
-        
+
         public void CloseViewPanel()
         {
             _viewService.HideForm(nameof(UpgradeStatsView));

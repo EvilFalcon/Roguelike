@@ -1,5 +1,4 @@
-﻿using System;
-using Sources.Game.BoundedContexts.Settings.Implementation.Controllers;
+﻿using Sources.Game.BoundedContexts.Settings.Implementation.Controllers;
 using Sources.Game.IDontCno;
 using TMPro;
 using UnityEngine;

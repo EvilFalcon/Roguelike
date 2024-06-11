@@ -1,5 +1,4 @@
-﻿using System;
-using Sources.Game.Common.Mvp.Interface;
+﻿using Sources.Game.Common.Mvp.Interface;
 using UnityEngine;
 
 namespace Sources.Game.BoundedContexts.ObjectComponents.AttackComponents
@@ -15,9 +14,9 @@ namespace Sources.Game.BoundedContexts.ObjectComponents.AttackComponents
         public override void Disable() =>
             enabled = false;
 
-        private void OnCollisionEnter(Collision other)
+        private void OnTriggerEnter(Collider other)
         {
-            if (other.collider.TryGetComponent(out IDamageable damageableComponent) == false)
+            if (other.TryGetComponent(out IDamageable damageableComponent) == false)
                 return;
 
             Attack(damageableComponent);

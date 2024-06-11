@@ -1,5 +1,4 @@
 ﻿using System;
-using Sources.Game.BoundedContexts.ObjectComponents.HealthComponent.Interfaces;
 using Sources.Game.BoundedContexts.ObjectComponents.HealthComponent.Interfaces.Models;
 using Sources.Game.Common.Models;
 
@@ -24,7 +23,6 @@ namespace Sources.Game.BoundedContexts.ObjectComponents.HealthComponent.Implemen
         {
             get => _currentHealth; 
             private set => TrySetField(ref _currentHealth, value);
-            
         }
 
         public event Action Die;

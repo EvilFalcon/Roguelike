@@ -29,7 +29,6 @@ namespace Sources.Game.BoundedContexts.ObjectComponents.AttackComponents
             if (_attackModel.AttackDelay >= 0)
                 return;
 
-            
             other.TakeDamage(_attackModel.Attack);
         }
     }

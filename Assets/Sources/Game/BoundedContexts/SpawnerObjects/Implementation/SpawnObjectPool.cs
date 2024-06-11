@@ -1,6 +1,5 @@
 ﻿using Sources.Game.BoundedContexts.Enemies.Implementation.Factories.Dragon;
 using Sources.Game.BoundedContexts.Enemies.Implementation.View.Dragon;
-using Sources.Game.BoundedContexts.SpawnerObjects.interfaces;
 using UnityEngine;
 using UnityEngine.Pool;
 

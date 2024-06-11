@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Sources.Game.BoundedContexts.Audio.Implementation.View;
-using Sources.Game.BoundedContexts.MainGameMenu.Implementation.Views;
 
 namespace Sources.Game.BoundedContexts.Assets.Implementation
 {

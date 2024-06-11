@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using Sources.Game.BoundedContexts.Heroes.Implementation.View;
-using UnityEngine;
 
 namespace Sources.Game.BoundedContexts.Assets.Implementation
 {

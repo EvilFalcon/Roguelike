@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implementation.Views
 {
-    public class UpgradeStatsView : MonoBehaviour, IUpgradeStatsView,IView
+    public class UpgradeStatsView : MonoBehaviour, IUpgradeStatsView, IView
     {
         [SerializeField] private Button _upgradableHealth;
         [SerializeField] private Button _upgradableAttack;
@@ -28,7 +28,7 @@ namespace Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implement
             _upgradableAttack.onClick.AddListener(OnUpgradableAttackButtonClick);
             _upgradableAttackDelay.onClick.AddListener(OnUpgradableAttackDelayButtonClick);
             _upgradableArmor.onClick.AddListener(OnUpgradableArmorButtonClick);
-            
+
             _upgradablePanelClose.onClick.AddListener(OnCloseButtonClick);
             gameObject.SetActive(true);
             _presenter.Enable();

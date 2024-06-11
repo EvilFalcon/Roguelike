@@ -14,7 +14,7 @@ namespace Downloads.UltimateSafeArea.Editor
         public bool finished;
 
         [MenuItem("Tools/UltimateSafeArea/Apply SafeArea in Scene")]
-        static bool ApplySafeArea_InScene()
+        static bool ApplySafeAreaInScene()
         {
             //Look for canvases
             Canvas[] allCanvases = FindObjectsOfType<Canvas>();
@@ -61,7 +61,7 @@ namespace Downloads.UltimateSafeArea.Editor
             for (int i = 0; i < sceneCount; i++)
             {
                 EditorSceneManager.OpenScene(scenes[i], OpenSceneMode.Single);
-                ApplySafeArea_InScene();
+                ApplySafeAreaInScene();
                 EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
             }
         }

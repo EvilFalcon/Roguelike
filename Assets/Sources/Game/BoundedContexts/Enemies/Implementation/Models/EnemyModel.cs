@@ -5,6 +5,7 @@ namespace Sources.Game.BoundedContexts.Enemies.Implementation.Models
 {
     public class EnemyModel : IModel
     {
+        
         public EnemyModel(Enemy enemy)
         {
             HealthModel = new HealthModel(enemy.Health);
@@ -13,8 +14,6 @@ namespace Sources.Game.BoundedContexts.Enemies.Implementation.Models
             AttackDelay = enemy.AttackDelay;
             Speed = enemy.Speed;
         }
-
-        public int Id { get; }
 
         public HealthModel HealthModel { get; }
 

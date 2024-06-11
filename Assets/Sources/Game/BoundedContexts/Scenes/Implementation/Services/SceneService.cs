@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 
 namespace Sources.Game.BoundedContexts.Scenes.Implementation.Services
 {
-    public class SceneService : ISceneConstructor, ISceneSwitcher,ISceneService
+    public class SceneService : ISceneConstructor, ISceneSwitcher, ISceneService
     {
         private readonly ISceneFactoryProvider _sceneFactoryProvider;
 
@@ -30,7 +30,7 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Services
             _fixedUpdateHandler = new FixedUpdatableStateMachine<IScene>(_stateMachine);
             _lateUpdateHandler = new LateUpdatableStateMachine<IScene>(_stateMachine);
         }
-        
+
         public void Update(float deltaTime)
         {
             _updateHandler.Update(deltaTime);

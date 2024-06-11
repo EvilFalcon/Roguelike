@@ -9,11 +9,8 @@ namespace Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implement
         public void UpgradeArmorStat(string upgradeKey, UpgradeStatsModel upgradableModel, IUpgradable player) =>
             player.ArmorModifier += PerformUpgrade(upgradeKey, player, upgradableModel);
 
-        public void UpgradeHealth(string upgradeKey, UpgradeStatsModel upgradableModel, IUpgradable player)
-        {
+        public void UpgradeHealth(string upgradeKey, UpgradeStatsModel upgradableModel, IUpgradable player) =>
             player.Health += PerformUpgrade(upgradeKey, player, upgradableModel);
-             
-        }
 
         public void UpgradeAttack(string upgradeKey, UpgradeStatsModel upgradableModel, IUpgradable player) =>
             player.AttackModifier += PerformUpgrade(upgradeKey, player, upgradableModel);

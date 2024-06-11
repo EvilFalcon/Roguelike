@@ -1090,6 +1090,9 @@ GameObject:
   - component: {fileID: -4242317059691615149}
   - component: {fileID: 5851742418115428117}
   - component: {fileID: 2322902732854791118}
+  - component: {fileID: 6323603551646901282}
+  - component: {fileID: 1636224986725067752}
+  - component: {fileID: 6532614206644365211}
   m_Layer: 0
   m_Name: Dragon Inferno
   m_TagString: Untagged
@@ -1210,6 +1213,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3529361c744b455193c96e4651902641, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6323603551646901282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3319832262097768165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c394fb7a4154a22b8ef02549a21f871, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1636224986725067752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3319832262097768165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aad115aca74ce3c4891b3f6de0b4aae8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _serializedExposedParameters: []
+  _boundGraphSerialization: 
+  _boundGraphObjectReferences: []
+  _boundGraphSource:
+    _version: 0
+    _category: 
+    _comments: 
+    _translation: {x: 0, y: 0}
+    _zoomFactor: 1
+  _firstActivation: 0
+  _enableAction: 0
+  _disableAction: 0
+  _lockBoundGraphPrefabOverrides: 1
+  _preInitializeSubGraphs: 0
+  _updateMode: 0
+  _graph: {fileID: 0}
+  _blackboard: {fileID: 6532614206644365211}
+--- !u!114 &6532614206644365211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3319832262097768165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b98a6db0b653f764eac834f85857a9dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _parentBlackboard: {fileID: 0}
+  _serializedBlackboard: '{"_variables":{}}'
+  _objectReferences: []
+  _serializedVariables: []
 --- !u!1 &3319832262097768167
 GameObject:
   m_ObjectHideFlags: 0
