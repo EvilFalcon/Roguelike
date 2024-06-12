@@ -2,6 +2,7 @@
 using Sources.Game.BoundedContexts.Assets.Implementation;
 using Sources.Game.BoundedContexts.Enemies.Implementation.Factories.Dragon;
 using Sources.Game.BoundedContexts.Enemies.Implementation.View.Dragon;
+using Sources.Game.BoundedContexts.SpawnerObjects.interfaces;
 using UniCtor.Contexts;
 using UniCtor.Sources.Di.Extensions.IDependencyResolvers;
 
@@ -18,7 +19,7 @@ namespace Sources.Game.BoundedContexts.Enemies.Implementation.Factories.Werewolf
             _assetService = assetService ?? throw new ArgumentNullException(nameof(assetService));
         }
 
-        public IEnemy Create() =>
+        public ISpawnObject Create() =>
             _sceneContext.DependencyResolver.InstantiateComponentFromPrefab(_assetService.Provider.Werewolf);
     }
 }

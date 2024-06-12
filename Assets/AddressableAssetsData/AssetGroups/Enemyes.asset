@@ -18,12 +18,12 @@ MonoBehaviour:
   m_GUID: ea4a05506fbe849498b4262d7159dffb
   m_SerializeEntries:
   - m_GUID: 3b2bc9ea12bebd34db0ea2d87f964288
-    m_Address: DragonView
+    m_Address: DragonFire
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 94dd2061678f8a94caf477d694a3e473
-    m_Address: WerewolfView
+    m_Address: Werewolf
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

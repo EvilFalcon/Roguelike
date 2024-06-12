@@ -26,8 +26,8 @@ namespace Sources.Game.DataTransferObjects.Implementation.Services
         public void Save(string key, object @object) =>
             _saveLoadPlayerPrefs.Save(key, @object);
 
-        public T Load<T>(T @object, string postfix = "") =>
-            Load<T>($"{postfix}{typeof(T).Name}");
+        public T Load<T>(T @object, string prefix = "", string postfix = "") =>
+            Load<T>($"{prefix}{typeof(T).Name}");
 
         public void
             SystemCreateJson(object data, string postfix = "") //TODO: после добавления файлов в ресурсы этот метод не нужен
@@ -39,16 +39,18 @@ namespace Sources.Game.DataTransferObjects.Implementation.Services
             var file = Path.Combine(path, fileName + extension);
 
             if (File.Exists(file) == false)
-                using (File.Create(file))
+            {
+                using (File.Create(file)) ;
+            }
 
-                    File.WriteAllText(file, jsonString);
+            File.WriteAllText(file, jsonString);
         }
     }
+}
 
-    public interface ISaveLoadedServices
-    {
-        T Load<T>(string key);
-        T Load<T>(T @object, string postfix = "");
-        void Save(string key, object @object);
-    }
+public interface ISaveLoadedServices
+{
+    T Load<T>(string key);
+    T Load<T>(T @object, string prefix = "", string postfix = "");
+    void Save(string key, object @object);
 }

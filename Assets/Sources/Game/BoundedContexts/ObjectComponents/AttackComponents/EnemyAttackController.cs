@@ -1,4 +1,5 @@
 ﻿using System;
+using Sources.Game.BoundedContexts.Enemies.Implementation.Models;
 using Sources.Game.Common.Mvp.Interface;
 
 namespace Sources.Game.BoundedContexts.ObjectComponents.AttackComponents
@@ -8,7 +9,7 @@ namespace Sources.Game.BoundedContexts.ObjectComponents.AttackComponents
         private readonly EnemyAttackComponent _view;
         private readonly IAttackModel _attackModel;
 
-        public EnemyAttackController(EnemyAttackComponent view, IAttackModel attackModel)
+        public EnemyAttackController(EnemyAttackComponent view, Enemy attackModel)
         {
             _view = view ?? throw new ArgumentNullException(nameof(view));
             _attackModel = attackModel ?? throw new ArgumentNullException(nameof(attackModel));
@@ -29,7 +30,7 @@ namespace Sources.Game.BoundedContexts.ObjectComponents.AttackComponents
             if (_attackModel.AttackDelay >= 0)
                 return;
 
-            other.TakeDamage(_attackModel.Attack);
+            other.TakeDamage(_attackModel.Damage);
         }
     }
 }

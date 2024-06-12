@@ -1,7 +1,10 @@
 ﻿using System;
+using Sources.Game.BoundedContexts.Enemies.Implementation.Models;
+using Sources.Game.BoundedContexts.Enemies.Implementation.View;
 using Sources.Game.BoundedContexts.Enemies.Implementation.View.Dragon;
 using Sources.Game.BoundedContexts.ObjectComponents.HealthComponent.Interfaces.Presenters;
 using Sources.Game.BoundedContexts.SpawnerObjects.Implementation.EnemyPools;
+using Sources.Game.BoundedContexts.SpawnerObjects.interfaces;
 using Sources.Game.Common.Models;
 using UnityEngine;
 
@@ -22,19 +25,19 @@ namespace Sources.Game.BoundedContexts.ObjectComponents.HealthComponent.Implemen
 
         public void Enable()
         {
-            _model.HealthModel.Die += OnListenDie;
+            _model.Health.Die += OnListenDie;
             Component.Enable();
         }
 
         public void Disable()
         {
             Component.Disable();
-            _model.HealthModel.Die -= OnListenDie;
+            _model.Health.Die -= OnListenDie;
         }
 
         public void Upgrade(int health)
         {
-            _model.HealthModel.UpdateMaxHealth(health);
+            _model.Health.UpdateMaxHealth(health);
         }
 
         public void TakeDamage(int damage)
@@ -44,7 +47,7 @@ namespace Sources.Game.BoundedContexts.ObjectComponents.HealthComponent.Implemen
                 damage = 0;
 
             Debug.Log($"{Component.name} мне больно вылечили");
-            _model.HealthModel.TakeDamage(damage);
+            _model.Health.TakeDamage(damage);
         }
 
         public void Heal(int health)
@@ -52,7 +55,7 @@ namespace Sources.Game.BoundedContexts.ObjectComponents.HealthComponent.Implemen
             if (health <= 0)
                 return;
 
-            _model.HealthModel.Heal(health);
+            _model.Health.Heal(health);
         }
     }
 
@@ -67,12 +70,12 @@ namespace Sources.Game.BoundedContexts.ObjectComponents.HealthComponent.Implemen
         }
     }
 
-    public class EnemyHealthPresenter : HealthPresenter
+    public class EnemyHealthPresenter<T> : HealthPresenter where T : EnemyBase
     {
-        private readonly EnemyPool _pool;
-        private readonly IEnemy _enemy;
+        private readonly EnemyPool<T> _pool;
+        private readonly ISpawnObject _enemy;
 
-        public EnemyHealthPresenter(View.HealthComponent component, IModel model, EnemyPool pool, IEnemy enemy) : base(component,
+        public EnemyHealthPresenter(View.HealthComponent component, Enemy model, EnemyPool<T> pool, ISpawnObject enemy) : base(component,
             model)
         {
             _pool = pool ?? throw new ArgumentNullException(nameof(pool));

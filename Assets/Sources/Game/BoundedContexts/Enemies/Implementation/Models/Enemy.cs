@@ -1,23 +1,24 @@
-﻿using Sources.Game.BoundedContexts.Enemies.Interfaces;
-using Sources.Game.DataTransferObjects.Implementation.DTO.Enemyes;
+﻿using Sources.Game.BoundedContexts.ObjectComponents.HealthComponent.Implementation.Model;
+using Sources.Game.Common.Models;
+using Sources.Game.Common.Mvp.Interface;
 
 namespace Sources.Game.BoundedContexts.Enemies.Implementation.Models
 {
-    public class Enemy : IEnemyUpgradable
+    public class Enemy: IAttackModel,IModel
     {
-        public Enemy(EnemyData enemy)
+        public Enemy(HealthModel health, int armor, int damage, float attackDelay, float speed)
         {
-            Health = enemy.Health;
-            Armor = enemy.Armor;
-            Attack = enemy.Attack;
-            AttackDelay = enemy.AttackDelay;
-            Speed = enemy.Speed;
+            Health = health;
+            Armor = armor;
+            Damage = damage;
+            AttackDelay = attackDelay;
+            Speed = speed;
         }
 
-        public int Health { get; set; }
-        public int Armor { get; set; }
-        public int Attack { get; set; }
-        public float AttackDelay { get; set; }
-        public float Speed { get; set; }
+        public HealthModel Health { get; }
+        public int Armor { get; }
+        public int Damage { get; }
+        public float AttackDelay { get; }
+        public float Speed { get; }
     }
 }

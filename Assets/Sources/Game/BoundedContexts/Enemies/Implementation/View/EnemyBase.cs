@@ -1,6 +1,7 @@
 ﻿using NodeCanvas.BehaviourTrees;
 using Sources.Game.BoundedContexts.Enemies.Implementation.View.Dragon;
 using Sources.Game.BoundedContexts.ObjectComponents.HealthComponent.Implementation.View;
+using Sources.Game.BoundedContexts.SpawnerObjects.interfaces;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,7 +9,7 @@ namespace Sources.Game.BoundedContexts.Enemies.Implementation.View
 {
     [RequireComponent(typeof(NavMeshAgent))]
     [RequireComponent(typeof(HealthComponent))]
-    public abstract class EnemyBase : MonoBehaviour, IEnemy
+    public abstract class EnemyBase : MonoBehaviour, IEnemy, ISpawnObject
     {
         [SerializeField] private NavMeshAgent _agent;
         [SerializeField] private BehaviourTreeOwner _behaviourThee;

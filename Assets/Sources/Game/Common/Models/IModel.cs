@@ -5,7 +5,7 @@ namespace Sources.Game.Common.Models
 {
     public interface IModel : IAttackModel
     {
-        public HealthModel HealthModel { get; }
+        public HealthModel Health { get; }
 
         public int Armor { get; }
     }

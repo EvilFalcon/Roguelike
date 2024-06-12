@@ -5,9 +5,9 @@ namespace Sources.Game.BoundedContexts.Assets.Implementation
 {
     public class EnemyDragonAssetProvider : AssetProviderBase
     {
-        public DragonView DragonView { get; private set; }
+        public DragonFire DragonFire { get; private set; }
 
         public override async Task LoadAsync() =>
-            DragonView = await Load<DragonView>(nameof(DragonView));
+            DragonFire = await Load<DragonFire>(nameof(DragonFire));
     }
 }

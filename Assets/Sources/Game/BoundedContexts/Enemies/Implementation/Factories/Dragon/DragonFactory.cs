@@ -1,6 +1,8 @@
 ﻿using System;
 using Sources.Game.BoundedContexts.Assets.Implementation;
+using Sources.Game.BoundedContexts.Enemies.Implementation.View;
 using Sources.Game.BoundedContexts.Enemies.Implementation.View.Dragon;
+using Sources.Game.BoundedContexts.SpawnerObjects.interfaces;
 using UniCtor.Contexts;
 using UniCtor.Sources.Di.Extensions.IDependencyResolvers;
 
@@ -17,12 +19,12 @@ namespace Sources.Game.BoundedContexts.Enemies.Implementation.Factories.Dragon
             _assetService = assetService ?? throw new ArgumentNullException(nameof(assetService));
         }
 
-        public IEnemy Create() =>
-            _sceneContext.DependencyResolver.InstantiateComponentFromPrefab(_assetService.Provider.DragonView);
+        public ISpawnObject Create() =>
+            _sceneContext.DependencyResolver.InstantiateComponentFromPrefab(_assetService.Provider.DragonFire);
     }
 
     public interface ISpawnObjectFactory
     {
-        IEnemy Create();
+        ISpawnObject Create();
     }
 }

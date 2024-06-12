@@ -1,5 +1,5 @@
 ﻿using Sources.Game.BoundedContexts.Enemies.Implementation.Factories.Dragon;
-using Sources.Game.BoundedContexts.Enemies.Implementation.View.Dragon;
+using Sources.Game.BoundedContexts.SpawnerObjects.interfaces;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -7,20 +7,20 @@ namespace Sources.Game.BoundedContexts.SpawnerObjects.Implementation
 {
     public abstract class SpawnObjectPool 
     {
-        private readonly ObjectPool<IEnemy> _objectPool;
+        private readonly ObjectPool<ISpawnObject> _objectPool;
 
         protected SpawnObjectPool(ISpawnObjectFactory factory) =>
-            _objectPool = new ObjectPool<IEnemy>(factory.Create);
+            _objectPool = new ObjectPool<ISpawnObject>(factory.Create);
 
-        protected abstract IEnemy Build(IEnemy spawnObject, Vector3 spawnPosition);
+        protected abstract ISpawnObject Build(ISpawnObject spawnObject, Vector3 spawnPosition);
 
         public void Get(Vector3 spawnPosition)
         { 
-            IEnemy spawnObject = _objectPool.Get();
+            ISpawnObject spawnObject = _objectPool.Get();
             Build(spawnObject, spawnPosition);
         }
 
-        public void ReturnToPool(IEnemy spawnObject)
+        public void ReturnToPool(ISpawnObject spawnObject)
         {
             _objectPool.Release(spawnObject);
         }

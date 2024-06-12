@@ -1,8 +1,8 @@
 using System;
 using Sources.Game.BoundedContexts.Assets.Interfaces.AssetsServices;
 using Sources.Game.BoundedContexts.Assets.Interfaces.States;
+using Sources.Game.BoundedContexts.Enemies.Implementation.Factories;
 using Sources.Game.BoundedContexts.Enemies.Implementation.Factories.Dragon;
-using Sources.Game.BoundedContexts.Enemies.Implementation.Factories.EnemyModels;
 using Sources.Game.BoundedContexts.Enemies.Implementation.Factories.Werewolf;
 using Sources.Game.BoundedContexts.Heroes.Implementation.Factories.Models;
 using Sources.Game.BoundedContexts.Heroes.Implementation.Factories.Views;
@@ -25,7 +25,7 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Factories
         private readonly IFixedUpdateService _fixedUpdateService;
         private readonly ILateUpdateHandler _lateUpdateHandler;
         private readonly ILateUpdateService _lateUpdateService;
-        private readonly EnemyModelFactory _enemyModelFactory;
+        private readonly EnemyFactory _enemyFactory;
         private readonly SaveLoadedService _saveLoadedService;
         private readonly HeroViewFactory _heroViewFactory;
         private readonly HeroModelFactory _heroFactory;
@@ -41,7 +41,7 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Factories
             IFixedUpdateService fixedUpdateService,
             ILateUpdateHandler lateUpdateHandler,
             ILateUpdateService lateUpdateService,
-            EnemyModelFactory enemyModelFactory,
+            EnemyFactory enemyFactory,
             SaveLoadedService saveLoadedService,
             HeroViewFactory heroViewFactory,
             HeroModelFactory heroFactory,
@@ -56,7 +56,7 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Factories
             _fixedUpdateService = fixedUpdateService ?? throw new ArgumentNullException(nameof(fixedUpdateService));
             _lateUpdateHandler = lateUpdateHandler ?? throw new ArgumentNullException(nameof(lateUpdateHandler));
             _lateUpdateService = lateUpdateService ?? throw new ArgumentNullException(nameof(lateUpdateService));
-            _enemyModelFactory = enemyModelFactory ?? throw new ArgumentNullException(nameof(enemyModelFactory));
+            _enemyFactory = enemyFactory ?? throw new ArgumentNullException(nameof(enemyFactory));
             _saveLoadedService = saveLoadedService ?? throw new ArgumentNullException(nameof(saveLoadedService));
             _heroViewFactory = heroViewFactory ?? throw new ArgumentNullException(nameof(heroViewFactory));
             _heroFactory = heroFactory ?? throw new ArgumentNullException(nameof(heroFactory));
@@ -74,8 +74,8 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Factories
                 _fixedUpdateService,
                 _lateUpdateHandler,
                 _lateUpdateService,
-                _enemyModelFactory,
                 _saveLoadedService,
+                _enemyFactory,
                 _heroViewFactory,
                 _heroFactory,
                 _werewolfFactory,

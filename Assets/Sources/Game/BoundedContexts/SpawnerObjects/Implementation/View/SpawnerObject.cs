@@ -40,7 +40,6 @@ namespace Sources.Game.BoundedContexts.SpawnerObjects.Implementation.View
             float radius = high * Tangent60Degrees + Delta;
 
             float x = Random.Range(_minValue.x, _maxValue.x);
-
             IRandomStrategy
                 randomStrategy = GetRandomStrategy(x, _transform.Transform.position.x, radius);
             float z = randomStrategy.GetRandomZValue(_transform.Transform.position.z, radius);

@@ -9,19 +9,19 @@ namespace Sources.Game.BoundedContexts.Heroes.Implementation.Models
         public HeroModel(IPlayer player)
         {
             AttackDelay = player.AttackDelay;
-            Attack = player.AttackModifier;
+            Damage = player.AttackModifier;
             Armor = player.ArmorModifier;
-            HealthModel = new HealthModel(player.Health);
+            Health = new HealthModel(player.Health);
             Speed = player.Speed;
         }
 
         public float Speed { get; }
 
-        public HealthModel HealthModel { get; }
+        public HealthModel Health { get; }
 
         public int Armor { get; }
 
-        public int Attack { get; }
+        public int Damage { get; }
 
         public float AttackDelay { get; }
     }

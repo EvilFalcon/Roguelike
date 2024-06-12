@@ -1,7 +1,28 @@
 {
-  "Health": 100,
-  "Armor": 10,
-  "Attack": 5,
-  "AttackDelay": 0.0,
-  "Speed": 3.0
+  "Werewolf": {
+    "Health": 100,
+    "Armor": 10,
+    "Damage": 5,
+    "AttackDelay": 3.8,
+    "Speed": 3.0,
+    "Gold": 5,
+    "Experience": 50,
+    "HealthModifier": 0,
+    "ArmorModifier": 0,
+    "DamageModifier": 0,
+    "GoldModifier": 0
+  },
+  "DragonFire": {
+    "Health": 100,
+    "Armor": 10,
+    "Damage": 5,
+    "AttackDelay": 3.8,
+    "Speed": 3.0,
+    "Gold": 5,
+    "Experience": 50,
+    "HealthModifier": 0,
+    "ArmorModifier": 0,
+    "DamageModifier": 0,
+    "GoldModifier": 0
+  }
 }

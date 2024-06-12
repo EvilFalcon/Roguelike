@@ -4,6 +4,6 @@
     {
         float AttackDelay { get; }
 
-        int Attack { get; }
+        int Damage { get; }
     }
 }

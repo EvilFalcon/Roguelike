@@ -5,11 +5,11 @@ namespace Sources.Game.BoundedContexts.Assets.Implementation
 {
     public class EnemyWerewolfAssetProvider : AssetProviderBase
     {
-        public WerewolfView Werewolf { get; private set; }
+        public Werewolf Werewolf { get; private set; }
 
         public override async Task LoadAsync()
         {
-            Werewolf = await Load<WerewolfView>(nameof(WerewolfView));
+            Werewolf = await Load<Werewolf>(nameof(Enemies.Implementation.View.Werewolf.Werewolf));
         }
     }
 }

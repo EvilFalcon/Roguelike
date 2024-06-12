@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using Sources.Game.BoundedContexts.Assets.Interfaces.AssetsServices;
 using Sources.Game.BoundedContexts.Assets.Interfaces.States;
+using Sources.Game.BoundedContexts.Enemies.Implementation.Factories;
 using Sources.Game.BoundedContexts.Enemies.Implementation.Factories.Dragon;
-using Sources.Game.BoundedContexts.Enemies.Implementation.Factories.EnemyModels;
 using Sources.Game.BoundedContexts.Enemies.Implementation.Factories.Werewolf;
+using Sources.Game.BoundedContexts.Enemies.Implementation.Models;
+using Sources.Game.BoundedContexts.Enemies.Implementation.View.Dragon;
+using Sources.Game.BoundedContexts.Enemies.Implementation.View.Werewolf;
 using Sources.Game.BoundedContexts.Heroes.Implementation.Factories.Models;
 using Sources.Game.BoundedContexts.Heroes.Implementation.Factories.Views;
 using Sources.Game.BoundedContexts.Heroes.Implementation.Models;
@@ -14,6 +17,7 @@ using Sources.Game.BoundedContexts.SpawnerObjects.Implementation.EnemyPools;
 using Sources.Game.BoundedContexts.SpawnerObjects.Implementation.View;
 using Sources.Game.Common.StateMachines.Interfaces.Hendlers;
 using Sources.Game.Common.StateMachines.Interfaces.Services;
+using Sources.Game.DataTransferObjects.Implementation.DTO.Enemyes;
 using Sources.Game.DataTransferObjects.Implementation.Services;
 
 namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
@@ -28,8 +32,8 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
         private readonly IFixedUpdateService _fixedUpdateService;
         private readonly ILateUpdateHandler _lateUpdateHandler;
         private readonly ILateUpdateService _lateUpdateService;
-        private readonly EnemyModelFactory _enemyModelFactory;
         private readonly SaveLoadedService _saveLoadedService;
+        private readonly EnemyFactory _enemyFactory;
         private readonly HeroViewFactory _heroViewFactory;
         private readonly HeroModelFactory _heroFactory;
         private readonly WerewolfFactory _werewolfFactory;
@@ -45,8 +49,8 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
             IFixedUpdateService fixedUpdateService,
             ILateUpdateHandler lateUpdateHandler,
             ILateUpdateService lateUpdateService,
-            EnemyModelFactory enemyModelFactory,
             SaveLoadedService saveLoadedService,
+            EnemyFactory enemyFactory,
             HeroViewFactory heroViewFactory,
             HeroModelFactory heroFactory,
             WerewolfFactory werewolfFactory,
@@ -61,8 +65,8 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
             _fixedUpdateService = fixedUpdateService ?? throw new ArgumentNullException(nameof(fixedUpdateService));
             _lateUpdateHandler = lateUpdateHandler ?? throw new ArgumentNullException(nameof(lateUpdateHandler));
             _lateUpdateService = lateUpdateService ?? throw new ArgumentNullException(nameof(lateUpdateService));
-            _enemyModelFactory = enemyModelFactory ?? throw new ArgumentNullException(nameof(enemyModelFactory));
             _saveLoadedService = saveLoadedService ?? throw new ArgumentNullException(nameof(saveLoadedService));
+            _enemyFactory = enemyFactory ?? throw new ArgumentNullException(nameof(enemyFactory));
             _heroViewFactory = heroViewFactory ?? throw new ArgumentNullException(nameof(heroViewFactory));
             _heroFactory = heroFactory ?? throw new ArgumentNullException(nameof(heroFactory));
             _werewolfFactory = werewolfFactory ?? throw new ArgumentNullException(nameof(werewolfFactory));
@@ -71,7 +75,6 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
 
         public async void Enter()
         {
-            //_saveLoadedService.SystemCreateJson();
             await _assetService.LoadAsync();
             HeroModel player = _heroFactory.Create();
 
@@ -80,18 +83,18 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
             SpawnerObject spawnerObjects = new SpawnerObject(hero.HeroTransform, new Dictionary<Type, SpawnObjectPool[]>
             {
                 {
-                    typeof(EnemyPool), new SpawnObjectPool[]
+                    typeof(Enemy), new SpawnObjectPool[]
                     {
-                        new EnemyPool(_werewolfFactory,
-                            hero.HeroTransform, _enemyModelFactory),
-                    //    new EnemyPool(_dragonFactory, hero.HeroTransform, _enemyModelFactory)
+                        new EnemyPool<Werewolf>(_werewolfFactory,
+                            hero.HeroTransform, _enemyFactory),
+                        new EnemyPool<DragonFire>(_dragonFactory, hero.HeroTransform, _enemyFactory)
                     }
                 },
             });
 
-            spawnerObjects.Spawn(typeof(EnemyPool), 100);
+            spawnerObjects.Spawn(typeof(Enemy), 100);
             Initialize();
-           // AddListeners();
+            // AddListeners();
         }
 
         private void Initialize()

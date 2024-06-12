@@ -23,12 +23,7 @@ namespace Sources.MonoInstallers
                             serviceProvider.GetService<AssetService<UpgradeStatsAssetProvider>>()
                         )
                 )
-                .RegisterAsScoped(serviceProvider =>
-                    serviceProvider.GetService<AssetService<MainGameMenuAssetProvider>>().Provider)
-                .RegisterAsScoped(serviceProvider =>
-                    serviceProvider.GetService<AssetService<SettingsAssetProvider>>().Provider)
-                .RegisterAsScoped(serviceProvider =>
-                    serviceProvider.GetService<AssetService<UpgradeStatsAssetProvider>>().Provider);
+                ;
         }
     }
 }
