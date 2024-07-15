@@ -37,7 +37,7 @@ namespace Sources.Game.DataTransferObjects.Implementation.Services
             var fileName = data.GetType().Name;
             var jsonString = JsonConvert.SerializeObject(data);
             var file = Path.Combine(path, fileName + extension);
-
+            
             if (File.Exists(file) == false)
             {
                 using (File.Create(file)) ;

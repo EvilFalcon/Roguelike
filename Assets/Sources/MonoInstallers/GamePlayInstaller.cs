@@ -23,6 +23,7 @@ namespace Sources.MonoInstallers
                 .RegisterAsSingleton<AssetService<EnemyWerewolfAssetProvider>>()
                 .RegisterAsSingleton<AssetService<EnemyDragonAssetProvider>>()
                 .RegisterAsSingleton<AssetService<HeroAssetProvider>>()
+                .RegisterAsSingleton<AssetService<GameMapSceneViewAssetProvider>>()
                 .RegisterAsScoped<IAssetService>
                 (
                     serviceProvider =>
@@ -30,7 +31,8 @@ namespace Sources.MonoInstallers
                         (
                             serviceProvider.GetService<AssetService<HeroAssetProvider>>(),
                             serviceProvider.GetService<AssetService<EnemyDragonAssetProvider>>(),
-                            serviceProvider.GetService<AssetService<EnemyWerewolfAssetProvider>>()
+                            serviceProvider.GetService<AssetService<EnemyWerewolfAssetProvider>>(),
+                            serviceProvider.GetService<AssetService<GameMapSceneViewAssetProvider>>()
                         )
                 );
         }

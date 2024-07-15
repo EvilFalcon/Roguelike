@@ -39,7 +39,7 @@ namespace Sources.Game.BoundedContexts.Settings.Implementation.Factories.Views
             SettingsPresenter presenter = _settingsPresenterFactory.Create(model, view);
             view.Construct(presenter);
             
-            _viewService.AddForm(view);
+            _viewService.RegisterForm(view);
             _viewService.HideFormAll();
             
             return view;

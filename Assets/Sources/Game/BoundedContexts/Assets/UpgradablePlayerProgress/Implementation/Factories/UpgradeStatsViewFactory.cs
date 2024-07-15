@@ -38,7 +38,7 @@ namespace Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implement
             UpgradeStatsPresenter presenter = _presenterFactory.Create(view, model, player);
             view.Construct(presenter);
             
-            _viewService.AddForm(view);
+            _viewService.RegisterForm(view);
             
             _viewService.HideForm(nameof(UpgradeStatsView));
             return view;

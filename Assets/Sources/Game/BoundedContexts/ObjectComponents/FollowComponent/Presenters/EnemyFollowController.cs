@@ -16,14 +16,14 @@ namespace Sources.Game.BoundedContexts.ObjectComponents.FollowComponent.Presente
         public void Enable()
         { 
             _followComponent.Enable();
-            _target.TransformChanged += OnPositionTargetChanged;
+          //  _target.TransformChanged += OnPositionTargetChanged;
             SetSpeed();
             SetDestination();
         }
 
         public void Disable()
         {
-            _target.TransformChanged -= OnPositionTargetChanged;
+         //   _target.TransformChanged -= OnPositionTargetChanged;
             _followComponent.Disable();
         }
 

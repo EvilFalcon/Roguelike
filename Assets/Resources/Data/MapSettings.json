@@ -1,0 +1,35 @@
+﻿{
+  "Level": {
+    "0": {
+      "CooldownSpawnOfEnemies": 1.0,
+      "DelayingEnemyLevel-up": 10,
+      "MaximumEnemyLevel": 100,
+      "LevelCompletionTime": 600.0,
+      "Enemies":
+      {
+        "OrdinaryEnemies": 
+        [
+          "DragonFire"
+        ],
+        "Bosses": 
+        [
+          "Werewolf"
+        ]
+      }
+    },
+    "1": {
+      "CooldownSpawnOfEnemies": 1.0,
+      "DelayingEnemyLevel-up": 10,
+      "MaximumEnemyLevel": 100,
+      "Enemies":
+      {
+        "OrdinaryEnemies": [
+          "DragonFire"
+        ],
+        "Bosses": [
+          "Werewolf"
+        ]
+      }
+    }
+  }
+}

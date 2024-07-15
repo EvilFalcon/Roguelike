@@ -7,6 +7,8 @@ using Sources.Game.BoundedContexts.Heroes.Implementation.View;
 using Sources.Game.BoundedContexts.ObjectComponents.HealthComponent.Implementation.Presenter;
 using Sources.Game.BoundedContexts.ObjectComponents.HealthComponent.Implementation.View;
 using Sources.Game.BoundedContexts.ViewFormServices.Interfaces;
+using Sources.Game.Common.StateMachines.Interfaces.Hendlers;
+using Sources.Game.Common.StateMachines.Interfaces.Services;
 using UniCtor.Contexts;
 using UniCtor.Sources.Di.Extensions.IDependencyResolvers;
 using UnityEngine;
@@ -35,14 +37,15 @@ namespace Sources.Game.BoundedContexts.Heroes.Implementation.Factories.Views
                                              throw new ArgumentNullException(nameof(heroMovementControllerFactory));
         }
 
-        public Hero Create(HeroModel hero)
+        public Hero Create(HeroModel hero,ILateUpdateService lateUpdateHandler)
         {
             Hero view =
                 _sceneContext.DependencyResolver.InstantiateComponentFromPrefab(_assetService.Provider.Player,
                     new Vector3(43, 0, 43), Quaternion.identity);
 
             HeroMovementView heroMovementView = view.GetComponent<HeroMovementView>();
-            HeroMovementController heroMovementController = _heroMovementControllerFactory.Create(heroMovementView, hero);
+            HeroMovementController heroMovementController = _heroMovementControllerFactory.Create(heroMovementView, hero, lateUpdateHandler);
+            heroMovementController.Enabled();
             view.Construct(heroMovementView);
 
             HealthComponent healthComponent = view.GetComponent<HealthComponent>();
@@ -50,7 +53,7 @@ namespace Sources.Game.BoundedContexts.Heroes.Implementation.Factories.Views
             healthComponent.Conctruct(healthPresenter);
             healthPresenter.Enable();
 
-            _viewService.AddForm(heroMovementView);
+            _viewService.RegisterForm(heroMovementView);
 
             heroMovementView.Construct(heroMovementController);
 

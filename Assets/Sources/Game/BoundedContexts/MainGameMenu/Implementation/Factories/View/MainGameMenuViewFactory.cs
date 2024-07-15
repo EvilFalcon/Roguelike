@@ -36,7 +36,7 @@ namespace Sources.Game.BoundedContexts.MainGameMenu.Implementation.Factories.Vie
             MainGameMenuView view =
                 _sceneContext.DependencyResolver.InstantiateComponentFromPrefab(_assetService.Provider.MainGameMenuView);
             MainGameMenuPresenter presenter = _presenterFactory.Create(view, player);
-            _viewService.AddForm(view);
+            _viewService.RegisterForm(view);
 
             view.Construct(presenter);
 

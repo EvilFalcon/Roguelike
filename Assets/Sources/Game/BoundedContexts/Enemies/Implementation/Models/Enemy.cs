@@ -1,10 +1,9 @@
 ﻿using Sources.Game.BoundedContexts.ObjectComponents.HealthComponent.Implementation.Model;
 using Sources.Game.Common.Models;
-using Sources.Game.Common.Mvp.Interface;
 
 namespace Sources.Game.BoundedContexts.Enemies.Implementation.Models
 {
-    public class Enemy: IAttackModel,IModel
+    public class Enemy : IModel
     {
         public Enemy(HealthModel health, int armor, int damage, float attackDelay, float speed)
         {

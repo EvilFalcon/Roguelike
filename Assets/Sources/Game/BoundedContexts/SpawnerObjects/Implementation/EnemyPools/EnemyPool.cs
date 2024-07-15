@@ -5,7 +5,6 @@ using Sources.Game.BoundedContexts.Enemies.Implementation.Factories.Dragon;
 using Sources.Game.BoundedContexts.Enemies.Implementation.Models;
 using Sources.Game.BoundedContexts.Enemies.Implementation.View;
 using Sources.Game.BoundedContexts.Enemies.Implementation.View.Dragon;
-using Sources.Game.BoundedContexts.Enemies.Implementation.View.Werewolf;
 using Sources.Game.BoundedContexts.Heroes.Interfaces.View;
 using Sources.Game.BoundedContexts.ObjectComponents.AttackComponents;
 using Sources.Game.BoundedContexts.ObjectComponents.HealthComponent.Implementation.Presenter;

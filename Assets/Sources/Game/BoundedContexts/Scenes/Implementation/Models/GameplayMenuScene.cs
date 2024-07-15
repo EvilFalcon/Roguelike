@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using Newtonsoft.Json;
 using Sources.Game.BoundedContexts.Assets.Interfaces.AssetsServices;
 using Sources.Game.BoundedContexts.Assets.Interfaces.States;
 using Sources.Game.BoundedContexts.Assets.UpgradablePlayerProgress.Implementation.Factories;
@@ -12,10 +10,6 @@ using Sources.Game.BoundedContexts.Players.Implementation.Factories.PlayerModelF
 using Sources.Game.BoundedContexts.Players.Implementation.Model;
 using Sources.Game.BoundedContexts.Settings.Implementation.Factories.Views;
 using Sources.Game.BoundedContexts.ViewFormServices.Interfaces;
-using Sources.Game.DataTransferObjects.Implementation.DTO;
-using Sources.Game.DataTransferObjects.Implementation.DTO.Enemyes;
-using Sources.Game.DataTransferObjects.Implementation.Services;
-using UnityEngine;
 
 namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
 {
@@ -32,7 +26,8 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
         private readonly IViewService _viewServices;
 
         public GameplayMenuScene
-        (IAssetService assetService,
+        (
+            IAssetService assetService,
             ISaveLoadedServices saveLoadedGameProgressServices,
             ISettingsModelProvider settingsModelProvider,
             MainGameMenuViewFactory gameMenuViewFactory,
@@ -76,7 +71,7 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
 
         public void Exit()
         {
-            _viewServices.HideFormAll();
+            _viewServices.UnRegisterAll();
         }
     }
 }

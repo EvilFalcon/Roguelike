@@ -8,10 +8,10 @@ namespace Sources.Game.BoundedContexts.ViewFormServices.Implementation
     {
         Dictionary<string, IView> _viewCollection = new Dictionary<string, IView>();
 
-        public void AddForm<T>(T view) where T : IView =>
+        public void RegisterForm<T>(T view) where T : IView =>
             _viewCollection[view.GetType().Name] = view;
 
-        public void RemoveForm(string view)
+        public void UnRegisterForm(string view)
         {
             if (_viewCollection.ContainsKey(view) == false)
                 return;
@@ -19,7 +19,7 @@ namespace Sources.Game.BoundedContexts.ViewFormServices.Implementation
             _viewCollection.Remove(view);
         }
 
-        public void RemoveAllForms()
+        public void UnRegisterAll()
         {
             HideFormAll();
             _viewCollection.Clear();

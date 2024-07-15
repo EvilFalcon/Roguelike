@@ -4,11 +4,11 @@ namespace Sources.Game.BoundedContexts.ViewFormServices.Interfaces
 {
     public interface IViewService
     {
-        void AddForm<T>(T view) where T : IView;
+        void RegisterForm<T>(T view) where T : IView;
 
-        void RemoveForm(string view);
+        void UnRegisterForm(string view);
 
-        void RemoveAllForms();
+        void UnRegisterAll();
 
         void ShowForm(string view);
 

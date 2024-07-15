@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Sources.Game.BoundedContexts.Enemies.Implementation.View.Werewolf;
+using Sources.Game.BoundedContexts.Enemies.Implementation.View.Boses;
 
 namespace Sources.Game.BoundedContexts.Assets.Implementation
 {
@@ -9,7 +9,7 @@ namespace Sources.Game.BoundedContexts.Assets.Implementation
 
         public override async Task LoadAsync()
         {
-            Werewolf = await Load<Werewolf>(nameof(Enemies.Implementation.View.Werewolf.Werewolf));
+            Werewolf = await Load<Werewolf>(nameof(Enemies.Implementation.View.Boses.Werewolf));
         }
     }
 }

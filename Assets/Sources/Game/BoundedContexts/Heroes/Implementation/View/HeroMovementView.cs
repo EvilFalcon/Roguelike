@@ -14,10 +14,7 @@ namespace Sources.Game.BoundedContexts.Heroes.Implementation.View
         private HeroMovementController _controller;
 
         public Transform Transform => transform;
-        public event Action TransformChanged;
-
-        private void Update() =>
-            _controller.MovePlayer(transform); // TODO : убрать костыль
+        // TODO : убрать костыль
 
         public void Show() =>
             gameObject.SetActive(true);
@@ -28,7 +25,6 @@ namespace Sources.Game.BoundedContexts.Heroes.Implementation.View
         public void Move(Vector3 direction)
         {
             _characterController.Move(direction);
-            TransformChanged?.Invoke();
         }
         
         public void Construct(HeroMovementController controller)

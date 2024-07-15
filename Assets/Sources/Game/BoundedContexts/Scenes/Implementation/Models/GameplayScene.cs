@@ -6,18 +6,18 @@ using Sources.Game.BoundedContexts.Enemies.Implementation.Factories;
 using Sources.Game.BoundedContexts.Enemies.Implementation.Factories.Dragon;
 using Sources.Game.BoundedContexts.Enemies.Implementation.Factories.Werewolf;
 using Sources.Game.BoundedContexts.Enemies.Implementation.Models;
+using Sources.Game.BoundedContexts.Enemies.Implementation.View.Boses;
 using Sources.Game.BoundedContexts.Enemies.Implementation.View.Dragon;
-using Sources.Game.BoundedContexts.Enemies.Implementation.View.Werewolf;
 using Sources.Game.BoundedContexts.Heroes.Implementation.Factories.Models;
 using Sources.Game.BoundedContexts.Heroes.Implementation.Factories.Views;
 using Sources.Game.BoundedContexts.Heroes.Implementation.Models;
+using Sources.Game.BoundedContexts.Maps.Implementation.Factories.Views;
 using Sources.Game.BoundedContexts.Scenes.Interfaces.Services;
 using Sources.Game.BoundedContexts.SpawnerObjects.Implementation;
 using Sources.Game.BoundedContexts.SpawnerObjects.Implementation.EnemyPools;
 using Sources.Game.BoundedContexts.SpawnerObjects.Implementation.View;
 using Sources.Game.Common.StateMachines.Interfaces.Hendlers;
 using Sources.Game.Common.StateMachines.Interfaces.Services;
-using Sources.Game.DataTransferObjects.Implementation.DTO.Enemyes;
 using Sources.Game.DataTransferObjects.Implementation.Services;
 
 namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
@@ -32,12 +32,14 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
         private readonly IFixedUpdateService _fixedUpdateService;
         private readonly ILateUpdateHandler _lateUpdateHandler;
         private readonly ILateUpdateService _lateUpdateService;
+        private readonly GamePlayMapViewFactory _mapViewFactory;
         private readonly SaveLoadedService _saveLoadedService;
         private readonly EnemyFactory _enemyFactory;
         private readonly HeroViewFactory _heroViewFactory;
         private readonly HeroModelFactory _heroFactory;
         private readonly WerewolfFactory _werewolfFactory;
         private readonly DragonFactory _dragonFactory;
+        private SpawnerObject _spawnerObjects;
 
         public GameplayScene
         (
@@ -49,6 +51,7 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
             IFixedUpdateService fixedUpdateService,
             ILateUpdateHandler lateUpdateHandler,
             ILateUpdateService lateUpdateService,
+            GamePlayMapViewFactory mapViewFactory,
             SaveLoadedService saveLoadedService,
             EnemyFactory enemyFactory,
             HeroViewFactory heroViewFactory,
@@ -65,6 +68,7 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
             _fixedUpdateService = fixedUpdateService ?? throw new ArgumentNullException(nameof(fixedUpdateService));
             _lateUpdateHandler = lateUpdateHandler ?? throw new ArgumentNullException(nameof(lateUpdateHandler));
             _lateUpdateService = lateUpdateService ?? throw new ArgumentNullException(nameof(lateUpdateService));
+            _mapViewFactory = mapViewFactory ?? throw new ArgumentNullException(nameof(mapViewFactory));
             _saveLoadedService = saveLoadedService ?? throw new ArgumentNullException(nameof(saveLoadedService));
             _enemyFactory = enemyFactory ?? throw new ArgumentNullException(nameof(enemyFactory));
             _heroViewFactory = heroViewFactory ?? throw new ArgumentNullException(nameof(heroViewFactory));
@@ -76,11 +80,20 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
         public async void Enter()
         {
             await _assetService.LoadAsync();
+
+            Initialize();
+            _spawnerObjects.Spawn(typeof(Enemy), 150);
+            AddListeners();
+        }
+
+        private void Initialize()
+        {
             HeroModel player = _heroFactory.Create();
+            _mapViewFactory.Create();
 
-            var hero = _heroViewFactory.Create(player);
+            var hero = _heroViewFactory.Create(player, _lateUpdateService);
 
-            SpawnerObject spawnerObjects = new SpawnerObject(hero.HeroTransform, new Dictionary<Type, SpawnObjectPool[]>
+            _spawnerObjects = new SpawnerObject(hero.HeroTransform, new Dictionary<Type, SpawnObjectPool[]>
             {
                 {
                     typeof(Enemy), new SpawnObjectPool[]
@@ -91,14 +104,6 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
                     }
                 },
             });
-
-            spawnerObjects.Spawn(typeof(Enemy), 100);
-            Initialize();
-            // AddListeners();
-        }
-
-        private void Initialize()
-        {
         }
 
         public void Exit()
@@ -108,9 +113,6 @@ namespace Sources.Game.BoundedContexts.Scenes.Implementation.Models
 
         private void AddListeners()
         {
-            _updateService.Updated += Update;
-            _fixedUpdateService.FixedUpdated += FixedUpdate;
-            _lateUpdateService.LateUpdated += LateUpdate;
         }
 
         public void Update(float deltaTime)

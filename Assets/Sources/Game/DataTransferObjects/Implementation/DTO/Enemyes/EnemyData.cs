@@ -4,11 +4,14 @@ namespace Sources.Game.DataTransferObjects.Implementation.DTO.Enemyes
 {
     public class EnemyData
     {
-        [JsonProperty(propertyName: "Health")] public int Health { get; set; }
+        [JsonProperty(propertyName: "Health")]
+        public int Health { get; set; }
 
-        [JsonProperty(propertyName: "Armor")] public int Armor { get; set; }
+        [JsonProperty(propertyName: "Armor")]
+        public int Armor { get; set; }
 
-        [JsonProperty(propertyName: "Damage")] public int Damage { get; set; }
+        [JsonProperty(propertyName: "Damage")] 
+        public int Damage { get; set; }
 
         [JsonProperty(propertyName: "AttackDelay")]
         public float AttackDelay { get; set; }

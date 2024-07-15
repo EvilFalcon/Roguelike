@@ -15,14 +15,14 @@ namespace Sources.Game.BoundedContexts.Heroes.Implementation.Models
             Speed = player.Speed;
         }
 
-        public float Speed { get; }
-
         public HealthModel Health { get; }
+
+        public float Speed { get; }
 
         public int Armor { get; }
 
         public int Damage { get; }
-
+        
         public float AttackDelay { get; }
     }
 }
