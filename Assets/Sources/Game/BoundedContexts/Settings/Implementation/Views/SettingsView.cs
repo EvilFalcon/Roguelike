@@ -1,6 +1,9 @@
-﻿using Sources.Game.BoundedContexts.Settings.Implementation.Controllers;
+﻿using System;
+using Sources.Game.BoundedContexts.Assets.Interfaces.AssetsServices;
+using Sources.Game.BoundedContexts.Settings.Implementation.Controllers;
 using Sources.Game.IDontCno;
 using TMPro;
+using UniCtor.Attributes;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -43,6 +46,12 @@ namespace Sources.Game.BoundedContexts.Settings.Implementation.Views
             gameObject.SetActive(false);
         }
 
+        [Constructor]
+        private void Construct( IAssetService assetService)
+        {
+            if (assetService == null) throw new ArgumentNullException(nameof(assetService));
+        }
+        
         public void SetLocalizationMode(string musicVolumeText, string soundEffectsVolumeText, string backButtonText)
         {
             _musicVolumeText.text = musicVolumeText;
